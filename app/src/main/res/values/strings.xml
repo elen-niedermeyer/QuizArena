@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">QuizArena</string>
+
+    <!-- shared strings -->
+    <string name="imprint">Impressum</string>
+    <string name="options">Optionen</string>
+    <string name="search">Suche</string>
+
+    <!-- handling sessions -->
+    <string name="show_sessions">Sessions anzeigen</string>
+    <string name="create_session">Session erstellen</string>
+    <string name="form_name">Name</string>
+    <string name="category">Kategorie</string>
+    <string name="duration">Dauer</string>
+    <string name="hours">Stunden</string>
+
 </resources>

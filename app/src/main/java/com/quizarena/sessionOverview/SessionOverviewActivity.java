@@ -1,13 +1,15 @@
-package com.quizarena;
+package com.quizarena.sessionOverview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainMenuActivity extends AppCompatActivity {
+import com.quizarena.R;
+
+public class SessionOverviewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
+        setContentView(R.layout.activity_session_overview);
     }
 }

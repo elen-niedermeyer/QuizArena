@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.quizarena.sessionOverview.SessionOverviewActivity">
+
+    <EditText
+        android:id="@+id/activity_session_overview_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_search_black"
+        android:drawableStart="@drawable/ic_search_black"
+        android:hint="@string/search" />
+
+    <ScrollView
+        android:id="@+id/activity_session_overview_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_session_overview_search">
+
+    </ScrollView>
+
+
+</RelativeLayout>
