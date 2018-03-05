@@ -19,10 +19,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".sessionOverview.SessionOverviewActivity"
+            android:name=".sessions.creation.overview.SessionOverviewActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".sessionCreation.CreateSessionActivity"
+            android:name=".create.CreateSessionActivity"
             android:screenOrientation="portrait" />
     </application>
 

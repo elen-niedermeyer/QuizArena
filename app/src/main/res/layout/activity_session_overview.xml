@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.quizarena.sessionOverview.SessionOverviewActivity">
+    tools:context="com.quizarena.sessions.overview.SessionOverviewActivity">
 
     <EditText
         android:id="@+id/activity_session_overview_search"

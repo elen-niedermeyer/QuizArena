@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.quizarena.R;
-import com.quizarena.sessionCreation.CreateSessionActivity;
-import com.quizarena.sessionOverview.SessionOverviewActivity;
+import com.quizarena.sessions.creation.CreateSessionActivity;
+import com.quizarena.sessions.overview.SessionOverviewActivity;
 
 public class MainMenuActivity extends AppCompatActivity {
 

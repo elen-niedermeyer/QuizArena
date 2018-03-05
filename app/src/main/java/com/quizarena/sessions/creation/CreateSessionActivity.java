@@ -1,15 +1,15 @@
-package com.quizarena.sessionOverview;
+package com.quizarena.sessions.creation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.quizarena.R;
 
-public class SessionOverviewActivity extends AppCompatActivity {
+public class CreateSessionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_session_overview);
+        setContentView(R.layout.activity_create_session);
     }
 }
