@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.quizarena.sessions.creation.CreateSessionActivity">
+    tools:context="com.quizarena.options.OptionsActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -13,12 +13,11 @@
         android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/activity_create_session_form_name"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:hint="@string/form_name" />
+            android:text="[Accountname]" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -26,21 +25,50 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/activity_create_session_form_category_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:text="@string/category" />
+                android:text="@string/display_name"
+                android:layout_toLeftOf="@id/activity_options_button_change_name"
+                android:layout_toStartOf="@id/activity_options_button_change_name" />
+
+            <Button
+                android:id="@+id/activity_options_button_change_name"
+                style="@style/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="@string/change" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="@string/language"
+                android:layout_toLeftOf="@id/activity_options_language"
+                android:layout_toStartOf="@id/activity_options_language" />
 
             <Spinner
-                android:id="@+id/activity_create_session_form_category"
+                android:id="@+id/activity_options_language"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -49,40 +77,32 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/activity_create_session_form_duration_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:text="@string/duration" />
+                android:layout_toLeftOf="@id/activity_options_button_push"
+                android:layout_toStartOf="@id/activity_options_button_push"
+                android:text="@string/push" />
 
-            <TextView
-                android:id="@+id/activity_create_session_form_duration_hour_label"
+            <ToggleButton
+                android:id="@+id/activity_options_button_push"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="@string/hours" />
-
-            <EditText
-                android:id="@+id/activity_create_session_form_duration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/activity_create_session_form_duration_hour_label"
-                android:layout_toStartOf="@id/activity_create_session_form_duration_hour_label"
-                android:inputType="number" />
+                android:layout_centerVertical="true" />
 
         </RelativeLayout>
 
         <Button
+            android:id="@+id/activity_options_button_logout"
+            style="@style/button"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="@string/create_session" />
+            android:text="@string/logout" />
 
     </LinearLayout>
-
 </RelativeLayout>
