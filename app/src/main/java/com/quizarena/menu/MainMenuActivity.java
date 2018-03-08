@@ -19,27 +19,33 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         Button sessionOverviewButton = findViewById(R.id.activity_main_menu_button_show_sessions);
-        sessionOverviewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainMenuActivity.this, SessionOverviewActivity.class));
-            }
-        });
+        sessionOverviewButton.setOnClickListener(onSessionOverviewButtonClickListener);
 
         Button createSessionButton = findViewById(R.id.activity_main_menu_button_create);
-        createSessionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainMenuActivity.this, CreateSessionActivity.class));
-            }
-        });
+        createSessionButton.setOnClickListener(onCreateSessionButtonClickListener);
 
         Button optionsButton = findViewById(R.id.activity_main_menu_button_options);
-        optionsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainMenuActivity.this, OptionsActivity.class));
-            }
-        });
+        optionsButton.setOnClickListener(onOptionsButtonClickListener);
     }
+
+    private View.OnClickListener onSessionOverviewButtonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MainMenuActivity.this, SessionOverviewActivity.class));
+        }
+    };
+
+    private View.OnClickListener onCreateSessionButtonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MainMenuActivity.this, CreateSessionActivity.class));
+        }
+    };
+
+    private View.OnClickListener onOptionsButtonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MainMenuActivity.this, OptionsActivity.class));
+        }
+    };
 }
