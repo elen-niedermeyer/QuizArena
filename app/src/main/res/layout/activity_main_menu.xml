@@ -1,45 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     tools:context="com.quizarena.menu.MainMenuActivity">
 
-
-    <LinearLayout
+    <Button
+        android:id="@+id/activity_main_menu_button_show_sessions"
+        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:text="@string/show_sessions"
+        app:layout_constraintBottom_toTopOf="@+id/activity_main_menu_button_create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-        <Button
-            android:id="@+id/activity_main_menu_button_show_sessions"
-            style="@style/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/show_sessions" />
+    <Button
+        android:id="@+id/activity_main_menu_button_create"
+        style="@style/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/create_session"
+        app:layout_constraintBottom_toTopOf="@+id/activity_main_menu_button_options"
+        app:layout_constraintEnd_toEndOf="@+id/activity_main_menu_button_show_sessions"
+        app:layout_constraintStart_toStartOf="@+id/activity_main_menu_button_show_sessions"
+        app:layout_constraintTop_toBottomOf="@+id/activity_main_menu_button_show_sessions" />
 
-        <Button
-            android:id="@+id/activity_main_menu_button_create"
-            style="@style/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/create_session" />
+    <Button
+        android:id="@+id/activity_main_menu_button_options"
+        style="@style/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/options"
+        app:layout_constraintBottom_toTopOf="@+id/activity_main_menu_button_imprint"
+        app:layout_constraintEnd_toEndOf="@+id/activity_main_menu_button_create"
+        app:layout_constraintStart_toStartOf="@+id/activity_main_menu_button_create"
+        app:layout_constraintTop_toBottomOf="@+id/activity_main_menu_button_create" />
 
-        <Button
-            android:id="@+id/activity_main_menu_button_options"
-            style="@style/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/options" />
+    <Button
+        android:id="@+id/activity_main_menu_button_imprint"
+        style="@style/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/imprint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activity_main_menu_button_options"
+        app:layout_constraintStart_toStartOf="@+id/activity_main_menu_button_options"
+        app:layout_constraintTop_toBottomOf="@+id/activity_main_menu_button_options" />
 
-        <Button
-            android:id="@+id/activity_main_menu_button_imprint"
-            style="@style/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/imprint" />
-    </LinearLayout>
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
