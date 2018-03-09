@@ -11,6 +11,10 @@
     <string name="push">Push-Nachrichten</string>
     <string name="search">Suche</string>
 
+    <!-- api requests -->
+    <string name="url">http://192.168.0.15:5000/user/</string>
+    <string name="api_parameter_password">password</string>
+
     <!-- handling sessions -->
     <string name="show_sessions">Sessions anzeigen</string>
     <string name="create_session">Session erstellen</string>

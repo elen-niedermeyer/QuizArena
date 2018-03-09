@@ -13,4 +13,7 @@
 
     </style>
 
+    <!-- style for error messages -->
+    <style name="error_text" parent="TextAppearance.AppCompat.Small"></style>
+
 </resources>

@@ -26,7 +26,22 @@ class RegisterActivity : AppCompatActivity() {
         activity_register_password1.addTextChangedListener(passwordWatcher)
         activity_register_password2.addTextChangedListener(passwordWatcher)
 
-        activity_register_button_confirm.setOnClickListener { RegisterApi().registerRequest(this, "Hello", "hello", "hello2") }
+        activity_register_button_confirm.setOnClickListener {
+            if (validateAccountName() && validatePassword()) {
+                RegisterApi().registerRequest(this, activity_register_account_name.text.toString(),
+                        activity_register_password1.text.toString(),
+                        activity_register_display_name.text.toString())
+            }
+        }
+    }
+
+    private fun validateAccountName(): Boolean {
+        if (activity_register_account_name.text.isEmpty()) {
+            // TODO: show error
+            return false
+        }
+
+        return true
     }
 
     private fun validatePassword(): Boolean {
@@ -36,19 +51,14 @@ class RegisterActivity : AppCompatActivity() {
         if (password1.isEmpty()) {
             // TODO: show error
 
-            activity_register_button_confirm.isEnabled = false
-
             return false
 
         } else if (password1 != password2) {
             // TODO: show another error
 
-            activity_register_button_confirm.isEnabled = false
-
             return false
 
         } else {
-            activity_register_button_confirm.isEnabled = true
 
             return true
         }
