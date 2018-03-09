@@ -4,20 +4,25 @@
     <!-- shared strings -->
     <string name="category">Kategorie</string>
     <string name="change">\u00C4ndern</string>
-    <string name="display_name">Anzeigename</string>
     <string name="imprint">Impressum</string>
     <string name="language">Sprache</string>
     <string name="logout">Abmelden</string>
     <string name="options">Optionen</string>
-    <string name="password">Passwort</string>
     <string name="push">Push-Nachrichten</string>
     <string name="search">Suche</string>
 
     <!-- handling sessions -->
     <string name="show_sessions">Sessions anzeigen</string>
     <string name="create_session">Session erstellen</string>
-    <string name="form_name">Name</string>
+    <string name="session_name">Name</string>
     <string name="duration">Dauer</string>
     <string name="hours">Stunden</string>
 
+    <!-- handling account -->
+    <string name="account_name">Name</string>
+    <string name="display_name">Anzeigename</string>
+    <string name="password">Passwort</string>
+    <string name="password_confirm">Passwort wiederholen</string>
+    <string name="register">Registrieren</string>
+    <string name="login">Login</string>
 </resources>
