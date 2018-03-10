@@ -33,9 +33,13 @@
     <string name="password_confirm">Passwort wiederholen</string>
     <string name="register">Registrieren</string>
     <string name="login">Login</string>
-    <string name="account_error_no_name">Lege einen Accountnamen fest</string>
-    <string name="account_error_no_password">Lege ein Passwort fest</string>
-    <string name="account_error_passwords_different">Passwörter sind nicht identisch</string>
+    <!-- register errors -->
+    <string name="register_error_no_name">Lege einen Accountnamen fest</string>
+    <string name="register_error_no_password">Lege ein Passwort fest</string>
+    <string name="register_error_passwords_different">Passwörter sind nicht identisch</string>
+    <!-- login errors -->
+    <string name="login_error_no_name">Gib einen Accountnamen ein</string>
+    <string name="login_error_no_password">Gib ein Passwort ein</string>
 
     <!-- preferences -->
     <string name="pref_credentials_file">com.quizarena.credentials</string>

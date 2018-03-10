@@ -11,7 +11,7 @@ class RegisterApi {
 
     // TODO: handle responses (errors, id not unique, success --> go to main menu)
     // TODO: set users display name
-    /*fun registerRequest(context: Context, name: String, password: String, displayName: String) : Boolean {
+    /*fun executeRegisterRequest(context: Context, name: String, password: String, displayName: String) : Boolean {
         doAsync {
             val response = khttp.post(
                     url = context.getString(R.string.baseurl) + context.getString(R.string.user_endpoint) + name,
@@ -20,7 +20,7 @@ class RegisterApi {
     }*/
 
     // Mocking Request for easier debugging
-    fun registerRequest(context: Context, name: String, password: String, displayName: String): Boolean {
+    fun executeRegisterRequest(context: Context, name: String, password: String, displayName: String): Boolean {
         if (name == "Test") {
             return true
         } else {
