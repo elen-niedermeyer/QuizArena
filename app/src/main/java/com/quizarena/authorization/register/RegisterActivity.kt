@@ -37,9 +37,12 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun validateAccountName(): Boolean {
         if (activity_register_account_name.text.isEmpty()) {
-            // TODO: show error
+            activity_register_error_name.text = getString(R.string.account_error_no_name)
+
             return false
         }
+
+        activity_register_error_name.text = null
 
         return true
     }
@@ -49,16 +52,20 @@ class RegisterActivity : AppCompatActivity() {
         val password2 = activity_register_password2.text.toString()
 
         if (password1.isEmpty()) {
-            // TODO: show error
+            activity_register_error_password2.text = null
+            activity_register_error_password1.text = getString(R.string.account_error_no_password)
 
             return false
 
         } else if (password1 != password2) {
-            // TODO: show another error
+            activity_register_error_password1.text = null
+            activity_register_error_password2.text = getString(R.string.account_error_passwords_different)
 
             return false
 
         } else {
+            activity_register_error_password1.text = null
+            activity_register_error_password2.text = null
 
             return true
         }
