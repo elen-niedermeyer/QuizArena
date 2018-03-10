@@ -4,15 +4,19 @@
     <!-- shared strings -->
     <string name="category">Kategorie</string>
     <string name="change">\u00C4ndern</string>
+    <string name="error">Fehler</string>
     <string name="imprint">Impressum</string>
     <string name="language">Sprache</string>
     <string name="logout">Abmelden</string>
+    <string name="ok">OK</string>
     <string name="options">Optionen</string>
     <string name="push">Push-Nachrichten</string>
     <string name="search">Suche</string>
 
     <!-- api requests -->
-    <string name="url">http://192.168.0.15:5000/user/</string>
+    <string name="baseurl">http://192.168.0.15:5000/</string>
+    <string name="user_endpoint">user/</string>
+    <string name="session_endpoint">session/</string>
     <string name="api_parameter_password">password</string>
 
     <!-- handling sessions -->
@@ -32,4 +36,9 @@
     <string name="account_error_no_name">Lege einen Accountnamen fest</string>
     <string name="account_error_no_password">Lege ein Passwort fest</string>
     <string name="account_error_passwords_different">Passwörter sind nicht identisch</string>
+
+    <!-- preferences -->
+    <string name="pref_credentials_file">com.quizarena.credentials</string>
+    <string name="pref_credentials_name_key">accountName</string>
+    <string name="pref_credentials_password_key">password</string>
 </resources>
