@@ -2,6 +2,7 @@ package com.quizarena.sessions
 
 import java.util.*
 
+// TODO: correct implementation with backend including errors
 class SessionApi {
 
     // mock up
