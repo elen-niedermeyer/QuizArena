@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="red">#FF0000</color>
+
+    <color name="overview_session_owned">#FFFF00</color>
+    <color name="overview_session_participated">#FF00FF</color>
+    <color name="overview_session_other">#AAAAAA</color>
+
 </resources>
