@@ -19,21 +19,7 @@ class SessionOverviewActivity : AppCompatActivity() {
         val provider = SessionProvider()
 
         // TODO: handle negative times
-        // add owned sessions
-        val ownedSessions = provider.getOwnedSessions()
-        for (session in ownedSessions.sortedWith(compareBy { it.enddate })) {
-            activity_session_overview_content.addView(getSessionBar(session))
-        }
-
-        // add participated sessions
-        val participatedSessions = provider.getParticipatedSessions()
-        for (session in participatedSessions.sortedWith(compareBy { it.enddate })) {
-            activity_session_overview_content.addView(getSessionBar(session))
-        }
-
-        // add other sessions
-        val otherSessions = provider.getOpenSessions()
-        for (session in otherSessions.sortedWith(compareBy { it.enddate })) {
+        for (session in provider.getAllSessionSorted()) {
             activity_session_overview_content.addView(getSessionBar(session))
         }
     }
