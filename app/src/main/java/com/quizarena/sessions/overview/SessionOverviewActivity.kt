@@ -1,7 +1,6 @@
 package com.quizarena.sessions.overview
 
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.quizarena.R
@@ -28,13 +27,16 @@ class SessionOverviewActivity : AppCompatActivity() {
         // get bar layout
         val sessionBar = layoutInflater.inflate(R.layout.activity_session_overview_session_bar, null)
 
-        // choose background
-        if (session.isOwner) {
-            sessionBar.activity_session_overview_bar.setBackgroundResource(R.color.overview_session_owned)
-        } else if (session.isParticipant) {
-            sessionBar.activity_session_overview_bar.setBackgroundResource(R.color.overview_session_participated)
-        } else {
-            sessionBar.activity_session_overview_bar.setBackgroundResource(R.color.overview_session_other)
+        // set background depending on the session's mode
+        when {
+            session.isOwner -> // owned sessions
+                sessionBar.activity_session_overview_bar.setBackgroundResource(R.color.overview_session_owned)
+            session.isParticipant -> // participated sessions
+                sessionBar.activity_session_overview_bar.setBackgroundResource(R.color.overview_session_participated)
+            session.isPrivate -> // private sessions
+                sessionBar.activity_session_overview_bar.setBackgroundResource(R.color.overview_session_other)
+            else -> // open sessions
+                sessionBar.activity_session_overview_bar.setBackgroundResource(R.color.primary_material_light)
         }
 
         // set session name
@@ -49,4 +51,5 @@ class SessionOverviewActivity : AppCompatActivity() {
 
         return sessionBar
     }
+
 }
