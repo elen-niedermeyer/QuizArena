@@ -21,21 +21,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".authorization.register.RegisterActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".menu.MainMenuActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".sessions.overview.SessionOverviewActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/sessions_searchable" />
+        </activity>
+
         <activity
             android:name=".sessions.creation.CreateSessionActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".options.OptionsActivity"
             android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

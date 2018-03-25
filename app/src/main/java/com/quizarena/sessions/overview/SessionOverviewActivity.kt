@@ -1,9 +1,10 @@
 package com.quizarena.sessions.overview
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.text.Editable
-import android.text.TextWatcher
+import android.widget.SearchView
 import com.quizarena.R
 import com.quizarena.sessions.QuizSession
 import com.quizarena.sessions.SessionProvider
@@ -28,18 +29,18 @@ class SessionOverviewActivity : AppCompatActivity() {
     lateinit var listAdapter: SessionListAdapter
 
     /**
-     * Watcher for the search input.
+     * Listener for the search input.
      * Updates the sessions list if the text is changed.
      */
-    private val searchQueryWatcher = object : TextWatcher {
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            updateSessionsList(s.toString())
+    private val searchQueryListener = object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String): Boolean {
+            updateSessionsList(query)
+            return true
         }
 
-        override fun afterTextChanged(s: Editable?) {
-            updateSessionsList(s.toString())
+        override fun onQueryTextChange(query: String): Boolean {
+            updateSessionsList(query)
+            return true
         }
     }
 
@@ -55,10 +56,21 @@ class SessionOverviewActivity : AppCompatActivity() {
         listAdapter = SessionListAdapter(this, displayedSessions)
         activity_session_overview_content.adapter = listAdapter
 
-        // sets the query watcher to the search field
-        activity_session_overview_search.addTextChangedListener(searchQueryWatcher)
+        // sets the searchable configuration
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        // assumes current activity is the searchable activity
+        activity_session_overview_search.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        // sets the query listener to the search field
+        activity_session_overview_search.setOnQueryTextListener(searchQueryListener)
 
         updateSessionsList("")
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // clear search
+        activity_session_overview_search.setQuery("", false)
     }
 
     /**
