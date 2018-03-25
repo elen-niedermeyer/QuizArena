@@ -25,6 +25,7 @@
     <string name="session_name">Name</string>
     <string name="duration">Dauer</string>
     <string name="hours">Stunden</string>
+    <string name="search_hint">Suche nach Name oder Kategorie</string>
 
     <!-- handling account -->
     <string name="account_name">Name</string>
