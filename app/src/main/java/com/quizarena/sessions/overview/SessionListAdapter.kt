@@ -12,8 +12,11 @@ import kotlinx.android.synthetic.main.activity_session_overview_session_bar.view
 
 class SessionListAdapter(private val adapterContext: Context, var values: ArrayList<QuizSession>) : ArrayAdapter<QuizSession>(adapterContext, -1, values) {
 
+    /**
+     * Makes the view for each list item.
+     */
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        // get bar layout
+        // get bar layout for sessions
         val layoutInflater = adapterContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val sessionBar = layoutInflater.inflate(R.layout.activity_session_overview_session_bar, null)
