@@ -70,7 +70,7 @@ class SessionOverviewActivity : AppCompatActivity() {
         super.onResume()
 
         // clear search
-        activity_session_overview_search.setQuery("", false)
+        activity_session_overview_search.setQuery("", true)
     }
 
     /**

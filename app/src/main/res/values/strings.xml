@@ -26,6 +26,8 @@
     <string name="duration">Dauer</string>
     <string name="hours">Stunden</string>
     <string name="search_hint">Suche nach Name oder Kategorie</string>
+    <string name="left_time">%1$02dh %2$02dmin</string>
+    <string name ="terminated">Beendet</string>
 
     <!-- handling account -->
     <string name="account_name">Name</string>
