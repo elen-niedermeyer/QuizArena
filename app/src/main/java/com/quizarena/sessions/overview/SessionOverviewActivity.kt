@@ -87,10 +87,6 @@ class SessionOverviewActivity : AppCompatActivity() {
         sessions = provider.getAllSessionSorted()
         // initialize content
         updateSessionsList("")
-
-        val intent = Intent(this@SessionOverviewActivity, SessionDetailActivity::class.java)
-        intent.putExtra(getString(R.string.intent_extra_session_clicked), sessions[0])
-        startActivity(intent)
     }
 
     override fun onResume() {
