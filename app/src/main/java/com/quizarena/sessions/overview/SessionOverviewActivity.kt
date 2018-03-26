@@ -2,12 +2,16 @@ package com.quizarena.sessions.overview
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.widget.AdapterView
 import android.widget.SearchView
 import com.quizarena.R
 import com.quizarena.sessions.QuizSession
 import com.quizarena.sessions.SessionProvider
+import com.quizarena.sessions.detailView.SessionDetailActivity
 import kotlinx.android.synthetic.main.activity_session_overview.*
 import java.util.*
 
@@ -44,18 +48,33 @@ class SessionOverviewActivity : AppCompatActivity() {
         }
     }
 
+    private val onSessionClickListener = object : AdapterView.OnItemClickListener {
+        override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+            val clickedSession = listAdapter.getItem(position)
+            val copyClickedSession = QuizSession(clickedSession.name, clickedSession.category, clickedSession.enddate, clickedSession.isOwner, clickedSession.isParticipant, clickedSession.isPrivate)
+
+            if (clickedSession.isParticipant) {
+
+            } else {
+                val intent = Intent(this@SessionOverviewActivity, SessionDetailActivity::class.java)
+                intent.putExtra(getString(R.string.intent_extra_session_clicked), copyClickedSession)
+                startActivity(intent)
+            }
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_session_overview)
 
-        // get the sessions list
-        val provider = SessionProvider()
-        sessions = provider.getAllSessionSorted()
-
         // initialize the list adapter and set it to the list view
         listAdapter = SessionListAdapter(this, displayedSessions)
         activity_session_overview_content.adapter = listAdapter
+        // set the on click listener for the sessions
+        activity_session_overview_content.onItemClickListener = onSessionClickListener
 
+        // initialize search
         // sets the searchable configuration
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         // assumes current activity is the searchable activity
@@ -63,7 +82,15 @@ class SessionOverviewActivity : AppCompatActivity() {
         // sets the query listener to the search field
         activity_session_overview_search.setOnQueryTextListener(searchQueryListener)
 
+        // get the sessions list
+        val provider = SessionProvider()
+        sessions = provider.getAllSessionSorted()
+        // initialize content
         updateSessionsList("")
+
+        val intent = Intent(this@SessionOverviewActivity, SessionDetailActivity::class.java)
+        intent.putExtra(getString(R.string.intent_extra_session_clicked), sessions[0])
+        startActivity(intent)
     }
 
     override fun onResume() {
