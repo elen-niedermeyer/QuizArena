@@ -34,7 +34,7 @@ class SessionListAdapter(private val adapterContext: Context, var values: ArrayL
         sessionBar.activity_session_overview_bar.setBackgroundResource(getSessionBarBackground(session))
 
         // set duration
-        sessionBar.activity_session_overview_bar_duration.text = getDurationString(session)
+        sessionBar.activity_session_overview_bar_duration.text = SessionUtils.getDurationString(adapterContext, session)
 
         // set image for private sessions
         if (session.isPrivate) {
@@ -60,22 +60,6 @@ class SessionListAdapter(private val adapterContext: Context, var values: ArrayL
                 return R.color.overview_session_other
             else -> // open sessions
                 return R.color.primary_material_light
-        }
-    }
-
-    /**
-     * Gets the left time for a session and return a string representing this time.
-     * Returns string that presents termination if the session already terminated.
-     *
-     * @param session the session for which you want to have ththe left time
-     * @return a string representing the left time or termination
-     */
-    private fun getDurationString(session: QuizSession): String {
-        val durationInSeconds = (session.enddate.time - System.currentTimeMillis()) / 1000
-        if (durationInSeconds > 0) {
-            return adapterContext.getString(R.string.left_time, durationInSeconds / 3600, (durationInSeconds % 3600) / 60)
-        } else {
-            return adapterContext.getString(R.string.terminated)
         }
     }
 

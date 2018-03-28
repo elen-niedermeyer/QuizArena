@@ -1,5 +1,7 @@
 package com.quizarena.sessions
 
+import java.util.*
+
 class SessionProvider {
 
     /**
@@ -59,6 +61,7 @@ class SessionProvider {
 
     /**
      * Provides a list of all open sessions. The current user is not owner nor participant of the session. The session is not private.
+     * Exfiltrates terminated sessions. They aren't interesting for the user.
      * @return the list
      */
     fun getOpenSessions(): List<QuizSession> {
@@ -67,7 +70,7 @@ class SessionProvider {
         }
 
         val copyAllSessions = allSessions
-        return copyAllSessions!!.filter { !it.isParticipant && !it.isOwner && !it.isPrivate }
+        return copyAllSessions!!.filter { !it.isOwner && !it.isParticipant && !it.isPrivate && it.enddate.time > System.currentTimeMillis() }
     }
 
     /**
@@ -75,11 +78,12 @@ class SessionProvider {
      * @return the sorted list
      */
     fun getOpenSessionsSorted(): List<QuizSession> {
-        return getOpenSessions().sortedWith(compareBy { it.enddate })
+        return getOpenSessions().filter { it.enddate.time > System.currentTimeMillis() }.sortedWith(compareBy { it.enddate })
     }
 
     /**
      * Provides a list of all private sessions. The current user is not owner nor participant of the session.
+     * Exfiltrates terminated sessions. They aren't interesting for the user.
      * @return the list
      */
     fun getPrivateSessions(): List<QuizSession> {
@@ -88,7 +92,7 @@ class SessionProvider {
         }
 
         val copyAllSessions = allSessions
-        return copyAllSessions!!.filter { it.isPrivate && !it.isParticipant && !it.isOwner }
+        return copyAllSessions!!.filter { it.isPrivate && !it.isOwner && !it.isParticipant && it.enddate.time > System.currentTimeMillis() }
     }
 
     /**
@@ -96,7 +100,7 @@ class SessionProvider {
      * @return the sorted list
      */
     fun getPrivateSessionsSorted(): List<QuizSession> {
-        return getPrivateSessions().sortedWith(compareBy { it.enddate })
+        return getPrivateSessions().filter { it.enddate.time > System.currentTimeMillis() }.sortedWith(compareBy { it.enddate })
     }
 
     /**

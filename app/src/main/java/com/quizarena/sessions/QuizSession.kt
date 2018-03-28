@@ -5,52 +5,33 @@ import android.os.Parcelable
 import java.util.*
 
 // TODO: look if the time is correct in my time zone
-class QuizSession(var name: String, var category: String, var enddate: Date, var isOwner: Boolean, var isParticipant: Boolean, var isPrivate: Boolean) : Parcelable {
+data class QuizSession(var name: String, var category: String, var enddate: Date, var isOwner: Boolean, var isParticipant: Boolean, var isPrivate: Boolean) : Parcelable {
 
-    override fun describeContents(): Int {
-        return 0
+    constructor(source: Parcel) : this(
+            source.readString(),
+            source.readString(),
+            source.readSerializable() as Date,
+            1 == source.readInt(),
+            1 == source.readInt(),
+            1 == source.readInt()
+    )
+
+    override fun describeContents() = 0
+
+    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+        writeString(name)
+        writeString(category)
+        writeSerializable(enddate)
+        writeInt((if (isOwner) 1 else 0))
+        writeInt((if (isParticipant) 1 else 0))
+        writeInt((if (isPrivate) 1 else 0))
     }
 
-    override fun writeToParcel(dest: Parcel?, flags: Int) {
-        dest?.setDataPosition(0)
-        dest?.writeString(name)
-        dest?.writeString(category)
-        dest?.writeLong(enddate.time)
-        dest?.writeBoolean(isOwner)
-        dest?.writeBoolean(isParticipant)
-        dest?.writeBoolean(isPrivate)
-    }
-
-    val CREATOR: Parcelable.Creator<QuizSession> = object : Parcelable.Creator<QuizSession> {
-        override fun createFromParcel(source: Parcel): QuizSession {
-            source.setDataPosition(0)
-            return QuizSession(source.readString(),
-                    source.readString(),
-                    Date(source.readLong()),
-                    source.readBoolean()!!,
-                    source.readBoolean()!!,
-                    source.readBoolean()!!)
-        }
-
-        override fun newArray(size: Int): Array<QuizSession?> {
-            return arrayOfNulls<QuizSession>(size)
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<QuizSession> = object : Parcelable.Creator<QuizSession> {
+            override fun createFromParcel(source: Parcel): QuizSession = QuizSession(source)
+            override fun newArray(size: Int): Array<QuizSession?> = arrayOfNulls(size)
         }
     }
-
-    private fun Parcel.writeBoolean(flag: Boolean?) {
-        when (flag) {
-            true -> writeInt(1)
-            false -> writeInt(0)
-            else -> writeInt(-1)
-        }
-    }
-
-    private fun Parcel.readBoolean(): Boolean? {
-        return when (readInt()) {
-            1 -> true
-            0 -> false
-            else -> null
-        }
-    }
-
 }

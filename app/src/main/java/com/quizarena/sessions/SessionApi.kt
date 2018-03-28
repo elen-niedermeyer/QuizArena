@@ -15,6 +15,7 @@ class SessionApi {
         sessions.add(QuizSession("Test3",  "default", Date(now.time - (2 * 60 * 60 * 1000)),false, true, true))
         sessions.add(QuizSession("Test4",  "default", Date(now.time + (2 * 60 * 60 * 1000)),true, true, true))
         sessions.add(QuizSession("Test5",  "default", Date(now.time + (3 * 60 * 60 * 1000)),false, false, true))
+        sessions.add(QuizSession("Test6",  "default", Date(now.time - (2 * 60 * 60 * 1000)),false, false, false))
 
         return sessions
     }

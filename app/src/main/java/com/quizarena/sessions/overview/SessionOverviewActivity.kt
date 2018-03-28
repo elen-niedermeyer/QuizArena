@@ -53,12 +53,18 @@ class SessionOverviewActivity : AppCompatActivity() {
             val clickedSession = listAdapter.getItem(position)
             val copyClickedSession = QuizSession(clickedSession.name, clickedSession.category, clickedSession.enddate, clickedSession.isOwner, clickedSession.isParticipant, clickedSession.isPrivate)
 
-            if (clickedSession.isParticipant) {
-
-            } else {
-                val intent = Intent(this@SessionOverviewActivity, SessionDetailActivity::class.java)
-                intent.putExtra(getString(R.string.intent_extra_session_clicked), copyClickedSession)
-                startActivity(intent)
+            when {
+                !clickedSession.isParticipant && clickedSession.isPrivate -> {
+                    // TODO: dialog for password
+                }
+                !clickedSession.isParticipant -> {
+                    val intent = Intent(this@SessionOverviewActivity, SessionDetailActivity::class.java)
+                    intent.putExtra(getString(R.string.intent_extra_session_clicked), copyClickedSession)
+                    startActivity(intent)
+                }
+                else -> {
+                    // TODO: detail view with participants
+                }
             }
         }
 
