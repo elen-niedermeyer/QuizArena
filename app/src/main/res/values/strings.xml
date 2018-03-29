@@ -12,6 +12,7 @@
     <string name="options">Optionen</string>
     <string name="push">Push-Nachrichten</string>
     <string name="search">Suche</string>
+    <string name="terminate">Beenden</string>
 
     <!-- api requests -->
     <string name="baseurl">http://192.168.0.15:5000/</string>
@@ -25,6 +26,10 @@
     <string name="session_name">Name</string>
     <string name="duration">Dauer</string>
     <string name="hours">Stunden</string>
+    <string name="search_hint">Suche nach Name oder Kategorie</string>
+    <string name="left_time">%1$02dh %2$02dmin</string>
+    <string name="terminated">Beendet</string>
+    <string name="start_session">Quiz beginnen</string>
 
     <!-- handling account -->
     <string name="account_name">Name</string>
@@ -40,6 +45,9 @@
     <!-- login errors -->
     <string name="login_error_no_name">Gib einen Accountnamen ein</string>
     <string name="login_error_no_password">Gib ein Passwort ein</string>
+
+    <!-- intent extras -->
+    <string name="intent_extra_session_clicked">clicked_session</string>
 
     <!-- preferences -->
     <string name="pref_credentials_file">com.quizarena.credentials</string>
