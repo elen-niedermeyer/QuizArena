@@ -86,16 +86,16 @@ class SessionOverviewActivity : AppCompatActivity() {
         activity_session_overview_search.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         // sets the query listener to the search field
         activity_session_overview_search.setOnQueryTextListener(searchQueryListener)
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         // get the sessions list
         val provider = SessionProvider()
         sessions = provider.getAllSessionSorted()
         // initialize content
         updateSessionsList("")
-    }
-
-    override fun onResume() {
-        super.onResume()
 
         // clear search
         activity_session_overview_search.setQuery("", true)
