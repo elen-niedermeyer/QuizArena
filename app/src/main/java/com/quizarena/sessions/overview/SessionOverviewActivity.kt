@@ -51,7 +51,6 @@ class SessionOverviewActivity : AppCompatActivity() {
     private val onSessionClickListener = object : AdapterView.OnItemClickListener {
         override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
             val clickedSession = listAdapter.getItem(position)
-            val copyClickedSession = QuizSession(clickedSession.name, clickedSession.category, clickedSession.enddate, clickedSession.isOwner, clickedSession.isParticipant, clickedSession.isPrivate)
 
             when {
                 !clickedSession.isParticipant && clickedSession.isPrivate -> {
@@ -59,7 +58,7 @@ class SessionOverviewActivity : AppCompatActivity() {
                 }
                 !clickedSession.isParticipant -> {
                     val intent = Intent(this@SessionOverviewActivity, SessionDetailActivity::class.java)
-                    intent.putExtra(getString(R.string.intent_extra_session_clicked), copyClickedSession)
+                    intent.putExtra(getString(R.string.intent_extra_session_clicked), clickedSession)
                     startActivity(intent)
                 }
                 else -> {
