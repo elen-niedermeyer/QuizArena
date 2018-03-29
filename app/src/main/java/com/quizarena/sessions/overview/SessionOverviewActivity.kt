@@ -97,7 +97,7 @@ class SessionOverviewActivity : AppCompatActivity() {
         // initialize content
         updateSessionsList("")
 
-        // clear search
+        // reset search
         activity_session_overview_search.setQuery("", true)
     }
 
