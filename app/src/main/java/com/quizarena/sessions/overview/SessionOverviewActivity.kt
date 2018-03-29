@@ -65,6 +65,7 @@ class SessionOverviewActivity : AppCompatActivity() {
                     // TODO: detail view with participants
                 }
             }
+
         }
 
     }

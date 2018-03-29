@@ -19,4 +19,10 @@ class SessionApi {
 
         return sessions
     }
+
+    // mock up
+    fun addParticipant(username: String): Boolean {
+        return true
+    }
+    
 }
