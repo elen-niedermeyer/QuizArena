@@ -7,12 +7,18 @@ class Credentials(accountName: String, password: String) {
     var password = password
         private set
 
+    /**
+     * set the static account name
+     */
     init {
         Credentials.accountName = accountName
     }
 
+    /**
+     * account name as static value
+     */
     companion object {
         var accountName = ""
     }
-    
+
 }
