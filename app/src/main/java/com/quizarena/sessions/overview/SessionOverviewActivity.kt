@@ -12,6 +12,7 @@ import com.quizarena.R
 import com.quizarena.sessions.QuizSession
 import com.quizarena.sessions.SessionProvider
 import com.quizarena.sessions.detailView.SessionDetailActivity
+import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
 import kotlinx.android.synthetic.main.activity_session_overview.*
 import java.util.*
 
@@ -62,7 +63,9 @@ class SessionOverviewActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 else -> {
-                    // TODO: detail view with participants
+                    val intent = Intent(this@SessionOverviewActivity, SessionParticipantDetailActivity::class.java)
+                    intent.putExtra(getString(R.string.intent_extra_session_id), clickedSession.id)
+                    startActivity(intent)
                 }
             }
 

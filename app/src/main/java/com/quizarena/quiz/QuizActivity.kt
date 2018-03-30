@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import com.quizarena.R
-import com.quizarena.authorization.User
+import com.quizarena.authorization.Credentials
 import com.quizarena.sessions.SessionApi
 import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
 import kotlinx.android.synthetic.main.activity_quiz.*
@@ -22,14 +22,19 @@ class QuizActivity : AppCompatActivity() {
     private var correctAnswers = 0
     private lateinit var questions: List<Question>
 
+    private lateinit var answerButtons: Array<Button>
+
     private val onAnswerClickListener = object : View.OnClickListener {
 
         // TODO: correct backgrounds
         override fun onClick(view: View?) {
             if (view is Button) {
+                answerButtons.forEach { it.isEnabled = false }
+
                 if (view.text == questions[counter].correctAnswer) {
                     view.setBackgroundResource(R.color.correct_answer)
                     correctAnswers++
+
                 } else {
                     view.setBackgroundResource(R.color.wrong_answer)
                 }
@@ -39,7 +44,9 @@ class QuizActivity : AppCompatActivity() {
 
                     counter++
                     setNextQuestion()
-                }, 1000);
+                    answerButtons.forEach { it.isEnabled = true }
+
+                }, 500);
             }
 
         }
@@ -53,10 +60,8 @@ class QuizActivity : AppCompatActivity() {
         sessionID = intent.getIntExtra(getString(R.string.intent_extra_session_id), 0)
         questions = QuizApi().getQuestions(sessionID)
 
-        activity_quiz_button_answer_1.setOnClickListener(onAnswerClickListener)
-        activity_quiz_button_answer_2.setOnClickListener(onAnswerClickListener)
-        activity_quiz_button_answer_3.setOnClickListener(onAnswerClickListener)
-        activity_quiz_button_answer_4.setOnClickListener(onAnswerClickListener)
+        answerButtons = arrayOf(activity_quiz_button_answer_1, activity_quiz_button_answer_2, activity_quiz_button_answer_3, activity_quiz_button_answer_4)
+        answerButtons.forEach { it.setOnClickListener(onAnswerClickListener) }
     }
 
     override fun onResume() {
@@ -73,21 +78,24 @@ class QuizActivity : AppCompatActivity() {
             activity_quiz_button_answer_2.text = currentQuestion.answer2
             activity_quiz_button_answer_3.text = currentQuestion.answer3
             activity_quiz_button_answer_4.text = currentQuestion.answer4
+
         } else {
             // quiz finished
             // set score
-            if (SessionApi().setScore(User.name, correctAnswers)) {
+            if (SessionApi().setScore(Credentials.accountName, correctAnswers)) {
                 startDetailView()
             } else {
                 // TODO: error handling in request
             }
         }
+
     }
 
     private fun startDetailView() {
         val intent = Intent(this@QuizActivity, SessionParticipantDetailActivity::class.java)
         intent.putExtra(getString(R.string.intent_extra_session_id), sessionID)
         startActivity(intent)
+
         this.finish()
     }
 }

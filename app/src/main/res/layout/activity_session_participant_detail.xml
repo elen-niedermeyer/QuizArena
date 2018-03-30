@@ -31,6 +31,7 @@
         android:id="@+id/activity_session_participant_detail_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/ic_crown"
         app:layout_constraintRight_toLeftOf="@id/activity_session_participant_detail_score"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_session_participant_detail_time" />

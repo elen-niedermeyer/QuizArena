@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.quizarena.R
-import com.quizarena.authorization.User
+import com.quizarena.authorization.Credentials
 import com.quizarena.quiz.QuizActivity
 import com.quizarena.sessions.QuizSession
 import com.quizarena.sessions.SessionApi
@@ -27,7 +27,7 @@ class SessionDetailActivity : AppCompatActivity() {
         // set button's on click listener
         activity_session_detail_button_participate.setOnClickListener {
             // add the current user to the session
-            if (SessionApi().addParticipant(User.name)) {
+            if (SessionApi().addParticipant(Credentials.accountName)) {
                 // start quiz activity
                 val intent = Intent(this@SessionDetailActivity, QuizActivity::class.java)
                 intent.putExtra(getString(R.string.intent_extra_session_id), currentSession.id)

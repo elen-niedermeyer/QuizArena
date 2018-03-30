@@ -11,6 +11,9 @@ class CredentialPersistence(context: Context) {
     fun saveCredentials(accountName: String, password: String) {
         writePreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_name_key), accountName)
         writePreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_password_key), password)
+
+        // create credentials
+        Credentials(accountName, password)
     }
 
     fun saveCredentials(credentials: Credentials) {
@@ -21,6 +24,7 @@ class CredentialPersistence(context: Context) {
         val name = loadPreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_name_key))
         val password = loadPreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_password_key))
 
+        // create credentials and return it
         return Credentials(name, password)
     }
 
@@ -35,4 +39,5 @@ class CredentialPersistence(context: Context) {
         editor.putString(key, value)
         editor.apply()
     }
+
 }
