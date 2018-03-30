@@ -1,12 +1,11 @@
 package com.quizarena.sessions.creation
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Adapter
+import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
-import android.widget.SpinnerAdapter
 
 import com.quizarena.R
+
 import kotlinx.android.synthetic.main.activity_create_session.*
 
 class CreateSessionActivity : AppCompatActivity() {
@@ -19,7 +18,7 @@ class CreateSessionActivity : AppCompatActivity() {
     }
 
     fun initializeCategories() {
-        val array = arrayOf("default", "other")
+        val array = CategoryApi().getAllCategories()
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, array)
         activity_create_session_form_category.adapter = adapter
     }
