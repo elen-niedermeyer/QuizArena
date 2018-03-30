@@ -1,13 +1,22 @@
 package com.quizarena.quiz
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import com.quizarena.R
+import com.quizarena.authorization.User
+import com.quizarena.sessions.SessionApi
+import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
 import kotlinx.android.synthetic.main.activity_quiz.*
 
 class QuizActivity : AppCompatActivity() {
+
+    /**
+     * id of the session, initialized in onCreate
+     */
+    private var sessionID = 0
 
     private var counter = 0
     private var correctAnswers = 0
@@ -41,7 +50,7 @@ class QuizActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
 
-        val sessionID = intent.getIntExtra(getString(R.string.intent_extra_session_id), 0)
+        sessionID = intent.getIntExtra(getString(R.string.intent_extra_session_id), 0)
         questions = QuizApi().getQuestions(sessionID)
 
         activity_quiz_button_answer_1.setOnClickListener(onAnswerClickListener)
@@ -64,6 +73,21 @@ class QuizActivity : AppCompatActivity() {
             activity_quiz_button_answer_2.text = currentQuestion.answer2
             activity_quiz_button_answer_3.text = currentQuestion.answer3
             activity_quiz_button_answer_4.text = currentQuestion.answer4
+        } else {
+            // quiz finished
+            // set score
+            if (SessionApi().setScore(User.name, correctAnswers)) {
+                startDetailView()
+            } else {
+                // TODO: error handling in request
+            }
         }
+    }
+
+    private fun startDetailView() {
+        val intent = Intent(this@QuizActivity, SessionParticipantDetailActivity::class.java)
+        intent.putExtra(getString(R.string.intent_extra_session_id), sessionID)
+        startActivity(intent)
+        this.finish()
     }
 }

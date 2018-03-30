@@ -24,5 +24,9 @@ class SessionApi {
     fun addParticipant(username: String): Boolean {
         return true
     }
-    
+
+    // mock up
+    fun setScore(username: String, score: Int): Boolean {
+        return true
+    }
 }

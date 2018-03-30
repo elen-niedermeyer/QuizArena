@@ -27,12 +27,19 @@ class SessionDetailActivity : AppCompatActivity() {
         // set button's on click listener
         activity_session_detail_button_participate.setOnClickListener {
             // add the current user to the session
-            SessionApi().addParticipant(User.name)
+            if (SessionApi().addParticipant(User.name)) {
+                // start quiz activity
+                val intent = Intent(this@SessionDetailActivity, QuizActivity::class.java)
+                intent.putExtra(getString(R.string.intent_extra_session_id), currentSession.id)
+                startActivity(intent)
 
-            // start quiz activity
-            val intent = Intent(this@SessionDetailActivity, QuizActivity::class.java)
-            intent.putExtra(getString(R.string.intent_extra_session_id), currentSession.id)
-            startActivity(intent)
+                this.finish()
+
+            } else {
+                //TODO: error handling of request
+            }
         }
+
     }
+
 }

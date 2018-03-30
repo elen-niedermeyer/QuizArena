@@ -56,6 +56,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".sessions.detailView.SessionParticipantDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".quiz.QuizActivity"
             android:screenOrientation="portrait" />
 
