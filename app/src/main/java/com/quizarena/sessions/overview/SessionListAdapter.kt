@@ -17,8 +17,7 @@ class SessionListAdapter(private val adapterContext: Context, var values: ArrayL
      */
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         // get bar layout for sessions
-        val layoutInflater = adapterContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layoutInflater = adapterContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val sessionBar = layoutInflater.inflate(R.layout.activity_session_overview_session_bar, null)
 
         // get current session

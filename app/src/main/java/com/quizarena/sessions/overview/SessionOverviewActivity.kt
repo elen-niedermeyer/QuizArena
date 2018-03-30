@@ -49,20 +49,30 @@ class SessionOverviewActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * on click listener for the sessions
+     * Opens a detailed view, depending on the state of the session.
+     */
     private val onSessionClickListener = object : AdapterView.OnItemClickListener {
         override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
             val clickedSession = listAdapter.getItem(position)
 
             when {
                 !clickedSession.isParticipant && clickedSession.isPrivate -> {
+                    // the user does not participate this private session
+                    // he should enter a password
                     // TODO: dialog for password
                 }
+
                 !clickedSession.isParticipant -> {
+                    // the user does not participate the session
                     val intent = Intent(this@SessionOverviewActivity, SessionDetailActivity::class.java)
                     intent.putExtra(getString(R.string.intent_extra_session_clicked), clickedSession)
                     startActivity(intent)
                 }
+
                 else -> {
+                    // the user participates the session
                     val intent = Intent(this@SessionOverviewActivity, SessionParticipantDetailActivity::class.java)
                     intent.putExtra(getString(R.string.intent_extra_session_id), clickedSession.id)
                     startActivity(intent)
@@ -107,7 +117,7 @@ class SessionOverviewActivity : AppCompatActivity() {
 
     /**
      * Makes a regex from the given query.
-     * Initializes the {@link #displayedSessions} with {@link #sessions}. Then filters only the matches sessions. Looking for the name and the category of each session.
+     * Initializes the {@link #displayedSessions} with {@link #sessions}. Then filters only the matching sessions. Looking for the name and the category of each session.
      * Updates the {@link #listAdapter}
      *
      * @param query the query for filtering the sessions

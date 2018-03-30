@@ -10,12 +10,14 @@ import com.quizarena.sessions.overview.SessionUtils
 import kotlinx.android.synthetic.main.activity_session_participant_detail.*
 
 //TODO: add button for owners to terminate session
+// TODO: share feature
 class SessionParticipantDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_session_participant_detail)
 
+        // get session
         val sessionID = intent.getIntExtra(getString(R.string.intent_extra_session_id), 0)
         val api = SessionApi()
         val currentSession = api.getSession(sessionID, Credentials.accountName)
@@ -28,6 +30,7 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
             activity_session_participant_detail_category.text = currentSession.category
             activity_session_participant_detail_time.text = SessionUtils.getDurationString(this, currentSession)
 
+            // get participants
             val participants = api.getParticipants(sessionID) as ArrayList<Participant>
             val thisUser = participants.filter { it.accountName == Credentials.accountName }.get(0)
             val thisUsersRank = participants.indexOf(thisUser) + 1

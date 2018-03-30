@@ -24,15 +24,17 @@ class SessionDetailActivity : AppCompatActivity() {
         activity_session_detail_name.text = currentSession.name
         activity_session_detail_category.text = currentSession.category
         activity_session_detail_time.text = SessionUtils.getDurationString(this, currentSession)
+
         // set button's on click listener
         activity_session_detail_button_participate.setOnClickListener {
             // add the current user to the session
-            if (SessionApi().addParticipant(Credentials.accountName)) {
+            if (SessionApi().addParticipant(currentSession.id, Credentials.accountName)) {
                 // start quiz activity
                 val intent = Intent(this@SessionDetailActivity, QuizActivity::class.java)
                 intent.putExtra(getString(R.string.intent_extra_session_id), currentSession.id)
                 startActivity(intent)
 
+                // finishes this activity
                 this.finish()
 
             } else {

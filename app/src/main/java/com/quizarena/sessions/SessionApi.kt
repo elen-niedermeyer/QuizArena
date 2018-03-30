@@ -36,7 +36,7 @@ class SessionApi {
     }
 
     // mock up
-    fun addParticipant(username: String): Boolean {
+    fun addParticipant(sessionID: Int, username: String): Boolean {
         return true
     }
 

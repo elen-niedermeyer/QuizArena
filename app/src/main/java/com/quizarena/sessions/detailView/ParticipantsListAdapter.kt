@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.quizarena.R
 import com.quizarena.sessions.Participant
-import com.quizarena.sessions.QuizSession
 import kotlinx.android.synthetic.main.activity_session_participant_detail_bar_participant.view.*
 
 class ParticipantsListAdapter(private val adapterContext: Context, var values: ArrayList<Participant>) : ArrayAdapter<Participant>(adapterContext, -1, values) {
@@ -17,8 +16,7 @@ class ParticipantsListAdapter(private val adapterContext: Context, var values: A
      */
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         // get bar layout for sessions
-        val layoutInflater = adapterContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layoutInflater = adapterContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val participantBar = layoutInflater.inflate(R.layout.activity_session_participant_detail_bar_participant, null)
 
         // get current session
