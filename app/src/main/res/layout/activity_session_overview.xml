@@ -5,6 +5,8 @@
     android:id="@+id/activity_session_overview_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.quizarena.sessions.overview.SessionOverviewActivity">
 
     <SearchView
