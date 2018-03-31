@@ -6,9 +6,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-        <!-- don't open the keyboard etc. when starting an activity -->
-        <item name="android:windowSoftInputMode">stateHidden</item>
     </style>
 
     <!-- button style -->
