@@ -48,6 +48,7 @@
 
     <!-- intent extras -->
     <string name="intent_extra_session_clicked">clicked_session</string>
+    <string name="intent_extra_session_id">session_id</string>
 
     <!-- preferences -->
     <string name="pref_credentials_file">com.quizarena.credentials</string>

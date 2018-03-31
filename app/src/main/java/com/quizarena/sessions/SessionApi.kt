@@ -6,7 +6,7 @@ import java.util.*
 class SessionApi {
 
     // mock up
-    fun requestAllSessions(): List<QuizSession> {
+    fun requestAllSessions(username: String): List<QuizSession> {
         val sessions = LinkedList<QuizSession>()
 
         val now = Date()
@@ -18,5 +18,30 @@ class SessionApi {
         sessions.add(QuizSession(6, "Test6", "default", Date(now.time - (2 * 60 * 60 * 1000)), false, false, false))
 
         return sessions
+    }
+
+    // mock up
+    fun getSession(sessionID: Int, username: String): QuizSession {
+        return QuizSession(sessionID, "Test", "category", Date(), false, true, false)
+    }
+
+    // mockup
+    // get sorted list from backend
+    fun getParticipants(sessionID: Int): List<Participant> {
+        val participants = ArrayList<Participant>()
+        participants.add(Participant("Test", "Test", 10))
+        participants.add(Participant("User2", "User2", 5))
+
+        return participants
+    }
+
+    // mock up
+    fun addParticipant(sessionID: Int, username: String): Boolean {
+        return true
+    }
+
+    // mock up
+    fun setScore(username: String, score: Int): Boolean {
+        return true
     }
 }
