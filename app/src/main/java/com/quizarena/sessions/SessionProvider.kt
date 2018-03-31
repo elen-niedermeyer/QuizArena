@@ -70,7 +70,7 @@ class SessionProvider {
         }
 
         val copyAllSessions = allSessions
-        return copyAllSessions!!.filter { !it.isOwner && !it.isParticipant && !it.isPrivate && it.enddate.time > System.currentTimeMillis() }
+        return copyAllSessions!!.filter { !it.isOwner && !it.isParticipant && !it.isPrivate && SessionUtils.isSessionActive(it) }
     }
 
     /**
@@ -92,7 +92,7 @@ class SessionProvider {
         }
 
         val copyAllSessions = allSessions
-        return copyAllSessions!!.filter { it.isPrivate && !it.isOwner && !it.isParticipant && it.enddate.time > System.currentTimeMillis() }
+        return copyAllSessions!!.filter { it.isPrivate && !it.isOwner && !it.isParticipant && SessionUtils.isSessionActive(it) }
     }
 
     /**

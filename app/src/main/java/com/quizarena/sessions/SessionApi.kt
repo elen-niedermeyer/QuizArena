@@ -22,7 +22,12 @@ class SessionApi {
 
     // mock up
     fun getSession(sessionID: Int, username: String): QuizSession {
-        return QuizSession(sessionID, "Test", "category", Date(), false, true, false)
+        return QuizSession(sessionID, "Test", "category", Date(System.currentTimeMillis()), true, true, true)
+    }
+
+    // mock up
+    fun terminateSession(sessionID: Int): Boolean {
+        return true
     }
 
     // mockup

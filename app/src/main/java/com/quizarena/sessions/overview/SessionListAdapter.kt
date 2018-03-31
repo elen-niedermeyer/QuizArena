@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 
 import com.quizarena.R
 import com.quizarena.sessions.QuizSession
+import com.quizarena.sessions.SessionUtils
 import kotlinx.android.synthetic.main.activity_session_overview_session_bar.view.*
 
 class SessionListAdapter(private val adapterContext: Context, var values: ArrayList<QuizSession>) : ArrayAdapter<QuizSession>(adapterContext, -1, values) {

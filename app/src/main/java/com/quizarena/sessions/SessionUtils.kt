@@ -1,12 +1,21 @@
-package com.quizarena.sessions.overview
+package com.quizarena.sessions
 
 import android.content.Context
 import com.quizarena.R
-import com.quizarena.sessions.QuizSession
 
 class SessionUtils {
 
     companion object {
+
+        /**
+         * Proves if the given session is still active.
+         *
+         * @param session the session of which to know if it's active
+         * @return true, if the session is active, false otherwise
+         */
+        fun isSessionActive(session: QuizSession): Boolean {
+            return session.enddate.time > System.currentTimeMillis()
+        }
 
         /**
          * Gets the left time for a session and return a string representing this time.
@@ -16,8 +25,8 @@ class SessionUtils {
          * @return a string representing the left time or termination
          */
         fun getDurationString(context: Context, session: QuizSession): String {
-            val durationInSeconds = (session.enddate.time - System.currentTimeMillis()) / 1000
-            if (durationInSeconds > 0) {
+            if (isSessionActive(session)) {
+                val durationInSeconds = (session.enddate.time - System.currentTimeMillis()) / 1000
                 return context.getString(R.string.left_time, durationInSeconds / 3600, (durationInSeconds % 3600) / 60)
             } else {
                 return context.getString(R.string.terminated)
