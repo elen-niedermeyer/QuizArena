@@ -8,7 +8,7 @@ import com.quizarena.authorization.Credentials
 import com.quizarena.quiz.QuizActivity
 import com.quizarena.sessions.QuizSession
 import com.quizarena.sessions.SessionApi
-import com.quizarena.sessions.overview.SessionUtils
+import com.quizarena.sessions.SessionUtils
 import kotlinx.android.synthetic.main.activity_session_detail.*
 
 class SessionDetailActivity : AppCompatActivity() {
