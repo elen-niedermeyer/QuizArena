@@ -14,22 +14,14 @@ class CredentialPersistence(context: Context) {
      *
      * @param accountName the account name to save
      * @param password the user's password to save
+     * @return a {@link Credentials} object
      */
-    fun saveCredentials(accountName: String, password: String) {
+    fun saveCredentials(accountName: String, password: String): Credentials {
         writePreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_name_key), accountName)
         writePreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_password_key), password)
 
-        // create credentials
-        Credentials(accountName, password)
-    }
-
-    /**
-     * Saves the given credentials in preferences.
-     *
-     * @param a {@link Credentials} object of which saving account name and password
-     */
-    fun saveCredentials(credentials: Credentials) {
-        saveCredentials(credentials.accountName, credentials.password)
+        // create credentials and return it
+        return Credentials(accountName, password)
     }
 
     /**
