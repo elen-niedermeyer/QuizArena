@@ -37,7 +37,7 @@ class CreateSessionActivity : AppCompatActivity() {
     private fun initializeCategories() {
         val array = CategoryApi().getAllCategories()
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, array)
-        activity_create_session_form_category.adapter = adapter
+        activity_create_session_form_category!!.adapter = adapter
     }
 
     /**
@@ -45,14 +45,22 @@ class CreateSessionActivity : AppCompatActivity() {
      * TODO: display error messages
      */
     private fun creationFormIsValid() : Boolean {
-        if (activity_create_session_form_name.text.isEmpty())
+        if (activity_create_session_form_name.text.isEmpty() || activity_create_session_form_name.text.isBlank()) {
+            activity_create_session_error_name.text = "Der Name ist leer."
             return false
-        if (activity_create_session_form_name.text.isBlank())
+        }
+
+        activity_create_session_error_name.text = ""
+
+        if (activity_create_session_form_duration.text.isEmpty()) {
+            activity_create_session_error_duration.text = "Die Zeit ist leer."
             return false
-        if (activity_create_session_form_duration.text.isEmpty())
+        }
+        if (activity_create_session_form_duration.text.toString().toIntOrNull() == null) {
+            activity_create_session_error_duration.text = "Die Zeit ist kein Integer."
             return false
-        if (activity_create_session_form_duration.text.toString().toIntOrNull() == null)
-            return false
+        }
+        activity_create_session_error_duration.text = ""
         return true
     }
 }

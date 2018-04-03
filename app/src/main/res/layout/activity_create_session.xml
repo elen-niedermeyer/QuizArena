@@ -1,89 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.quizarena.sessions.creation.CreateSessionActivity">
 
-    <LinearLayout
+
+    <EditText
+        android:id="@+id/activity_create_session_form_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:ems="10"
+        android:hint="@string/session_name"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_error_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-        <EditText
-            android:id="@+id/activity_create_session_form_name"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:hint="@string/session_name" />
+    <TextView
+        android:id="@+id/activity_create_session_error_name"
+        style="@style/error_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_form_category_label"
+        app:layout_constraintEnd_toEndOf="@id/activity_create_session_form_name"
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_form_name"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_form_name" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+    <TextView
+        android:id="@+id/activity_create_session_form_category_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/category"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_error_category"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/activity_create_session_form_category"
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_error_name"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_error_name" />
 
-            <TextView
-                android:id="@+id/activity_create_session_form_category_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:text="@string/category" />
+    <Spinner
+        android:id="@+id/activity_create_session_form_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_error_category"
+        app:layout_constraintEnd_toEndOf="@id/activity_create_session_error_name"
+        app:layout_constraintLeft_toRightOf="@id/activity_create_session_form_category_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_error_name" />
 
-            <Spinner
-                android:id="@+id/activity_create_session_form_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
-        </RelativeLayout>
+    <TextView
+        android:id="@+id/activity_create_session_error_category"
+        style="@style/error_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_form_category_label"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_form_duration_label"
+        app:layout_constraintEnd_toEndOf="@id/activity_create_session_form_category"
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_form_category_label" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+    <TextView
+        android:id="@+id/activity_create_session_form_duration_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/duration"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_error_duration"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintRight_toLeftOf="@id/activity_create_session_form_duration"
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_error_category"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_error_category" />
 
-            <TextView
-                android:id="@+id/activity_create_session_form_duration_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:text="@string/duration" />
+    <EditText
+        android:id="@+id/activity_create_session_form_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_error_duration"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toRightOf="@id/activity_create_session_form_duration_label"
+        app:layout_constraintRight_toLeftOf="@id/activity_create_session_form_duration_hour_label"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_error_category" />
 
-            <TextView
-                android:id="@+id/activity_create_session_form_duration_hour_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="@string/hours" />
+    <TextView
+        android:id="@+id/activity_create_session_form_duration_hour_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hours"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_error_duration"
+        app:layout_constraintEnd_toEndOf="@id/activity_create_session_error_category"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_error_category" />
 
-            <EditText
-                android:id="@+id/activity_create_session_form_duration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/activity_create_session_form_duration_hour_label"
-                android:layout_toStartOf="@id/activity_create_session_form_duration_hour_label"
-                android:inputType="number" />
+    <TextView
+        android:id="@+id/activity_create_session_error_duration"
+        style="@style/error_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_submit_button"
+        app:layout_constraintEnd_toEndOf="@id/activity_create_session_form_duration_hour_label"
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_form_duration_label"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_form_duration_label" />
 
-        </RelativeLayout>
+    <Button
+        android:id="@+id/activity_create_session_submit_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/create_session"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/activity_create_session_error_duration"
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_error_duration"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_error_duration" />
 
-        <Button
-            android:id="@+id/activity_create_session_submit_button"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="@string/create_session" />
-
-    </LinearLayout>
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
