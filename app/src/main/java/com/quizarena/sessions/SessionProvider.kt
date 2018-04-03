@@ -1,6 +1,6 @@
 package com.quizarena.sessions
 
-import java.util.*
+import com.quizarena.authorization.Credentials
 
 class SessionProvider {
 
@@ -11,7 +11,7 @@ class SessionProvider {
     var allSessions: List<QuizSession>? = null
         get() {
             if (field == null) {
-                allSessions = SessionApi().requestAllSessions();
+                allSessions = SessionApi().requestAllSessions(Credentials.accountName)
             }
 
             return field
@@ -23,7 +23,7 @@ class SessionProvider {
      */
     fun getOwnedSessions(): List<QuizSession> {
         if (allSessions == null) {
-            allSessions = SessionApi().requestAllSessions();
+            allSessions = SessionApi().requestAllSessions(Credentials.accountName)
         }
 
         val copyAllSessions = allSessions
@@ -44,7 +44,7 @@ class SessionProvider {
      */
     fun getParticipatedSessions(): List<QuizSession> {
         if (allSessions == null) {
-            allSessions = SessionApi().requestAllSessions();
+            allSessions = SessionApi().requestAllSessions(Credentials.accountName)
         }
 
         val copyAllSessions = allSessions
@@ -66,11 +66,11 @@ class SessionProvider {
      */
     fun getOpenSessions(): List<QuizSession> {
         if (allSessions == null) {
-            allSessions = SessionApi().requestAllSessions();
+            allSessions = SessionApi().requestAllSessions(Credentials.accountName)
         }
 
         val copyAllSessions = allSessions
-        return copyAllSessions!!.filter { !it.isOwner && !it.isParticipant && !it.isPrivate && it.enddate.time > System.currentTimeMillis() }
+        return copyAllSessions!!.filter { !it.isOwner && !it.isParticipant && !it.isPrivate && SessionUtils.isSessionActive(it) }
     }
 
     /**
@@ -88,11 +88,11 @@ class SessionProvider {
      */
     fun getPrivateSessions(): List<QuizSession> {
         if (allSessions == null) {
-            allSessions = SessionApi().requestAllSessions();
+            allSessions = SessionApi().requestAllSessions(Credentials.accountName)
         }
 
         val copyAllSessions = allSessions
-        return copyAllSessions!!.filter { it.isPrivate && !it.isOwner && !it.isParticipant && it.enddate.time > System.currentTimeMillis() }
+        return copyAllSessions!!.filter { it.isPrivate && !it.isOwner && !it.isParticipant && SessionUtils.isSessionActive(it) }
     }
 
     /**
