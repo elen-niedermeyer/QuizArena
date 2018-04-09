@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
             activity_login_button_confirm.setOnClickListener {
                 if (validateAccountName() && validatePassword()) {
-                    // name and passwort are valid
+                    // name and password are valid
 
                     // extract input value
                     val name = activity_login_account_name.text.toString()
