@@ -52,7 +52,7 @@ class RegisterActivity : AppCompatActivity() {
                     // registering user was successful
                     // save credentials and start main menu
                     CredentialPersistence(this@RegisterActivity).saveCredentials(accountName, password)
-                    startActivity(Intent(this@RegisterActivity, MainMenuActivity::class.java))
+                    startNextActivity()
 
                 } else {
                     // registering user failed
@@ -124,6 +124,14 @@ class RegisterActivity : AppCompatActivity() {
                 return true
             }
         }
+    }
+
+    /**
+     * Starts the {@link MainMenuActivity} and finishes this one.
+     */
+    private fun startNextActivity() {
+        startActivity(Intent(this@RegisterActivity, MainMenuActivity::class.java))
+        this.finish()
     }
 
 }

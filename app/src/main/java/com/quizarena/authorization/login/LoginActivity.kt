@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
         if (wasSuccessfulWithSavedCredentials) {
             // user credentials are correct
             // continue to main menu
-            startActivity(Intent(this@LoginActivity, MainMenuActivity::class.java))
+            startNextActivity()
 
         } else {
             // couldn't load correct credentials
@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
             activity_login_button_confirm.setOnClickListener {
                 if (validateAccountName() && validatePassword()) {
-                    // name and passwort are valid
+                    // name and password are valid
 
                     // extract input value
                     val name = activity_login_account_name.text.toString()
@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
                         // user credentials are correct
                         // save credentials and start main menu
                         CredentialPersistence(this@LoginActivity).saveCredentials(name, password)
-                        startActivity(Intent(this@LoginActivity, MainMenuActivity::class.java))
+                        startNextActivity()
 
                     } else {
                         // authenticate user failed
@@ -106,6 +106,14 @@ class LoginActivity : AppCompatActivity() {
         activity_login_error_password.text = null
 
         return true
+    }
+
+    /**
+     * Starts the {@link MainMenuActivity} and finishes this one.
+     */
+    private fun startNextActivity() {
+        startActivity(Intent(this@LoginActivity, MainMenuActivity::class.java))
+        this.finish()
     }
 
 }
