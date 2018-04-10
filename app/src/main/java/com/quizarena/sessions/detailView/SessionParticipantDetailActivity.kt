@@ -1,5 +1,6 @@
 package com.quizarena.sessions.detailView
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -55,7 +56,10 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
 
         } else {
             // the user is not participant of this session
-            // terminate the activity
+            // open the correct activity and terminate this one
+            intent = Intent(this@SessionParticipantDetailActivity, SessionDetailActivity::class.java)
+            intent.putExtra(getString(R.string.intent_extra_session_clicked), currentSession)
+            startActivity(intent)
             this.finish()
         }
 
