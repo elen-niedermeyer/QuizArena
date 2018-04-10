@@ -21,6 +21,19 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
      */
     private lateinit var currentSession: QuizSession
 
+    private val onShareButtonClick = object : View.OnClickListener {
+        override fun onClick(view: View?) {
+            var text = getString(R.string.sharing_text)
+            text = text + getString(R.string.sharing_link, currentSession.id.toString())
+
+            val sendIntent = Intent(Intent.ACTION_SEND)
+            sendIntent.type = "text/plain"
+            sendIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.sharing_subject))
+            sendIntent.putExtra(Intent.EXTRA_TEXT, text)
+            startActivity(Intent.createChooser(sendIntent, getString(R.string.sharing_chooser_title)))
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_session_participant_detail)
@@ -47,6 +60,9 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
             activity_session_participant_detail_score.text = thisUser.sessionScore.toString()
             // set participants list
             activity_session_participant_detail_list.adapter = ParticipantsListAdapter(this, participants)
+
+            // set share button
+            activity_session_participant_detail_button_share.setOnClickListener(onShareButtonClick)
 
             if (currentSession.isOwner && currentSession.isPrivate) {
                 // the owner can terminate private sessions

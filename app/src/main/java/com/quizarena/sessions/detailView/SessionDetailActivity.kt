@@ -42,7 +42,14 @@ class SessionDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_session_detail)
 
         // get session
-        currentSession = intent.getParcelableExtra<QuizSession>(getString(R.string.intent_extra_session_clicked))
+        //TODO: testing, what if the user is not logged in?
+        if (intent.action == Intent.ACTION_VIEW) {
+            val uri = intent.data
+            val sessionID = Integer.parseInt(uri.lastPathSegment)
+            currentSession = SessionApi().getSession(sessionID, Credentials.accountName)
+        } else {
+            currentSession = intent.getParcelableExtra<QuizSession>(getString(R.string.intent_extra_session_clicked))
+        }
 
         if (!currentSession.isParticipant) {
             // the user isn't participant of the session
