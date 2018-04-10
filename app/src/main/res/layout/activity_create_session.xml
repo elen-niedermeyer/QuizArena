@@ -58,10 +58,10 @@
         style="@style/error_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/activity_create_session_form_category_label"
         app:layout_constraintBottom_toTopOf="@id/activity_create_session_form_duration_label"
         app:layout_constraintEnd_toEndOf="@id/activity_create_session_form_category"
-        app:layout_constraintStart_toStartOf="@id/activity_create_session_form_category_label" />
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_form_category_label"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_form_category_label" />
 
     <TextView
         android:id="@+id/activity_create_session_form_duration_label"
@@ -100,10 +100,45 @@
         style="@style/error_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/activity_create_session_submit_button"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_isprivate_checkbox"
         app:layout_constraintEnd_toEndOf="@id/activity_create_session_form_duration_hour_label"
         app:layout_constraintStart_toStartOf="@id/activity_create_session_form_duration_label"
         app:layout_constraintTop_toBottomOf="@id/activity_create_session_form_duration_label" />
+
+
+    <CheckBox
+        android:id="@+id/activity_create_session_isprivate_checkbox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/is_private"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_isprivate_password"
+        app:layout_constraintEnd_toEndOf="@id/activity_create_session_error_duration"
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_error_duration"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_error_duration" />
+
+    <EditText
+        android:id="@+id/activity_create_session_isprivate_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_error_password"
+        app:layout_constraintEnd_toEndOf="@id/activity_create_session_isprivate_checkbox"
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_isprivate_checkbox"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_isprivate_checkbox" />
+
+    <TextView
+        android:id="@+id/activity_create_session_error_password"
+        style="@style/error_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_isprivate_password"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_submit_button"
+        app:layout_constraintEnd_toEndOf="@id/activity_create_session_isprivate_password"
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_isprivate_password"/>
 
     <Button
         android:id="@+id/activity_create_session_submit_button"
@@ -112,8 +147,8 @@
         android:layout_marginBottom="8dp"
         android:text="@string/create_session"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/activity_create_session_error_duration"
-        app:layout_constraintStart_toStartOf="@id/activity_create_session_error_duration"
-        app:layout_constraintTop_toBottomOf="@id/activity_create_session_error_duration" />
+        app:layout_constraintEnd_toEndOf="@id/activity_create_session_isprivate_checkbox"
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_isprivate_checkbox"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_error_password" />
 
 </android.support.constraint.ConstraintLayout>
