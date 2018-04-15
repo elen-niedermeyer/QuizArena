@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 
 import com.quizarena.R
+import com.quizarena.sessions.SessionApi
 
 import kotlinx.android.synthetic.main.activity_create_session.*
 
@@ -62,7 +63,7 @@ class CreateSessionActivity : AppCompatActivity() {
                 val category = activity_create_session_form_category.selectedItem.toString()
                 val duration = activity_create_session_form_duration.text.toString().toInt()
 
-                val api = CreateSessionApi()
+                val api = SessionApi()
                 if (activity_create_session_isprivate_checkbox.isChecked) {
                     // create private session request
                     val password = activity_create_session_isprivate_password.text.toString()
@@ -101,6 +102,12 @@ class CreateSessionActivity : AppCompatActivity() {
         // only display the first error if it's empty
         else if (activity_create_session_form_duration.text.toString().toIntOrNull() == null) {
             activity_create_session_error_duration.text = getString(R.string.create_session_error_wrong_duration)
+            isValid = false
+        }
+        // check whether the duration is between 6 and 24 hours
+        else if (activity_create_session_form_duration.text.toString().toInt() < 6
+            || activity_create_session_form_duration.text.toString().toInt() > 24) {
+            activity_create_session_error_duration.text = getString(R.string.create_session_error_duration_between_6_24)
             isValid = false
         }
 

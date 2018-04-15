@@ -63,4 +63,5 @@
     <string name="create_session_error_no_duration">Lege eine Dauer fest</string>
     <string name="create_session_error_wrong_duration">Gib eine gültige Dauer ein</string>
     <string name="create_session_error_no_password">Lege ein Passwort fest</string>
+    <string name="create_session_error_duration_between_6_24">Die Dauer muss zwischen 6 und 24 Stunden liegen</string>
 </resources>
