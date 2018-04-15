@@ -38,10 +38,12 @@
     <string name="password_confirm">Passwort wiederholen</string>
     <string name="register">Registrieren</string>
     <string name="login">Login</string>
+
     <!-- register errors -->
     <string name="register_error_no_name">Lege einen Accountnamen fest</string>
     <string name="register_error_no_password">Lege ein Passwort fest</string>
     <string name="register_error_passwords_different">Passwörter sind nicht identisch</string>
+
     <!-- login errors -->
     <string name="login_error_no_name">Gib einen Accountnamen ein</string>
     <string name="login_error_no_password">Gib ein Passwort ein</string>
@@ -54,4 +56,12 @@
     <string name="pref_credentials_file">com.quizarena.credentials</string>
     <string name="pref_credentials_name_key">accountName</string>
     <string name="pref_credentials_password_key">password</string>
+    <string name="is_private">Privat?</string>
+
+    <!-- create session errors -->
+    <string name="create_session_error_no_name">Lege einen Sessionnamen fest</string>
+    <string name="create_session_error_no_duration">Lege eine Dauer fest</string>
+    <string name="create_session_error_wrong_duration">Gib eine gültige Dauer ein</string>
+    <string name="create_session_error_no_password">Lege ein Passwort fest</string>
+    <string name="create_session_error_duration_between_6_24">Die Dauer muss zwischen 6 und 24 Stunden liegen</string>
 </resources>
