@@ -127,7 +127,7 @@
         app:layout_constraintStart_toStartOf="@+id/activity_options_label_language"
         app:layout_constraintTop_toTopOf="@id/activity_options_button_push" />
 
-    <ToggleButton
+    <Switch
         android:id="@+id/activity_options_button_push"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
