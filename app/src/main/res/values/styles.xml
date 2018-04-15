@@ -22,7 +22,9 @@
     </style>
 
     <!-- text views -->
-    <style name="text_normal" parent="TextAppearance.AppCompat.Medium"></style>
+    <style name="text_normal" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
 
     <!-- style for error messages -->
     <style name="text_error" parent="TextAppearance.AppCompat.Small">

@@ -5,14 +5,14 @@
     <color name="colorPrimaryDark">#4C0099</color>
     <color name="colorAccent">#B266FF</color>
 
-    <color name="background">#E6FFE6</color>
+    <color name="background">#C3FFC3</color>
     <color name="text_button">#33FF33</color>
 
     <color name="red">#FF0000</color>
 
-    <color name="overview_session_owned">#FFFF00</color>
-    <color name="overview_session_participated">#FF00FF</color>
-    <color name="overview_session_other">#AAAAAA</color>
+    <color name="overview_session_owned">#5555FF</color>
+    <color name="overview_session_participated">#7777FF</color>
+    <color name="overview_session_open">#9999FF</color>
 
     <color name="correct_answer">#00FF00</color>
     <color name="wrong_answer">#FF0000</color>
