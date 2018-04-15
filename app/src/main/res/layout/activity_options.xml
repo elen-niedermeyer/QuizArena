@@ -30,7 +30,6 @@
 
             <Button
                 android:id="@+id/activity_options_button_logout"
-                style="@style/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -68,7 +67,6 @@
 
             <Button
                 android:id="@+id/activity_options_button_change_name"
-                style="@style/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -96,7 +94,6 @@
 
             <Button
                 android:id="@+id/activity_options_button_change_password"
-                style="@style/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

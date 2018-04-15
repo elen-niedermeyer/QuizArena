@@ -8,7 +8,6 @@
 
     <Button
         android:id="@+id/activity_main_menu_button_show_sessions"
-        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_sessions"
@@ -20,7 +19,6 @@
 
     <Button
         android:id="@+id/activity_main_menu_button_create"
-        style="@style/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/create_session"
@@ -31,7 +29,6 @@
 
     <Button
         android:id="@+id/activity_main_menu_button_options"
-        style="@style/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/options"
@@ -42,7 +39,6 @@
 
     <Button
         android:id="@+id/activity_main_menu_button_imprint"
-        style="@style/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/imprint"

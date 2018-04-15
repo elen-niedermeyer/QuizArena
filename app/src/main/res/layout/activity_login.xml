@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/account_name"
+        android:inputType="text"
         android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@+id/activity_login_error_name"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +55,6 @@
 
     <Button
         android:id="@+id/activity_login_button_confirm"
-        style="@style/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/login"
@@ -65,7 +65,6 @@
 
     <Button
         android:id="@+id/activity_login_button_register"
-        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register"
