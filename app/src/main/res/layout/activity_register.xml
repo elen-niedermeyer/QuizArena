@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/activity_register_error_name"
-        style="@style/error_text"
+        style="@style/text_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/activity_register_display_name"
@@ -42,7 +42,7 @@
 
     <TextView
         android:id="@+id/activity_register_error_display_name"
-        style="@style/error_text"
+        style="@style/text_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/activity_register_password1"
@@ -64,7 +64,7 @@
 
     <TextView
         android:id="@+id/activity_register_error_password1"
-        style="@style/error_text"
+        style="@style/text_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/activity_register_password2"
@@ -86,7 +86,7 @@
 
     <TextView
         android:id="@+id/activity_register_error_password2"
-        style="@style/error_text"
+        style="@style/text_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/activity_register_button_confirm"

@@ -1,160 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.quizarena.options.OptionsActivity">
 
-    <LinearLayout
+    <!-- account name and logout button -->
+    <TextView
+        android:id="@+id/activity_options_account_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:text="[Accountname]"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_options_button_logout"
+        app:layout_constraintEnd_toStartOf="@id/activity_options_button_logout"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toRightOf="@id/activity_options_button_logout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/activity_options_button_logout"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
-        <!-- account name and logout button -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+    <Button
+        android:id="@+id/activity_options_button_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        app:layout_constraintBottom_toTopOf="@id/activity_options_button_change_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/activity_options_account_name"
+        app:layout_constraintStart_toEndOf="@id/activity_options_account_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/activity_options_button_logout"
-                android:layout_toStartOf="@id/activity_options_button_logout"
-                android:text="[Accountname]" />
+    <!-- display name and changing -->
+    <TextView
+        android:id="@+id/activity_options_label_display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:labelFor="@id/activity_options_display_name"
+        android:text="@string/display_name"
+        app:layout_constraintBottom_toBottomOf="@id/activity_options_display_name"
+        app:layout_constraintEnd_toStartOf="@id/activity_options_display_name"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/activity_options_account_name"
+        app:layout_constraintTop_toTopOf="@id/activity_options_display_name" />
 
-            <Button
-                android:id="@+id/activity_options_button_logout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="@string/logout" />
+    <TextView
+        android:id="@+id/activity_options_display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Anzeigename]"
+        app:layout_constraintBottom_toBottomOf="@id/activity_options_button_change_name"
+        app:layout_constraintEnd_toStartOf="@id/activity_options_button_change_name"
+        app:layout_constraintRight_toLeftOf="@id/activity_options_button_change_name"
+        app:layout_constraintStart_toEndOf="@id/activity_options_label_display_name"
+        app:layout_constraintTop_toTopOf="@id/activity_options_button_change_name" />
 
-        </RelativeLayout>
+    <Button
+        android:id="@+id/activity_options_button_change_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/change"
+        app:layout_constraintBottom_toTopOf="@id/activity_options_button_change_password"
+        app:layout_constraintEnd_toEndOf="@+id/activity_options_button_logout"
+        app:layout_constraintRight_toLeftOf="@id/activity_options_display_name"
+        app:layout_constraintStart_toStartOf="@+id/activity_options_button_logout"
+        app:layout_constraintTop_toBottomOf="@id/activity_options_button_logout" />
 
-        <!-- display name and changing -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+    <!-- password changing -->
+    <TextView
+        android:id="@+id/activity_options_label_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/activity_options_button_change_password"
+        android:text="@string/password"
+        app:layout_constraintBottom_toBottomOf="@id/activity_options_button_change_password"
+        app:layout_constraintEnd_toStartOf="@id/activity_options_button_change_password"
+        app:layout_constraintRight_toLeftOf="@id/activity_options_button_change_password"
+        app:layout_constraintStart_toStartOf="@+id/activity_options_label_display_name"
+        app:layout_constraintTop_toTopOf="@id/activity_options_button_change_password" />
 
-            <TextView
-                android:id="@+id/activity_options_label_display_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:text="@string/display_name" />
+    <Button
+        android:id="@+id/activity_options_button_change_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/change"
+        app:layout_constraintBottom_toTopOf="@id/activity_options_language"
+        app:layout_constraintEnd_toEndOf="@+id/activity_options_button_change_name"
+        app:layout_constraintLeft_toRightOf="@id/activity_options_label_password"
+        app:layout_constraintStart_toStartOf="@+id/activity_options_button_change_name"
+        app:layout_constraintTop_toBottomOf="@id/activity_options_button_change_name" />
 
-            <TextView
-                android:id="@+id/activity_options_display_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/activity_options_label_display_name"
-                android:layout_toLeftOf="@id/activity_options_button_change_name"
-                android:layout_toRightOf="@id/activity_options_label_display_name"
-                android:layout_toStartOf="@id/activity_options_button_change_name"
-                android:text="[Anzeigename]" />
+    <!-- language changing -->
+    <TextView
+        android:id="@+id/activity_options_label_language"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/activity_options_language"
+        android:text="@string/language"
+        app:layout_constraintBottom_toBottomOf="@id/activity_options_language"
+        app:layout_constraintEnd_toStartOf="@id/activity_options_language"
+        app:layout_constraintRight_toLeftOf="@id/activity_options_language"
+        app:layout_constraintStart_toStartOf="@id/activity_options_label_password"
+        app:layout_constraintTop_toTopOf="@id/activity_options_language" />
 
-            <Button
-                android:id="@+id/activity_options_button_change_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="@string/change" />
+    <Spinner
+        android:id="@+id/activity_options_language"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/activity_options_button_push"
+        app:layout_constraintEnd_toEndOf="@+id/activity_options_button_change_password"
+        app:layout_constraintLeft_toRightOf="@id/activity_options_label_language"
+        app:layout_constraintStart_toStartOf="@+id/activity_options_button_change_password"
+        app:layout_constraintTop_toBottomOf="@id/activity_options_button_change_password" />
 
-        </RelativeLayout>
+    <!-- push notifications on/off -->
+    <TextView
+        android:id="@+id/activity_options_label_push"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/activity_options_button_push"
+        android:text="@string/push"
+        app:layout_constraintBottom_toBottomOf="@id/activity_options_button_push"
+        app:layout_constraintEnd_toStartOf="@id/activity_options_button_push"
+        app:layout_constraintStart_toStartOf="@+id/activity_options_label_language"
+        app:layout_constraintTop_toTopOf="@id/activity_options_button_push" />
 
-        <!-- password changing -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+    <Switch
+        android:id="@+id/activity_options_button_push"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activity_options_language"
+        app:layout_constraintStart_toStartOf="@+id/activity_options_language"
+        app:layout_constraintTop_toBottomOf="@id/activity_options_language" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/activity_options_button_change_password"
-                android:layout_toStartOf="@id/activity_options_button_change_password"
-                android:text="@string/password" />
-
-            <Button
-                android:id="@+id/activity_options_button_change_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="@string/change" />
-
-        </RelativeLayout>
-
-        <!-- language changing -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/activity_options_language"
-                android:layout_toStartOf="@id/activity_options_language"
-                android:text="@string/language" />
-
-            <Spinner
-                android:id="@+id/activity_options_language"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
-
-        </RelativeLayout>
-
-        <!-- push notifications on/off -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/activity_options_button_push"
-                android:layout_toStartOf="@id/activity_options_button_push"
-                android:text="@string/push" />
-
-            <ToggleButton
-                android:id="@+id/activity_options_button_push"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

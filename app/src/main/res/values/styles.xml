@@ -7,6 +7,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/background</item>
         <item name="android:buttonStyle">@style/button</item>
+        <item name="android:textAppearance">@style/text_normal</item>
+        <item name="android:textAppearanceSmall">@style/text_normal</item>
     </style>
 
     <!-- button style -->
@@ -19,8 +21,13 @@
         <item name="android:minWidth">32dp</item>
     </style>
 
+    <!-- text views -->
+    <style name="text_normal" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
     <!-- style for error messages -->
-    <style name="error_text" parent="TextAppearance.AppCompat.Small">
+    <style name="text_error" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/red</item>
     </style>
 
