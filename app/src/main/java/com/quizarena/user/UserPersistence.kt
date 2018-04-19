@@ -15,15 +15,14 @@ class UserPersistence(val context: Context) {
      * Makes a {@link User} object.
      *
      * @param accountName the account name to save
-     * @param password the user's password to save
      * @return a {@link User} object
      */
-    fun saveCredentials(accountName: String, isLoggedIn: Boolean): User {
+    fun saveCredentials(accountName: String): User {
         preferenceUtils.writePreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_name_key), accountName)
-        preferenceUtils.writePreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_login_key), isLoggedIn)
+        preferenceUtils.writePreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_login_key), true)
 
         // create credentials and return it
-        return User(accountName, isLoggedIn)
+        return User(accountName, true)
     }
 
     /**

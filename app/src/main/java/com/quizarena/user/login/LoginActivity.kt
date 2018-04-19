@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
                     if (wasSuccessful) {
                         // user credentials are correct
                         // save credentials and start main menu
-                        UserPersistence(this@LoginActivity).saveCredentials(name, true)
+                        UserPersistence(this@LoginActivity).saveCredentials(name)
                         startNextActivity()
 
                     } else {

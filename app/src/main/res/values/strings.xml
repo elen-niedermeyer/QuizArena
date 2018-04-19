@@ -24,7 +24,7 @@
     <string name="endpoint_user_param_display_name">display_name</string>
     <string name="endpoint_user_param_token">token</string>
     <!-- default error -->
-    <string name="api_request_error">Es ist ein Fehler aufgetreten:/n</string>
+    <string name="api_request_error">Es ist ein Fehler aufgetreten:\n</string>
     <!-- user requests error register -->
     <string name="endpoint_user_error_username_duplicated">Nutzername existiert schon</string>
     <string name="endpoint_user_error_password_empty">Passwort darf nicht leer sein</string>

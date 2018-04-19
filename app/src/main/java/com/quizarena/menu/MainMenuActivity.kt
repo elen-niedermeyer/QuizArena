@@ -21,7 +21,8 @@ class MainMenuActivity : AppCompatActivity() {
 
         // first activity, load user attributes
         UserPersistence(this).loadCredentials();
-        if (!User.isLoggedIn || !UserApi(this).authenticate(User.accountName, InstanceIdService().getToken())) {
+        val isAuthenticated = UserApi(this).authenticate(User.accountName, InstanceIdService().getToken())
+        if (!User.isLoggedIn && !isAuthenticated) {
             // user is not logged in or couldn't be authenticated
             startActivity(Intent(this@MainMenuActivity, LoginActivity::class.java))
             this.finish()

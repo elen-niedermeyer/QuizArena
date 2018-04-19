@@ -43,8 +43,8 @@ class RegisterActivity : AppCompatActivity() {
 
                 // extract input values
                 val accountName = activity_register_account_name.text.toString()
-                val displayName = activity_register_password1.text.toString()
-                val password = activity_register_display_name.text.toString()
+                val displayName = activity_register_display_name.text.toString()
+                val password = activity_register_password1.text.toString()
 
                 val api = UserApi(this@RegisterActivity)
                 // register account in backend
@@ -53,7 +53,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (wasSuccessful) {
                     // registering user was successful
                     // save credentials and start main menu
-                    UserPersistence(this@RegisterActivity).saveCredentials(accountName, true)
+                    UserPersistence(this@RegisterActivity).saveCredentials(accountName)
                     startNextActivity()
 
                 } else {
