@@ -15,10 +15,18 @@
     <string name="terminate">Beenden</string>
 
     <!-- api requests -->
-    <string name="baseurl">http://192.168.0.15:5000/</string>
-    <string name="user_endpoint">user/</string>
-    <string name="session_endpoint">session/</string>
-    <string name="api_parameter_password">password</string>
+    <string name="baseurl">http://aersoftler.pythonanywhere.com</string>
+    <!-- user requests -->
+    <string name="endpoint_users_all">/user</string>
+    <string name="endpoint_user_specific">/user/%1$s</string>
+    <string name="endpoint_user_param_password">password</string>
+    <!-- user requests error register -->
+    <string name="endpoint_user_error_username_duplicated">Nutzername existiert schon</string>
+    <string name="endpoint_user_error_password_empty">Passwort darf nicht leer sein</string>
+    <string name="endpoint_user_error_displayname_empty">Kein Anzeigename vorhanden</string>
+    <!-- sessions -->
+    <string name="endpoint_sessions_all">/session</string>
+
 
     <!-- handling sessions -->
     <string name="show_sessions">Sessions anzeigen</string>
