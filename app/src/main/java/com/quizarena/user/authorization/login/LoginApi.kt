@@ -1,4 +1,4 @@
-package com.quizarena.authorization.login
+package com.quizarena.user.authorization.login
 
 import android.content.Context
 

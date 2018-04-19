@@ -1,4 +1,4 @@
-package com.quizarena.authorization
+package com.quizarena.user.authorization
 
 import android.content.Context
 import com.quizarena.R

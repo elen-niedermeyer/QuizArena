@@ -1,11 +1,11 @@
-package com.quizarena.authorization.login
+package com.quizarena.user.authorization.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.quizarena.R
-import com.quizarena.authorization.CredentialPersistence
-import com.quizarena.authorization.register.RegisterActivity
+import com.quizarena.user.authorization.CredentialPersistence
+import com.quizarena.user.authorization.register.RegisterActivity
 import com.quizarena.menu.MainMenuActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.alert

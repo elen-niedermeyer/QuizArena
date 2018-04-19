@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import com.quizarena.R
-import com.quizarena.authorization.Credentials
+import com.quizarena.user.authorization.Credentials
 import com.quizarena.sessions.SessionApi
 import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
 import kotlinx.android.synthetic.main.activity_quiz.*

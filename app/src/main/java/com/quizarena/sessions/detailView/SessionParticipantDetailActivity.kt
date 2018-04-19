@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.quizarena.R
-import com.quizarena.authorization.Credentials
+import com.quizarena.user.authorization.Credentials
 import com.quizarena.sessions.Participant
 import com.quizarena.sessions.QuizSession
 import com.quizarena.sessions.SessionApi

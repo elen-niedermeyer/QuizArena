@@ -1,4 +1,4 @@
-package com.quizarena.authorization
+package com.quizarena.user.authorization
 
 class Credentials(accountName: String, password: String) {
 

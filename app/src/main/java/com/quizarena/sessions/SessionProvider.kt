@@ -1,6 +1,6 @@
 package com.quizarena.sessions
 
-import com.quizarena.authorization.Credentials
+import com.quizarena.user.authorization.Credentials
 
 class SessionProvider {
 

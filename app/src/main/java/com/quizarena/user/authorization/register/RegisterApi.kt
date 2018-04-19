@@ -1,8 +1,6 @@
-package com.quizarena.authorization.register
+package com.quizarena.user.authorization.register
 
 import android.content.Context
-import com.quizarena.R
-import org.jetbrains.anko.doAsync
 
 class RegisterApi {
 
