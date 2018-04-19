@@ -11,31 +11,29 @@ class UserPersistence(val context: Context) {
     var preferenceUtils = PreferenceUtils(context);
 
     /**
-     * Saves the given credentials in preferences.
+     * Saves the given name in preferences.
      * Makes a {@link User} object.
      *
      * @param accountName the account name to save
      * @return a {@link User} object
      */
-    fun saveCredentials(accountName: String): User {
+    fun saveName(accountName: String): User {
         preferenceUtils.writePreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_name_key), accountName)
-        preferenceUtils.writePreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_login_key), true)
 
         // create credentials and return it
-        return User(accountName, true)
+        return User(accountName)
     }
 
     /**
-     * Loads the credentials saved in the preferences.
+     * Loads the name saved in the preferences.
      *
      * @return a {@link User} object
      */
-    fun loadCredentials(): User {
+    fun loadName(): User {
         val name = preferenceUtils.loadPreferenceString(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_name_key))
-        val isLoggedIn = preferenceUtils.loadPreferenceBoolean(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_login_key))
 
         // create credentials and return it
-        return User(name, isLoggedIn)
+        return User(name)
     }
 
 

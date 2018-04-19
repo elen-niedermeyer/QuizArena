@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // load saved user credentials
-        val creds = UserPersistence(this@LoginActivity).loadCredentials()
+        val creds = UserPersistence(this@LoginActivity).loadName()
 
         val api = LoginApi()
         // try to authenticate user with loaded credentials
@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
                     if (wasSuccessful) {
                         // user credentials are correct
                         // save credentials and start main menu
-                        UserPersistence(this@LoginActivity).saveCredentials(name)
+                        UserPersistence(this@LoginActivity).saveName(name)
                         startNextActivity()
 
                     } else {

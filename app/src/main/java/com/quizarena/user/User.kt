@@ -1,9 +1,10 @@
 package com.quizarena.user
 
-class User(accountName: String, isLoggedIn: Boolean) {
+class User(accountName: String) {
 
     var accountName = accountName
         private set
+    var isLoggedIn = false
     var globalScore = 0
 
     /**

@@ -20,12 +20,16 @@ class MainMenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // first activity, load user attributes
-        UserPersistence(this).loadCredentials();
-        val isAuthenticated = UserApi(this).authenticate(User.accountName, InstanceIdService().getToken())
-        if (!User.isLoggedIn && !isAuthenticated) {
-            // user is not logged in or couldn't be authenticated
-            startActivity(Intent(this@MainMenuActivity, LoginActivity::class.java))
-            this.finish()
+        UserPersistence(this).loadName();
+        if (!User.isLoggedIn) {
+            val isAuthenticated = UserApi(this).authenticate(User.accountName, InstanceIdService().getToken())
+            if (!isAuthenticated) {
+                // user couldn't be authenticated
+                startActivity(Intent(this@MainMenuActivity, LoginActivity::class.java))
+                this.finish()
+            } else {
+                User.isLoggedIn = true
+            }
         }
 
         // user was authenticated, initialize content

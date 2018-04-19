@@ -53,7 +53,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (wasSuccessful) {
                     // registering user was successful
                     // save credentials and start main menu
-                    UserPersistence(this@RegisterActivity).saveCredentials(accountName)
+                    UserPersistence(this@RegisterActivity).saveName(accountName)
                     startNextActivity()
 
                 } else {
