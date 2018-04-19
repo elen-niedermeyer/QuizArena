@@ -20,6 +20,9 @@
     <string name="endpoint_users_all">/user</string>
     <string name="endpoint_user_specific">/user/%1$s</string>
     <string name="endpoint_user_param_password">password</string>
+    <string name="endpoint_user_param_token">token</string>
+    <!-- default error -->
+    <string name="api_request_error">Es ist ein Fehler aufgetreten:/n</string>
     <!-- user requests error register -->
     <string name="endpoint_user_error_username_duplicated">Nutzername existiert schon</string>
     <string name="endpoint_user_error_password_empty">Passwort darf nicht leer sein</string>

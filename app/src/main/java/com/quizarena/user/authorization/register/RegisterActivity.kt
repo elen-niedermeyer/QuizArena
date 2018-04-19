@@ -6,9 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import com.quizarena.R
+import com.quizarena.menu.MainMenuActivity
+import com.quizarena.notifications.InstanceIdService
 import com.quizarena.user.authorization.CredentialPersistence
 import com.quizarena.user.authorization.login.LoginActivity
-import com.quizarena.menu.MainMenuActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.alert
 
@@ -44,9 +45,9 @@ class RegisterActivity : AppCompatActivity() {
                 val displayName = activity_register_password1.text.toString()
                 val password = activity_register_display_name.text.toString()
 
-                val api = RegisterApi()
+                val api = RegisterApi(this@RegisterActivity)
                 // register account in backend
-                val wasSuccessful = api.executeRegisterRequest(this@RegisterActivity, accountName, displayName, password)
+                val wasSuccessful = api.executeRegisterRequest(accountName, displayName, password, InstanceIdService().getToken())
 
                 if (wasSuccessful) {
                     // registering user was successful
