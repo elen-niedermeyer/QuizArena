@@ -1,11 +1,11 @@
-package com.quizarena.user.authorization.login
+package com.quizarena.user.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.quizarena.R
-import com.quizarena.user.authorization.CredentialPersistence
-import com.quizarena.user.authorization.register.RegisterActivity
+import com.quizarena.user.UserPersistence
+import com.quizarena.user.register.RegisterActivity
 import com.quizarena.menu.MainMenuActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.alert
@@ -16,11 +16,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // load saved user credentials
-        val creds = CredentialPersistence(this@LoginActivity).loadCredentials()
+        val creds = UserPersistence(this@LoginActivity).loadCredentials()
 
         val api = LoginApi()
         // try to authenticate user with loaded credentials
-        val wasSuccessfulWithSavedCredentials = api.executeLoginRequest(this@LoginActivity, creds.accountName, creds.password)
+        val wasSuccessfulWithSavedCredentials = api.executeLoginRequest(this@LoginActivity, creds.accountName)
 
         if (wasSuccessfulWithSavedCredentials) {
             // user credentials are correct
@@ -42,12 +42,12 @@ class LoginActivity : AppCompatActivity() {
                     val password = activity_login_password.text.toString()
 
                     // try to authenticate user
-                    val wasSuccessful = api.executeLoginRequest(this@LoginActivity, name, password)
+                    val wasSuccessful = api.executeLoginRequest(this@LoginActivity, name)
 
                     if (wasSuccessful) {
                         // user credentials are correct
                         // save credentials and start main menu
-                        CredentialPersistence(this@LoginActivity).saveCredentials(name, password)
+                        UserPersistence(this@LoginActivity).saveCredentials(name, true)
                         startNextActivity()
 
                     } else {

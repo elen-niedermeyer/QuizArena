@@ -1,4 +1,4 @@
-package com.quizarena.user.authorization.login
+package com.quizarena.user.login
 
 import android.content.Context
 
@@ -8,7 +8,7 @@ class LoginApi {
         private set
 
     // mockup function
-    fun executeLoginRequest(context: Context, name: String, password: String): Boolean {
+    fun executeLoginRequest(context: Context, name: String): Boolean {
         if (name == "Test") {
             return true
         } else {

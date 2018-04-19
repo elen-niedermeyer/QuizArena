@@ -1,4 +1,4 @@
-package com.quizarena.user.authorization.register
+package com.quizarena.user.register
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,9 @@ import android.text.TextWatcher
 import com.quizarena.R
 import com.quizarena.menu.MainMenuActivity
 import com.quizarena.notifications.InstanceIdService
-import com.quizarena.user.authorization.CredentialPersistence
-import com.quizarena.user.authorization.login.LoginActivity
+import com.quizarena.user.UserApi
+import com.quizarena.user.UserPersistence
+import com.quizarena.user.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.alert
 
@@ -45,14 +46,14 @@ class RegisterActivity : AppCompatActivity() {
                 val displayName = activity_register_password1.text.toString()
                 val password = activity_register_display_name.text.toString()
 
-                val api = RegisterApi(this@RegisterActivity)
+                val api = UserApi(this@RegisterActivity)
                 // register account in backend
-                val wasSuccessful = api.executeRegisterRequest(accountName, displayName, password, InstanceIdService().getToken())
+                val wasSuccessful = api.register(accountName, displayName, password, InstanceIdService().getToken())
 
                 if (wasSuccessful) {
                     // registering user was successful
                     // save credentials and start main menu
-                    CredentialPersistence(this@RegisterActivity).saveCredentials(accountName, password)
+                    UserPersistence(this@RegisterActivity).saveCredentials(accountName, true)
                     startNextActivity()
 
                 } else {

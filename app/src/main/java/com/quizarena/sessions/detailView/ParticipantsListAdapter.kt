@@ -28,7 +28,7 @@ class ParticipantsListAdapter(private val adapterContext: Context, var values: A
         // set user name
         participantBar.activity_session_participant_detail_bar_participant_name.text = user.displayName
 
-        // set user's score
+        // set user's globalScore
         participantBar.activity_session_participant_detail_bar_participant_score.text = user.sessionScore.toString()
 
         return participantBar

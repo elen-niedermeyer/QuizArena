@@ -19,7 +19,9 @@
     <!-- user requests -->
     <string name="endpoint_users_all">/user</string>
     <string name="endpoint_user_specific">/user/%1$s</string>
+    <string name="endpoint_user_token_authentication">/user/%1$s/%2$s</string>
     <string name="endpoint_user_param_password">password</string>
+    <string name="endpoint_user_param_display_name">display_name</string>
     <string name="endpoint_user_param_token">token</string>
     <!-- default error -->
     <string name="api_request_error">Es ist ein Fehler aufgetreten:/n</string>
@@ -27,6 +29,7 @@
     <string name="endpoint_user_error_username_duplicated">Nutzername existiert schon</string>
     <string name="endpoint_user_error_password_empty">Passwort darf nicht leer sein</string>
     <string name="endpoint_user_error_displayname_empty">Kein Anzeigename vorhanden</string>
+    <string name="endpoint_user_error_no_user">Der eingegebene Nutzer existiert nicht</string>
     <!-- sessions -->
     <string name="endpoint_sessions_all">/session</string>
 
@@ -66,7 +69,7 @@
     <!-- preferences -->
     <string name="pref_credentials_file">com.quizarena.credentials</string>
     <string name="pref_credentials_name_key">accountName</string>
-    <string name="pref_credentials_password_key">password</string>
+    <string name="pref_credentials_login_key">isLoggedIn</string>
     <string name="is_private">Privat?</string>
 
     <!-- create session errors -->
