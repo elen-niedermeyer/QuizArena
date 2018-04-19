@@ -23,7 +23,7 @@ class ParticipantsListAdapter(private val adapterContext: Context, var values: A
         val user = values[position]
 
         // set user's ranking
-        participantBar.activity_session_participant_detail_bar_participant_rank.text = (position + 1).toString()
+        participantBar.activity_session_participant_detail_bar_participant_rank.text = user.ranking.toString()
 
         // set user name
         participantBar.activity_session_participant_detail_bar_participant_name.text = user.displayName
