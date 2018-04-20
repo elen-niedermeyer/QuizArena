@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.quizarena.R
+import com.quizarena.menu.MainMenuActivity
+import com.quizarena.notifications.InstanceIdService
+import com.quizarena.user.UserApi
 import com.quizarena.user.UserPersistence
 import com.quizarena.user.register.RegisterActivity
-import com.quizarena.menu.MainMenuActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.alert
 
@@ -14,57 +16,40 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
 
-        // load saved user credentials
-        val creds = UserPersistence(this@LoginActivity).loadName()
+        activity_login_button_confirm.setOnClickListener {
+            if (validateAccountName() && validatePassword()) {
+                // name and password are valid
 
-        val api = LoginApi()
-        // try to authenticate user with loaded credentials
-        val wasSuccessfulWithSavedCredentials = api.executeLoginRequest(this@LoginActivity, creds.accountName)
+                // extract input value
+                val name = activity_login_account_name.text.toString()
+                val password = activity_login_password.text.toString()
 
-        if (wasSuccessfulWithSavedCredentials) {
-            // user credentials are correct
-            // continue to main menu
-            startNextActivity()
+                // try to authenticate user
+                val api = UserApi(this@LoginActivity)
+                val wasSuccessful = api.login(name, password, InstanceIdService().getToken())
 
-        } else {
-            // couldn't load correct credentials
-            // load login screen now
+                if (wasSuccessful) {
+                    // user credentials are correct
+                    // save name and start main menu
+                    UserPersistence(this@LoginActivity).saveName(name)
+                    startNextActivity()
 
-            setContentView(R.layout.activity_login)
-
-            activity_login_button_confirm.setOnClickListener {
-                if (validateAccountName() && validatePassword()) {
-                    // name and password are valid
-
-                    // extract input value
-                    val name = activity_login_account_name.text.toString()
-                    val password = activity_login_password.text.toString()
-
-                    // try to authenticate user
-                    val wasSuccessful = api.executeLoginRequest(this@LoginActivity, name)
-
-                    if (wasSuccessful) {
-                        // user credentials are correct
-                        // save credentials and start main menu
-                        UserPersistence(this@LoginActivity).saveName(name)
-                        startNextActivity()
-
-                    } else {
-                        // authenticate user failed
-                        // show an error message
-                        alert {
-                            title = getString(R.string.error)
-                            message(api.state)
-                            positiveButton(getString(R.string.ok)) { }
-                        }.show()
-                    }
+                } else {
+                    // authenticate user failed
+                    // show an error message
+                    alert {
+                        title = getString(R.string.error)
+                        message(api.state)
+                        positiveButton(getString(R.string.ok)) { }
+                    }.show()
                 }
             }
-
-            // change to register activity if the responding button is clicked
-            activity_login_button_register.setOnClickListener { startActivity(Intent(this@LoginActivity, RegisterActivity::class.java)) }
         }
+
+        // change to register activity if the responding button is clicked
+        activity_login_button_register.setOnClickListener { startActivity(Intent(this@LoginActivity, RegisterActivity::class.java)) }
 
     }
 

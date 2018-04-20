@@ -20,6 +20,7 @@
     <string name="endpoint_users_all">/user</string>
     <string name="endpoint_user_specific">/user/%1$s</string>
     <string name="endpoint_user_token_authentication">/user/%1$s/%2$s</string>
+    <string name="endpoint_user_login">/user/%1$s/login</string>
     <string name="endpoint_user_param_password">password</string>
     <string name="endpoint_user_param_display_name">display_name</string>
     <string name="endpoint_user_param_token">token</string>
@@ -30,6 +31,7 @@
     <string name="endpoint_user_error_password_empty">Passwort darf nicht leer sein</string>
     <string name="endpoint_user_error_displayname_empty">Kein Anzeigename vorhanden</string>
     <string name="endpoint_user_error_no_user">Der eingegebene Nutzer existiert nicht</string>
+    <string name="endpoint_user_error_wrong_pw">Passwort ist nicht korrekt</string>
     <!-- sessions -->
     <string name="endpoint_sessions_all">/session</string>
 
