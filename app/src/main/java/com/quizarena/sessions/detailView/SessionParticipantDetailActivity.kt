@@ -38,9 +38,10 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
             activity_session_participant_detail_time.text = SessionUtils.getDurationString(this, currentSession)
 
             // get participants
-            val participants = api.getParticipants(sessionID) as ArrayList<Participant>
+            var participants = api.getParticipants(sessionID)
+            participants = ArrayList<Participant>(ParticipantsUtils.addRanking(participants))
             val thisUser = participants.filter { it.accountName == User.accountName }.get(0)
-            val thisUsersRank = participants.indexOf(thisUser) + 1
+            val thisUsersRank = thisUser.ranking
             // set text views about the current user
             activity_session_participant_detail_place.text = thisUsersRank.toString()
             activity_session_participant_detail_score.text = thisUser.sessionScore.toString()
