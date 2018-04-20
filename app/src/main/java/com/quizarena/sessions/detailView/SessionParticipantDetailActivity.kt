@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.quizarena.R
-import com.quizarena.authorization.Credentials
 import com.quizarena.sessions.*
+import com.quizarena.user.User
 import kotlinx.android.synthetic.main.activity_session_participant_detail.*
 
 //TODO: add button for owners to terminate session
@@ -24,7 +24,7 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
         // get session
         val sessionID = intent.getIntExtra(getString(R.string.intent_extra_session_id), 0)
         val api = SessionApi()
-        currentSession = api.getSession(sessionID, Credentials.accountName)
+        currentSession = api.getSession(sessionID, User.accountName)
 
         if (currentSession.isParticipant) {
             // the user is participant of the session and allowed to see this view
@@ -37,7 +37,7 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
             // get participants
             var participants = api.getParticipants(sessionID)
             participants = ArrayList<Participant>(ParticipantsUtils.addRanking(participants))
-            val thisUser = participants.filter { it.accountName == Credentials.accountName }.get(0)
+            val thisUser = participants.filter { it.accountName == User.accountName }.get(0)
             val thisUsersRank = thisUser.ranking
             // set text views about the current user
             activity_session_participant_detail_place.text = thisUsersRank.toString()
