@@ -90,4 +90,29 @@ class UserApi(val context: Context) {
             return false
         }
     }
+
+    fun logout(accountName: String): Boolean {
+        var statusCode = 0
+        var responseState = ""
+
+        val response = doAsyncResult {
+            val response = khttp.patch(
+                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_logout, accountName))
+            return@doAsyncResult response
+        }.get()
+
+        statusCode = response.statusCode
+        responseState = response.text
+
+        if (statusCode == 200) {
+            // register was successful
+            return true
+
+        } else {
+            // register was not successful
+            // parse error
+            this.state = ApiErrors.getUserError(context, responseState)
+            return false
+        }
+    }
 }

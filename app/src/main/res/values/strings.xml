@@ -21,6 +21,7 @@
     <string name="endpoint_user_specific">/user/%1$s</string>
     <string name="endpoint_user_token_authentication">/user/%1$s/%2$s</string>
     <string name="endpoint_user_login">/user/%1$s/login</string>
+    <string name="endpoint_user_logout">/user/%1$s/logout</string>
     <string name="endpoint_user_param_password">password</string>
     <string name="endpoint_user_param_display_name">display_name</string>
     <string name="endpoint_user_param_token">token</string>
