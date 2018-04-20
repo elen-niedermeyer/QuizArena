@@ -31,7 +31,6 @@ class SessionApi {
     }
 
     // mockup
-    // get sorted list from backend
     fun getParticipants(sessionID: Int): List<Participant> {
         val participants = ArrayList<Participant>()
         participants.add(Participant("Test", "Test", 10))

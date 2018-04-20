@@ -6,24 +6,23 @@
     android:layout_height="match_parent"
     tools:context="com.quizarena.sessions.creation.CreateSessionActivity">
 
-
     <EditText
         android:id="@+id/activity_create_session_form_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/session_name"
+        android:inputType="text"
         android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@id/activity_create_session_error_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/activity_create_session_error_name"
-        style="@style/error_text"
+        style="@style/text_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/activity_create_session_form_category_label"
@@ -55,7 +54,7 @@
 
     <TextView
         android:id="@+id/activity_create_session_error_category"
-        style="@style/error_text"
+        style="@style/text_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/activity_create_session_form_duration_label"
@@ -67,6 +66,7 @@
         android:id="@+id/activity_create_session_form_duration_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:labelFor="@id/activity_create_session_form_duration"
         android:text="@string/duration"
         app:layout_constraintBottom_toTopOf="@id/activity_create_session_error_duration"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -97,14 +97,13 @@
 
     <TextView
         android:id="@+id/activity_create_session_error_duration"
-        style="@style/error_text"
+        style="@style/text_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/activity_create_session_isprivate_checkbox"
         app:layout_constraintEnd_toEndOf="@id/activity_create_session_form_duration_hour_label"
         app:layout_constraintStart_toStartOf="@id/activity_create_session_form_duration_label"
         app:layout_constraintTop_toBottomOf="@id/activity_create_session_form_duration_label" />
-
 
     <CheckBox
         android:id="@+id/activity_create_session_isprivate_checkbox"
@@ -131,20 +130,19 @@
 
     <TextView
         android:id="@+id/activity_create_session_error_password"
-        style="@style/error_text"
+        style="@style/text_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/activity_create_session_isprivate_password"
         app:layout_constraintBottom_toTopOf="@id/activity_create_session_submit_button"
         app:layout_constraintEnd_toEndOf="@id/activity_create_session_isprivate_password"
-        app:layout_constraintStart_toStartOf="@id/activity_create_session_isprivate_password"/>
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_isprivate_password"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_isprivate_password" />
 
     <Button
         android:id="@+id/activity_create_session_submit_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:text="@string/create_session"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/activity_create_session_isprivate_checkbox"

@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="8dp"
     tools:context="com.quizarena.sessions.detailView.SessionDetailActivity">
 
     <TextView
         android:id="@+id/activity_session_participant_detail_name"
+        style="@android:style/TextAppearance.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/activity_session_participant_detail_category"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -29,34 +32,46 @@
 
     <Button
         android:id="@+id/activity_session_participant_detail_button_terminate"
-        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/terminate"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_session_participant_detail_label_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/my_score"
+        app:layout_constraintRight_toLeftOf="@id/activity_session_participant_detail_place"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_session_participant_detail_time" />
 
     <TextView
         android:id="@+id/activity_session_participant_detail_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_crown"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toRightOf="@id/activity_session_participant_detail_label_score"
         app:layout_constraintRight_toLeftOf="@id/activity_session_participant_detail_score"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_session_participant_detail_time" />
 
     <TextView
         android:id="@+id/activity_session_participant_detail_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         app:layout_constraintLeft_toRightOf="@id/activity_session_participant_detail_place"
-        app:layout_constraintStart_toEndOf="@id/activity_session_participant_detail_place"
         app:layout_constraintTop_toBottomOf="@id/activity_session_participant_detail_time" />
 
     <FrameLayout
         android:id="@+id/activity_session_participant_detail_frame"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toTopOf="@id/activity_session_participant_detail_button_share"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -65,18 +80,20 @@
         <ListView
             android:id="@+id/activity_session_participant_detail_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_participant_list" />
 
     </FrameLayout>
 
     <ImageButton
         android:id="@+id/activity_session_participant_detail_button_share"
+        style="@style/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_session_participant_detail_frame"
-        app:srcCompat="@drawable/ic_share_black" />
+        app:srcCompat="@drawable/ic_share_textcolor" />
 
 </android.support.constraint.ConstraintLayout>

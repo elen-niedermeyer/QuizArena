@@ -13,11 +13,12 @@
         android:id="@+id/activity_session_overview_search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_search_black"
+        android:layout_marginBottom="8dp"
         android:drawableStart="@drawable/ic_search_black"
         android:hint="@string/search"
         android:iconifiedByDefault="false"
         android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/activity_session_overview_content"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
