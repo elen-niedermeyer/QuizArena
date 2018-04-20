@@ -11,7 +11,6 @@
         android:id="@+id/activity_options_account_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[Accountname]"
         app:layout_constraintBottom_toBottomOf="@+id/activity_options_button_logout"
         app:layout_constraintEnd_toStartOf="@id/activity_options_button_logout"
         app:layout_constraintHorizontal_chainStyle="packed"
