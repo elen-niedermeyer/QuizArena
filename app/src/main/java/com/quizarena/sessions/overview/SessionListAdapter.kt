@@ -36,10 +36,8 @@ class SessionListAdapter(private val adapterContext: Context, var values: ArrayL
         // set duration
         sessionBar.activity_session_overview_bar_duration.text = SessionUtils.getDurationString(adapterContext, session)
 
-        // set image for private sessions
-        if (session.isPrivate) {
-            sessionBar.activity_session_overview_bar_icon.setImageResource(getPrivateIcon(session))
-        }
+        // set image for sessions
+        sessionBar.activity_session_overview_bar_icon.setImageResource(getSessionIcon(session))
 
         return sessionBar
     }
@@ -53,31 +51,31 @@ class SessionListAdapter(private val adapterContext: Context, var values: ArrayL
     private fun getSessionBarBackground(session: QuizSession): Int {
         when {
             session.isOwner -> // owned sessions
-                return R.color.overview_session_owned
+                return R.drawable.background_session_overview_owned
             session.isParticipant -> // participated sessions
-                return R.color.overview_session_participated
-            session.isPrivate -> // private sessions
-                return R.color.overview_session_other
-            else -> // open sessions
-                return R.color.primary_material_light
+                return R.drawable.background_session_overview_participated
+            else -> // user does not participate the session
+                return R.drawable.background_session_overview_open
         }
     }
 
     /**
      * Gets the icon for private sessions.
-     * A session is private but open for the user, if the user is owner or participant.
-     * A session is private and closed for the user otherwise.
+     * A session could be public.
+     * or s session is private but accessible for the user, if the user is owner or participant.
+     * Or a session is private and not accessible for the user
      *
-     * @param session a (private) for which you want to have the private icon
+     * @param session a session for which you want to have the icon
      * @return an icon resource representing the private session's state
      */
-    private fun getPrivateIcon(session: QuizSession): Int {
+    private fun getSessionIcon(session: QuizSession): Int {
         when {
             session.isPrivate && (session.isOwner || session.isParticipant) ->
-                return R.drawable.ic_lock_open_black
-            session.isPrivate -> return R.drawable.ic_lock_closed_black
-            else -> // zero is an empty view
-                return 0
+                return R.drawable.ic_lock_open_black_32dp
+            session.isPrivate ->
+                return R.drawable.ic_lock_closed_black_32dp
+            else -> // session is open
+                return R.drawable.ic_person_black_32dp
         }
     }
 

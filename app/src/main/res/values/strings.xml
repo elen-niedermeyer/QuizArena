@@ -47,6 +47,13 @@
     <string name="left_time">%1$02dh %2$02dmin</string>
     <string name="terminated">Beendet</string>
     <string name="start_session">Quiz beginnen</string>
+    <string name="my_score">Mein Ergebnis:</string>
+    <!-- create session errors -->
+    <string name="create_session_error_no_name">Lege einen Sessionnamen fest</string>
+    <string name="create_session_error_no_duration">Lege eine Dauer fest</string>
+    <string name="create_session_error_wrong_duration">Gib eine g\u00FCltige Dauer ein</string>
+    <string name="create_session_error_no_password">Lege ein Passwort fest</string>
+    <string name="create_session_error_duration_between_6_24">Die Dauer muss zwischen 6 und 24 Stunden liegen</string>
 
     <!-- handling account -->
     <string name="account_name">Name</string>
@@ -74,11 +81,4 @@
     <string name="pref_credentials_name_key">accountName</string>
     <string name="pref_credentials_login_key">isLoggedIn</string>
     <string name="is_private">Privat?</string>
-
-    <!-- create session errors -->
-    <string name="create_session_error_no_name">Lege einen Sessionnamen fest</string>
-    <string name="create_session_error_no_duration">Lege eine Dauer fest</string>
-    <string name="create_session_error_wrong_duration">Gib eine gültige Dauer ein</string>
-    <string name="create_session_error_no_password">Lege ein Passwort fest</string>
-    <string name="create_session_error_duration_between_6_24">Die Dauer muss zwischen 6 und 24 Stunden liegen</string>
 </resources>

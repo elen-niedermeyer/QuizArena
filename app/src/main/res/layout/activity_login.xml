@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/account_name"
+        android:inputType="text"
         android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@+id/activity_login_error_name"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +23,7 @@
 
     <TextView
         android:id="@+id/activity_login_error_name"
-        style="@style/error_text"
+        style="@style/text_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/activity_login_password"
@@ -44,7 +45,7 @@
 
     <TextView
         android:id="@+id/activity_login_error_password"
-        style="@style/error_text"
+        style="@style/text_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/activity_login_button_confirm"
@@ -54,7 +55,6 @@
 
     <Button
         android:id="@+id/activity_login_button_confirm"
-        style="@style/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/login"
@@ -65,7 +65,6 @@
 
     <Button
         android:id="@+id/activity_login_button_register"
-        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register"
