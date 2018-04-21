@@ -9,14 +9,15 @@ class Logout(val context: Context) {
 
     fun logout(): Boolean {
         val isLoggedOut = UserApi(context).logout(User.accountName)
-        if (!isLoggedOut) {
-            // failure in request
-            return false
-        }
 
         User.isLoggedIn = false
         User.accountName = ""
         UserPersistence(context).saveName("")
+
+        if (!isLoggedOut) {
+            // failure in request
+            return false
+        }
 
         return true
     }

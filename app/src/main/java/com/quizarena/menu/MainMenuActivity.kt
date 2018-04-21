@@ -18,21 +18,6 @@ class MainMenuActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // first activity, load user attributes
-        UserPersistence(this).loadName();
-        if (!User.isLoggedIn) {
-            val isAuthenticated = UserApi(this).authenticate(User.accountName, InstanceIdService().getToken())
-            if (!isAuthenticated) {
-                // user couldn't be authenticated
-                startActivity(Intent(this@MainMenuActivity, LoginActivity::class.java))
-                this.finish()
-            } else {
-                User.isLoggedIn = true
-            }
-        }
-
-        // user was authenticated, initialize content
         setContentView(R.layout.activity_main_menu)
 
         val sessionOverviewButton = findViewById<Button>(R.id.activity_main_menu_button_show_sessions)
@@ -44,4 +29,22 @@ class MainMenuActivity : AppCompatActivity() {
         val optionsButton = findViewById<Button>(R.id.activity_main_menu_button_options)
         optionsButton.setOnClickListener { startActivity(Intent(this@MainMenuActivity, OptionsActivity::class.java)) }
     }
+
+    override fun onStart() {
+        super.onStart()
+
+        // authenticate user
+        UserPersistence(this).loadName();
+        if (!User.isLoggedIn) {
+            val isAuthenticated = UserApi(this).authenticate(User.accountName, InstanceIdService().getToken())
+            if (!isAuthenticated) {
+                // user couldn't be authenticated
+                startActivity(Intent(this@MainMenuActivity, LoginActivity::class.java))
+                this.finish()
+            } else {
+                User.isLoggedIn = true
+            }
+        }
+    }
+
 }
