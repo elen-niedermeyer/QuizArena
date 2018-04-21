@@ -4,7 +4,7 @@ import android.content.Context
 import com.quizarena.PreferenceUtils
 import com.quizarena.R
 
-class UserPersistence(val context: Context) {
+class CurrentUserPersistence(val context: Context) {
 
     //TODO: load and save score and all
 
@@ -12,28 +12,28 @@ class UserPersistence(val context: Context) {
 
     /**
      * Saves the given name in preferences.
-     * Makes a {@link User} object.
+     * Makes a {@link CurrentUser} object.
      *
      * @param accountName the account name to save
-     * @return a {@link User} object
+     * @return a {@link CurrentUser} object
      */
-    fun saveName(accountName: String): User {
+    fun saveName(accountName: String): CurrentUser {
         preferenceUtils.writePreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_name_key), accountName)
 
         // create credentials and return it
-        return User(accountName)
+        return CurrentUser(accountName)
     }
 
     /**
      * Loads the name saved in the preferences.
      *
-     * @return a {@link User} object
+     * @return a {@link CurrentUser} object
      */
-    fun loadName(): User {
+    fun loadName(): CurrentUser {
         val name = preferenceUtils.loadPreferenceString(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_name_key))
 
         // create credentials and return it
-        return User(name)
+        return CurrentUser(name)
     }
 
 

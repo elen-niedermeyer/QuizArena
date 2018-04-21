@@ -9,7 +9,7 @@ import com.quizarena.R
 import com.quizarena.menu.MainMenuActivity
 import com.quizarena.notifications.InstanceIdService
 import com.quizarena.user.UserApi
-import com.quizarena.user.UserPersistence
+import com.quizarena.user.CurrentUserPersistence
 import com.quizarena.user.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.alert
@@ -53,7 +53,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (wasSuccessful) {
                     // registering user was successful
                     // save credentials and start main menu
-                    UserPersistence(this@RegisterActivity).saveName(accountName)
+                    CurrentUserPersistence(this@RegisterActivity).saveName(accountName)
                     startNextActivity()
 
                 } else {

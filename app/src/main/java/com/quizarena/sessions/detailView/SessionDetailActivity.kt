@@ -8,7 +8,7 @@ import com.quizarena.quiz.QuizActivity
 import com.quizarena.sessions.QuizSession
 import com.quizarena.sessions.SessionApi
 import com.quizarena.sessions.SessionUtils
-import com.quizarena.user.User
+import com.quizarena.user.CurrentUser
 import kotlinx.android.synthetic.main.activity_session_detail.*
 
 class SessionDetailActivity : AppCompatActivity() {
@@ -28,7 +28,7 @@ class SessionDetailActivity : AppCompatActivity() {
         // set button's on click listener
         activity_session_detail_button_participate.setOnClickListener {
             // add the current user to the session
-            if (SessionApi().addParticipant(currentSession.id, User.accountName)) {
+            if (SessionApi().addParticipant(currentSession.id, CurrentUser.accountName)) {
                 // start quiz activity
                 val intent = Intent(this@SessionDetailActivity, QuizActivity::class.java)
                 intent.putExtra(getString(R.string.intent_extra_session_id), currentSession.id)

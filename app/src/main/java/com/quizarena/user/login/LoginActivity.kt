@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import com.quizarena.R
 import com.quizarena.menu.MainMenuActivity
 import com.quizarena.notifications.InstanceIdService
+import com.quizarena.user.CurrentUserPersistence
 import com.quizarena.user.UserApi
-import com.quizarena.user.UserPersistence
 import com.quizarena.user.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.alert
@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
                 if (wasSuccessful) {
                     // user credentials are correct
                     // save name and start main menu
-                    UserPersistence(this@LoginActivity).saveName(name)
+                    CurrentUserPersistence(this@LoginActivity).saveName(name)
                     startNextActivity()
 
                 } else {
@@ -49,7 +49,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // change to register activity if the responding button is clicked
-        activity_login_button_register.setOnClickListener { startActivity(Intent(this@LoginActivity, RegisterActivity::class.java)) }
+        activity_login_button_register.setOnClickListener {
+            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+            this.finish()
+        }
 
     }
 

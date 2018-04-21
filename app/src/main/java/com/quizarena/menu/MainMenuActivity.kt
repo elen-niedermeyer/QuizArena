@@ -9,9 +9,9 @@ import com.quizarena.notifications.InstanceIdService
 import com.quizarena.options.OptionsActivity
 import com.quizarena.sessions.creation.CreateSessionActivity
 import com.quizarena.sessions.overview.SessionOverviewActivity
-import com.quizarena.user.User
+import com.quizarena.user.CurrentUser
+import com.quizarena.user.CurrentUserPersistence
 import com.quizarena.user.UserApi
-import com.quizarena.user.UserPersistence
 import com.quizarena.user.login.LoginActivity
 
 class MainMenuActivity : AppCompatActivity() {
@@ -34,15 +34,23 @@ class MainMenuActivity : AppCompatActivity() {
         super.onStart()
 
         // authenticate user
-        UserPersistence(this).loadName();
-        if (!User.isLoggedIn) {
-            val isAuthenticated = UserApi(this).authenticate(User.accountName, InstanceIdService().getToken())
+        CurrentUserPersistence(this).loadName();
+        if (!CurrentUser.isLoggedIn) {
+            val userApi = UserApi(this)
+            val isAuthenticated = userApi.authenticate(CurrentUser.accountName, InstanceIdService().getToken())
             if (!isAuthenticated) {
                 // user couldn't be authenticated
                 startActivity(Intent(this@MainMenuActivity, LoginActivity::class.java))
                 this.finish()
             } else {
-                User.isLoggedIn = true
+                CurrentUser.isLoggedIn = true
+
+                // update current user
+                val user = userApi.getUser(CurrentUser.accountName)
+                if (user != null) {
+                    CurrentUser.displayName = user.displayName
+                    CurrentUser.globalScore = user.totalScore
+                }
             }
         }
     }

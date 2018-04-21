@@ -49,7 +49,6 @@
         android:id="@+id/activity_options_display_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[Anzeigename]"
         app:layout_constraintBottom_toBottomOf="@id/activity_options_button_change_name"
         app:layout_constraintEnd_toStartOf="@id/activity_options_button_change_name"
         app:layout_constraintRight_toLeftOf="@id/activity_options_button_change_name"
@@ -85,34 +84,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/change"
-        app:layout_constraintBottom_toTopOf="@id/activity_options_language"
+        app:layout_constraintBottom_toTopOf="@id/activity_options_button_push"
         app:layout_constraintEnd_toEndOf="@+id/activity_options_button_change_name"
         app:layout_constraintLeft_toRightOf="@id/activity_options_label_password"
         app:layout_constraintStart_toStartOf="@+id/activity_options_button_change_name"
         app:layout_constraintTop_toBottomOf="@id/activity_options_button_change_name" />
-
-    <!-- language changing -->
-    <TextView
-        android:id="@+id/activity_options_label_language"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/activity_options_language"
-        android:text="@string/language"
-        app:layout_constraintBottom_toBottomOf="@id/activity_options_language"
-        app:layout_constraintEnd_toStartOf="@id/activity_options_language"
-        app:layout_constraintRight_toLeftOf="@id/activity_options_language"
-        app:layout_constraintStart_toStartOf="@id/activity_options_label_password"
-        app:layout_constraintTop_toTopOf="@id/activity_options_language" />
-
-    <Spinner
-        android:id="@+id/activity_options_language"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/activity_options_button_push"
-        app:layout_constraintEnd_toEndOf="@+id/activity_options_button_change_password"
-        app:layout_constraintLeft_toRightOf="@id/activity_options_label_language"
-        app:layout_constraintStart_toStartOf="@+id/activity_options_button_change_password"
-        app:layout_constraintTop_toBottomOf="@id/activity_options_button_change_password" />
 
     <!-- push notifications on/off -->
     <TextView
@@ -123,7 +99,7 @@
         android:text="@string/push"
         app:layout_constraintBottom_toBottomOf="@id/activity_options_button_push"
         app:layout_constraintEnd_toStartOf="@id/activity_options_button_push"
-        app:layout_constraintStart_toStartOf="@+id/activity_options_label_language"
+        app:layout_constraintStart_toStartOf="@+id/activity_options_label_password"
         app:layout_constraintTop_toTopOf="@id/activity_options_button_push" />
 
     <Switch
@@ -133,6 +109,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/activity_options_button_change_password"
         app:layout_constraintStart_toStartOf="@+id/activity_options_button_change_password"
-        app:layout_constraintTop_toBottomOf="@id/activity_options_language" />
+        app:layout_constraintTop_toBottomOf="@id/activity_options_button_change_password" />
 
 </android.support.constraint.ConstraintLayout>

@@ -23,9 +23,15 @@
     <string name="endpoint_user_login">/user/%1$s/login</string>
     <string name="endpoint_user_logout">/user/%1$s/logout</string>
     <string name="endpoint_user_change_displayname">/user/%1$s?update=display_name</string>
+    <string name="endpoint_user_change_password">/user/%1$s?update=password</string>
     <string name="endpoint_user_data_password">password</string>
+    <string name="endpoint_user_data_password_old">old_password</string>
+    <string name="endpoint_user_data_password_new">new_password</string>
     <string name="endpoint_user_data_display_name">display_name</string>
     <string name="endpoint_user_data_token">token</string>
+    <string name="api_user_accountName">id</string>
+    <string name="api_user_displayName">display_name</string>
+    <string name="api_user_totalScore">total_score</string>
     <!-- default error -->
     <string name="api_request_error">Es ist ein Fehler aufgetreten\n</string>
     <!-- user requests error register -->
@@ -62,6 +68,11 @@
     <string name="display_name_new">Neuer Anzeigename</string>
     <string name="password">Passwort</string>
     <string name="password_confirm">Passwort wiederholen</string>
+    <string name="password_change">Passwort \u00E4ndern</string>
+    <string name="password_changed">Passwort geändert</string>
+    <string name="password_old">Altes Passwort</string>
+    <string name="password_new">Neues Password</string>
+    <string name="password_new2">Neues Passwort wiederholen</string>
     <string name="register">Registrieren</string>
     <string name="login">Login</string>
 

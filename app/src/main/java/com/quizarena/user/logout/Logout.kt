@@ -1,9 +1,9 @@
 package com.quizarena.user.logout
 
 import android.content.Context
-import com.quizarena.user.User
+import com.quizarena.user.CurrentUser
 import com.quizarena.user.UserApi
-import com.quizarena.user.UserPersistence
+import com.quizarena.user.CurrentUserPersistence
 
 class Logout(val context: Context) {
 
@@ -14,11 +14,11 @@ class Logout(val context: Context) {
      * @return true if the api request was successful, false otherwise
      */
     fun logout(): Boolean {
-        val isLoggedOut = UserApi(context).logout(User.accountName)
+        val isLoggedOut = UserApi(context).logout(CurrentUser.accountName)
 
-        User.isLoggedIn = false
-        User.accountName = ""
-        UserPersistence(context).saveName("")
+        CurrentUser.isLoggedIn = false
+        CurrentUser.accountName = ""
+        CurrentUserPersistence(context).saveName("")
 
         if (!isLoggedOut) {
             // failure in request
