@@ -16,6 +16,8 @@
 
     <!-- api requests -->
     <string name="baseurl">http://aersoftler.pythonanywhere.com</string>
+    <!-- category requests -->
+    <string name="endpoint_category">/category</string>
     <!-- user requests -->
     <string name="endpoint_users_all">/user</string>
     <string name="endpoint_user_specific">/user/%1$s</string>

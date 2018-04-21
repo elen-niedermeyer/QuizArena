@@ -29,7 +29,8 @@ class CreateSessionActivity : AppCompatActivity() {
     private fun initializeCategories() {
         val api = CategoryApi(this@CreateSessionActivity)
         val array = api.getAllCategories()
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, array)
+        val adapter = ArrayAdapter<String>(this, R.layout.spinner_text_right, array)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         activity_create_session_form_category!!.adapter = adapter
     }
 
