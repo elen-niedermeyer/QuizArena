@@ -8,7 +8,7 @@ class User(accountName: String) {
     var globalScore = 0
 
     /**
-     * set the static account name
+     * set the static values
      */
     init {
         User.accountName = accountName
@@ -17,7 +17,7 @@ class User(accountName: String) {
     }
 
     /**
-     * account name as static value
+     * static values
      */
     companion object {
         var accountName = ""

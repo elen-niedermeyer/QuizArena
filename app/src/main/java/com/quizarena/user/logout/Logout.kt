@@ -7,6 +7,12 @@ import com.quizarena.user.UserPersistence
 
 class Logout(val context: Context) {
 
+    /**
+     * Logs out the user.
+     * Sets local settings and makes a request.
+     *
+     * @return true if the api request was successful, false otherwise
+     */
     fun logout(): Boolean {
         val isLoggedOut = UserApi(context).logout(User.accountName)
 

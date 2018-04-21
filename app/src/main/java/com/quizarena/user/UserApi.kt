@@ -10,18 +10,23 @@ class UserApi(val context: Context) {
     var state: String = ""
         private set
 
-    fun authenticate(username: String, token: String?): Boolean {
-        var statusCode = 0
-        var responseState = ""
-
+    /**
+     * Makes a request to authenticate the user with the account name and the device's token.
+     * Sets the {@link #state} if there's a failure.
+     *
+     * @param accountName the user's account name
+     * @param token the device's token
+     * @return true if the request was successful, false otherwise
+     */
+    fun authenticate(accountName: String, token: String?): Boolean {
         val response = doAsyncResult {
             val response = khttp.get(
-                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_token_authentication, username, token))
+                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_token_authentication, accountName, token))
             return@doAsyncResult response
         }.get()
 
-        statusCode = response.statusCode
-        responseState = response.text
+        val statusCode = response.statusCode
+        val responseState = response.text
 
         if (statusCode == 200) {
             // authentication was successful
@@ -36,21 +41,28 @@ class UserApi(val context: Context) {
     }
 
     // TODO: rules for passwords?
-    fun register(name: String, displayName: String, password: String, token: String?): Boolean {
-        var statusCode = 0
-        var responseState = ""
-
+    /**
+     * Makes a request to register the user with the given attributes.
+     * Sets the {@link #state} if there's a failure.
+     *
+     * @param accountName the new user's account name
+     * @param displayName the new user's display name
+     * @param password the new user's password
+     * @param token the device's token
+     * @return true if the request was successful, false otherwise
+     */
+    fun register(accountName: String, displayName: String, password: String, token: String?): Boolean {
         val response = doAsyncResult {
             val response = khttp.post(
-                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_specific, name),
+                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_specific, accountName),
                     data = mapOf(context.getString(R.string.endpoint_user_param_display_name) to displayName,
                             context.getString(R.string.endpoint_user_param_password) to password,
                             context.getString(R.string.endpoint_user_param_token) to token))
             return@doAsyncResult response
         }.get()
 
-        statusCode = response.statusCode
-        responseState = response.text
+        val statusCode = response.statusCode
+        val responseState = response.text
 
         if (statusCode == 200) {
             // register was successful
@@ -64,10 +76,16 @@ class UserApi(val context: Context) {
         }
     }
 
+    /**
+     * Makes a request to login the user with the given attributes.
+     * Sets the {@link #state} if there's a failure.
+     *
+     * @param accountName the user's account name
+     * @param password the user's password
+     * @param token the device's token
+     * @return true if the request was successful, false otherwise
+     */
     fun login(accountName: String, password: String, token: String?): Boolean {
-        var statusCode = 0
-        var responseState = ""
-
         val response = doAsyncResult {
             val response = khttp.patch(
                     url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_login, accountName),
@@ -76,8 +94,8 @@ class UserApi(val context: Context) {
             return@doAsyncResult response
         }.get()
 
-        statusCode = response.statusCode
-        responseState = response.text
+        val statusCode = response.statusCode
+        val responseState = response.text
 
         if (statusCode == 200) {
             // register was successful
@@ -91,18 +109,22 @@ class UserApi(val context: Context) {
         }
     }
 
+    /**
+     * Makes a request to log out the user.
+     * Sets the {@link #state} if there's a failure.
+     *
+     * @param accountName the user's account name
+     * @return true if the request was successful, false otherwise
+     */
     fun logout(accountName: String): Boolean {
-        var statusCode = 0
-        var responseState = ""
-
         val response = doAsyncResult {
             val response = khttp.patch(
                     url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_logout, accountName))
             return@doAsyncResult response
         }.get()
 
-        statusCode = response.statusCode
-        responseState = response.text
+        val statusCode = response.statusCode
+        val responseState = response.text
 
         if (statusCode == 200) {
             // register was successful

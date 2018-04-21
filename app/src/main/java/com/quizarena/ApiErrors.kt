@@ -6,6 +6,13 @@ class ApiErrors {
 
     companion object {
 
+        /**
+         * Parses the errors of the user api
+         *
+         * @param context
+         * @param error api error
+         * @return an error that's understandable for the user
+         */
         fun getUserError(context: Context, error: String): String {
             when {
                 error == "no_pw" -> return context.getString(R.string.endpoint_user_error_password_empty)
