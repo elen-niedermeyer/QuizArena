@@ -5,6 +5,7 @@ class User(accountName: String) {
     var accountName = accountName
         private set
     var isLoggedIn = false
+    var displayName = ""
     var globalScore = 0
 
     /**
@@ -13,6 +14,7 @@ class User(accountName: String) {
     init {
         User.accountName = accountName
         User.isLoggedIn = isLoggedIn
+        User.displayName = displayName
         User.globalScore = globalScore
     }
 
@@ -22,6 +24,7 @@ class User(accountName: String) {
     companion object {
         var accountName = ""
         var isLoggedIn = false
+        var displayName = ""
         var globalScore = 0
     }
 

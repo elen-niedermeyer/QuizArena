@@ -55,9 +55,9 @@ class UserApi(val context: Context) {
         val response = doAsyncResult {
             val response = khttp.post(
                     url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_specific, accountName),
-                    data = mapOf(context.getString(R.string.endpoint_user_param_display_name) to displayName,
-                            context.getString(R.string.endpoint_user_param_password) to password,
-                            context.getString(R.string.endpoint_user_param_token) to token))
+                    data = mapOf(context.getString(R.string.endpoint_user_data_display_name) to displayName,
+                            context.getString(R.string.endpoint_user_data_password) to password,
+                            context.getString(R.string.endpoint_user_data_token) to token))
             return@doAsyncResult response
         }.get()
 
@@ -89,8 +89,8 @@ class UserApi(val context: Context) {
         val response = doAsyncResult {
             val response = khttp.patch(
                     url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_login, accountName),
-                    data = mapOf(context.getString(R.string.endpoint_user_param_password) to password,
-                            context.getString(R.string.endpoint_user_param_token) to token))
+                    data = mapOf(context.getString(R.string.endpoint_user_data_password) to password,
+                            context.getString(R.string.endpoint_user_data_token) to token))
             return@doAsyncResult response
         }.get()
 
@@ -137,4 +137,28 @@ class UserApi(val context: Context) {
             return false
         }
     }
+
+    fun changeDisplayName(accountName: String, newDisplayName: String): Boolean {
+        val response = doAsyncResult {
+            val response = khttp.patch(
+                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_change_displayname, accountName),
+                    data = mapOf(context.getString(R.string.endpoint_user_data_display_name) to newDisplayName))
+            return@doAsyncResult response
+        }.get()
+
+        val statusCode = response.statusCode
+        val responseState = response.text
+
+        if (statusCode == 200) {
+            // register was successful
+            return true
+
+        } else {
+            // register was not successful
+            // parse error
+            this.state = ApiErrors.getUserError(context, responseState)
+            return false
+        }
+    }
+
 }
