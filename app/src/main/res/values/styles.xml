@@ -12,9 +12,9 @@
     </style>
 
     <!-- button style -->
-    <style name="button" parent="Widget.AppCompat.Button">
+    <style name="button" parent="Widget.AppCompat.Button.Colored">
         <item name="android:textColor">@color/text_button</item>
-        <item name="android:backgroundTint">@color/colorPrimary</item>
+        <item name="android:backgroundTint">@color/button_color</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:minHeight">64dp</item>

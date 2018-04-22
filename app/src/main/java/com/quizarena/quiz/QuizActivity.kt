@@ -8,9 +8,9 @@ import android.support.v7.content.res.AppCompatResources
 import android.view.View
 import android.widget.Button
 import com.quizarena.R
-import com.quizarena.authorization.Credentials
 import com.quizarena.sessions.SessionApi
 import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
+import com.quizarena.user.CurrentUser
 import kotlinx.android.synthetic.main.activity_quiz.*
 
 class QuizActivity : AppCompatActivity() {
@@ -125,8 +125,8 @@ class QuizActivity : AppCompatActivity() {
 
         } else {
             // quiz finished
-            // set score
-            if (SessionApi().setScore(Credentials.accountName, correctAnswers)) {
+            // set globalScore
+            if (SessionApi().setScore(CurrentUser.accountName, correctAnswers)) {
                 // start next activity
                 startDetailView()
             } else {

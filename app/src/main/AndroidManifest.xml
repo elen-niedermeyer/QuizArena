@@ -14,7 +14,15 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".authorization.login.LoginActivity"
+            android:name="com.quizarena.user.login.LoginActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.quizarena.user.register.RegisterActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".menu.MainMenuActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,14 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".authorization.register.RegisterActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".menu.MainMenuActivity"
-            android:screenOrientation="portrait" />
 
         <activity
             android:name=".sessions.overview.SessionOverviewActivity"
@@ -69,10 +69,9 @@
             </intent-filter>
         </service>
 
-        <service
-            android:name=".notifications.NotificationService">
+        <service android:name=".notifications.NotificationService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
