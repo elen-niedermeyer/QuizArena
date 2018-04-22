@@ -23,7 +23,7 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
 
         // get session
         val sessionID = intent.getStringExtra(getString(R.string.intent_extra_session_id))
-        val api = SessionApi()
+        val api = SessionApi(this@SessionParticipantDetailActivity)
         currentSession = api.getSession(sessionID, CurrentUser.accountName)
 
         if (currentSession.isParticipant) {
@@ -70,7 +70,7 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
             // set the on click listener
             activity_session_participant_detail_button_terminate.setOnClickListener {
                 // terminate the session
-                if (SessionApi().terminateSession(currentSession.id)) {
+                if (SessionApi(this@SessionParticipantDetailActivity).terminateSession(currentSession.id)) {
                     // reload activity
                     startActivity(this.intent)
                     this.finish()

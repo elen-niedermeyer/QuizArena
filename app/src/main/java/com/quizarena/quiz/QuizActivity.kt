@@ -126,7 +126,7 @@ class QuizActivity : AppCompatActivity() {
         } else {
             // quiz finished
             // set globalScore
-            if (SessionApi().setScore(CurrentUser.accountName, correctAnswers)) {
+            if (SessionApi(this@QuizActivity).setScore(CurrentUser.accountName, correctAnswers)) {
                 // start next activity
                 startDetailView()
             } else {

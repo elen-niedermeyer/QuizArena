@@ -1,14 +1,18 @@
 package com.quizarena.sessions.creation
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ArrayAdapter
 
 import com.quizarena.R
+import com.quizarena.quiz.QuizActivity
 import com.quizarena.sessions.SessionApi
+import com.quizarena.user.CurrentUser
 
 import kotlinx.android.synthetic.main.activity_create_session.*
+import org.jetbrains.anko.alert
 
 class CreateSessionActivity : AppCompatActivity() {
 
@@ -64,19 +68,39 @@ class CreateSessionActivity : AppCompatActivity() {
             if (creationFormIsValid()) {
                 // do some create session request here
 
+                // get input
                 val name = activity_create_session_form_name.text.toString()
                 val category = activity_create_session_form_category.selectedItem.toString()
                 val duration = activity_create_session_form_duration.text.toString().toInt()
 
-                val api = SessionApi()
+                // execute request
+                val api = SessionApi(this@CreateSessionActivity)
+                var newSessionID: String?
                 if (activity_create_session_isprivate_checkbox.isChecked) {
                     // create private session request
                     val password = activity_create_session_isprivate_password.text.toString()
-                    api.createSession(name, category, duration, password)
+                    newSessionID = api.createSession(name, category, duration, true, password, CurrentUser.accountName)
                 } else {
                     // create public session request
-                    api.createSession(name, category, duration)
+                    newSessionID = api.createSession(name, category, duration, false, null, CurrentUser.accountName)
                 }
+
+                // handle request result
+                if (newSessionID == null) {
+                    // session creation failed
+                    // show an error message
+                    alert {
+                        title = getString(R.string.error)
+                        message(api.state)
+                        positiveButton(getString(R.string.ok)) { }
+                    }.show()
+                } else {
+                    // creation was successful
+                    // start quiz
+                    startActivity(Intent(this@CreateSessionActivity, QuizActivity::class.java))
+                    this.finish()
+                }
+
             }
         }
     }
@@ -84,7 +108,7 @@ class CreateSessionActivity : AppCompatActivity() {
     /**
      * Validates the input of the create session form and displays error messages if necessary
      */
-    private fun creationFormIsValid() : Boolean {
+    private fun creationFormIsValid(): Boolean {
 
         var isValid = true
 
@@ -97,8 +121,7 @@ class CreateSessionActivity : AppCompatActivity() {
         if (activity_create_session_form_name.text.isEmpty() || activity_create_session_form_name.text.isBlank()) {
             activity_create_session_error_name.text = getString(R.string.create_session_error_no_name)
             isValid = false
-        }
-        else if (activity_create_session_form_name.text.contains(' ')) {
+        } else if (activity_create_session_form_name.text.contains(' ')) {
             activity_create_session_error_name.text = getString(R.string.error_name_space)
             isValid = false
         }
@@ -115,7 +138,7 @@ class CreateSessionActivity : AppCompatActivity() {
         }
         // check whether the duration is between 6 and 24 hours
         else if (activity_create_session_form_duration.text.toString().toInt() < 6
-            || activity_create_session_form_duration.text.toString().toInt() > 24) {
+                || activity_create_session_form_duration.text.toString().toInt() > 24) {
             activity_create_session_error_duration.text = getString(R.string.create_session_error_duration_between_6_24)
             isValid = false
         }

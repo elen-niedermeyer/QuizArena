@@ -28,7 +28,7 @@ class SessionDetailActivity : AppCompatActivity() {
         // set button's on click listener
         activity_session_detail_button_participate.setOnClickListener {
             // add the current user to the session
-            if (SessionApi().addParticipant(currentSession.id, CurrentUser.accountName)) {
+            if (SessionApi(this@SessionDetailActivity).addParticipant(currentSession.id, CurrentUser.accountName)) {
                 // start quiz activity
                 val intent = Intent(this@SessionDetailActivity, QuizActivity::class.java)
                 intent.putExtra(getString(R.string.intent_extra_session_id), currentSession.id)

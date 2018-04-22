@@ -2,12 +2,14 @@ package com.quizarena.sessions
 
 import android.content.Context
 import com.quizarena.R
-import com.quizarena.user.CurrentUser
 import org.jetbrains.anko.doAsyncResult
 import java.util.*
 
 // TODO: correct implementation with backend including errors
 class SessionApi(val context: Context) {
+
+    var state: String = ""
+        private set
 
     // mock up
     fun requestAllSessions(username: String): List<QuizSession> {
@@ -54,17 +56,20 @@ class SessionApi(val context: Context) {
     }
 
     /**
-     * Execute POST request to create a new public session
+     * Execute POST request to create a new session
+     *
+     * @return the id of the created session or null
      */
-    fun createPublicSession (sessionName: String, category: String, duration: Int, user: String) {
+    fun createSession(sessionName: String, category: String, duration: Int, isPrivate:Boolean, password:String?, accountName: String): String? {
         val response = doAsyncResult {
             return@doAsyncResult khttp.post(
                     url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_sessions_creation, sessionName),
                     data = mapOf(
                             "category" to category,
-                            "private" to false,
                             "run-time" to duration,
-                            "user" to user
+                            "private" to isPrivate,
+                            "password" to password,
+                            "user" to accountName
                     )
             )
         }.get()
@@ -74,23 +79,14 @@ class SessionApi(val context: Context) {
 
         if (statusCode == 200) {
             // session creation request was successful
+            // TODO extract session id
+            return "id"
+
         } else {
             // session creation request failed
+            this.state = responseState
+            return null
         }
     }
 
-    fun createPrivateSession (sessionName: String, category: String, duration: Int, user: String, password: String) {
-        val response = doAsyncResult {
-            return@doAsyncResult khttp.post(
-                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_sessions_creation, sessionName),
-                    data = mapOf(
-                            "category" to category,
-                            "private" to true,
-                            "password" to password,
-                            "run-time" to duration,
-                            "user" to user
-                    )
-            )
-        }.get()
-    }
 }

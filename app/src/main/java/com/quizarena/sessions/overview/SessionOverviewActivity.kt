@@ -106,7 +106,7 @@ class SessionOverviewActivity : AppCompatActivity() {
         super.onResume()
 
         // get the sessions list
-        val provider = SessionProvider()
+        val provider = SessionProvider(this@SessionOverviewActivity)
         sessions = provider.getAllSessionSorted()
         // initialize content
         updateSessionsList("")
