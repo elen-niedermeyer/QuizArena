@@ -45,6 +45,11 @@ class SessionApi {
     }
 
     // mock up
+    fun addParticipant(sessionID: Int, username: String, password: String):Boolean{
+        return true
+    }
+
+    // mock up
     fun setScore(username: String, score: Int): Boolean {
         return true
     }
