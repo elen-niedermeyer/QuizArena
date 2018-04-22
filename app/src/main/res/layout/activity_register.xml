@@ -98,7 +98,7 @@
         android:id="@+id/activity_register_button_confirm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/register"
+        android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/activity_register_error_password2"
         app:layout_constraintStart_toStartOf="@+id/activity_register_error_password2"
