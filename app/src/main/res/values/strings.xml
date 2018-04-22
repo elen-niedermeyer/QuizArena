@@ -85,6 +85,7 @@
 
     <!-- login errors -->
     <string name="login_error_no_name">Gib einen Accountnamen ein</string>
+    <string name="error_name_space">Name darf keine Leerzeichen enthalten</string>
     <string name="login_error_no_password">Gib ein Passwort ein</string>
 
     <!-- intent extras -->
