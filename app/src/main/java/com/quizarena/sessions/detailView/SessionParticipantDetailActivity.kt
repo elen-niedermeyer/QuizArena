@@ -8,7 +8,6 @@ import com.quizarena.sessions.*
 import com.quizarena.user.CurrentUser
 import kotlinx.android.synthetic.main.activity_session_participant_detail.*
 
-//TODO: add button for owners to terminate session
 // TODO: share feature
 class SessionParticipantDetailActivity : AppCompatActivity() {
 

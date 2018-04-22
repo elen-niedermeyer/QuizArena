@@ -91,6 +91,9 @@
     <string name="error_name_space">Name darf keine Leerzeichen enthalten</string>
     <string name="login_error_no_password">Gib ein Passwort ein</string>
 
+    <!-- imprint -->
+    <string name="imprint_text">Diese App ist ein Projekt von\nMiklas Boskamp,\nDavid Golla,\nMilan Höllner und\nElen Niedermeyer.\n\nSie ist entstanden im Rahmen der Vorlesung \"Mobile Anwendungen\" im 6. Semester an der Hochschule für Wirtschaft und Recht Berlin.\n\nFrontend: https://github.com/elen-niedermeyer/QuizArena\nBackend: https://github.com/Aersoftler/QuizArena-Backend</string>
+
     <!-- intent extras -->
     <string name="intent_extra_session_clicked">clicked_session</string>
     <string name="intent_extra_session_id">session_id</string>
