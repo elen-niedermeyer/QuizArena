@@ -97,7 +97,9 @@ class CreateSessionActivity : AppCompatActivity() {
                 } else {
                     // creation was successful
                     // start quiz
-                    startActivity(Intent(this@CreateSessionActivity, QuizActivity::class.java))
+                    intent = Intent(this@CreateSessionActivity, QuizActivity::class.java)
+                    intent.putExtra(getString(R.string.intent_extra_session_id), newSessionID)
+                    startActivity(intent)
                     this.finish()
                 }
 

@@ -18,12 +18,12 @@ class QuizActivity : AppCompatActivity() {
     /**
      * id of the session, initialized in onCreate
      */
-    private var sessionID = 0
+    private var sessionID = ""
 
     /**
      * questions for the quiz
      */
-    private lateinit var questions: List<Question>
+    private var questions: List<Question>? = null
 
     /**
      * question counter
@@ -52,7 +52,7 @@ class QuizActivity : AppCompatActivity() {
                 answerButtons.forEach { it.isEnabled = false }
 
                 // figure out if the answer was right or wrong
-                if (view.text == questions[counter].correctAnswer) {
+                if (view.text == questions!![counter].correctAnswer) {
                     // the answer is correct
                     ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.correct_answer))
                     view.setTextColor(resources.getColor(android.R.color.black))
@@ -93,9 +93,13 @@ class QuizActivity : AppCompatActivity() {
         setContentView(R.layout.activity_quiz)
 
         // get session id from intent
-        sessionID = intent.getIntExtra(getString(R.string.intent_extra_session_id), 0)
+        sessionID = intent.getStringExtra(getString(R.string.intent_extra_session_id))
         // get questions for this session
-        questions = QuizApi().getQuestions(sessionID)
+        questions = QuizApi(this@QuizActivity).getQuestions(sessionID)
+        if (questions == null) {
+            // TODO: error handling
+            this.finish()
+        }
 
         // initialize answer buttons
         answerButtons = arrayOf(activity_quiz_button_answer_1, activity_quiz_button_answer_2, activity_quiz_button_answer_3, activity_quiz_button_answer_4)
@@ -109,29 +113,43 @@ class QuizActivity : AppCompatActivity() {
         setNextQuestion()
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        if (!SessionApi(this@QuizActivity).addParticipant(sessionID, CurrentUser.accountName)) {
+            // TODO: error handling in request
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        if (SessionApi(this@QuizActivity).setScore(CurrentUser.accountName, correctAnswers)) {
+            // start next activity
+            startDetailView()
+        } else {
+            // TODO: error handling in request
+        }
+    }
+
     /**
      * Shows the next question or finishs it.
      */
     private fun setNextQuestion() {
-        if (counter < questions.size) {
+        if (counter < questions!!.size) {
             // go on with the next question
-            val currentQuestion = questions[counter]
+            val currentQuestion = questions!![counter]
             // set all text for this question
             activity_quiz_question.text = currentQuestion.question
-            activity_quiz_button_answer_1.text = currentQuestion.answer1
-            activity_quiz_button_answer_2.text = currentQuestion.answer2
-            activity_quiz_button_answer_3.text = currentQuestion.answer3
-            activity_quiz_button_answer_4.text = currentQuestion.answer4
+            activity_quiz_button_answer_1.text = currentQuestion.answers[0]
+            activity_quiz_button_answer_2.text = currentQuestion.answers[1]
+            activity_quiz_button_answer_3.text = currentQuestion.answers[2]
+            activity_quiz_button_answer_4.text = currentQuestion.answers[3]
 
         } else {
             // quiz finished
-            // set globalScore
-            if (SessionApi(this@QuizActivity).setScore(CurrentUser.accountName, correctAnswers)) {
-                // start next activity
-                startDetailView()
-            } else {
-                // TODO: error handling in request
-            }
+            // start next activity
+            startDetailView()
         }
 
     }

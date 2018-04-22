@@ -1,16 +1,53 @@
 package com.quizarena.quiz
 
-// TODO: correct implementation of api
-class QuizApi {
+import android.content.Context
+import com.quizarena.R
+import org.jetbrains.anko.doAsyncResult
 
-    // mock up
-    //TODO: prove arrays size
-    fun getQuestions(sessionID: Int): ArrayList<Question> {
-        var array = ArrayList<Question>(10)
-        for (i in 1..10) {
-            array.add(Question("Frage" + i, "Antwort 1", "Antwort 2", "Antwort 3", "Antwort 4", "Antwort 1"))
+class QuizApi(val context: Context) {
+
+    var state: String = ""
+        private set
+
+    /**
+     * Requests the given session and extracts the questions
+     *
+     * @return a list of {@link Question}
+     */
+    fun getQuestions(sessionID: String): List<Question>? {
+        val response = doAsyncResult {
+            return@doAsyncResult khttp.get(
+                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_session_specific, sessionID))
+        }.get()
+
+        val statusCode = response.statusCode
+        val responseState = response.text
+
+        if (statusCode == 200) {
+            // session request was successful
+            // make list of question objects
+            val questionsObjects = ArrayList<Question>(10)
+            val json = response.jsonArray
+            val sessionJson = json.getJSONObject(0)
+            val questionsJson = sessionJson.getJSONArray("questions")
+            for (i in 0..questionsJson.length() - 1) {
+                val questionJson = questionsJson.getJSONObject(i)
+                val question = questionJson.getString("question")
+                val answersJson = questionJson.getJSONObject("answers")
+                val correctAnswer = answersJson.getString("right_answer")
+                val wrongAnswers = answersJson.getJSONArray("wrong_answers")
+                val answers = listOf<String>(correctAnswer, wrongAnswers.getString(0), wrongAnswers.getString(1), wrongAnswers.getString(2))
+
+                questionsObjects.add(Question(question, answers.shuffled().toTypedArray(), correctAnswer))
+            }
+
+            return questionsObjects.shuffled()
+
+        } else {
+            // session request failed
+            this.state = responseState
+            return null
         }
-        return array
     }
 
 }
