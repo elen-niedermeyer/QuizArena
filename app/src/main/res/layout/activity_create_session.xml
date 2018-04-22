@@ -32,25 +32,24 @@
 
     <TextView
         android:id="@+id/activity_create_session_form_category_label"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/category"
-        app:layout_constraintBottom_toTopOf="@id/activity_create_session_error_category"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/activity_create_session_form_category"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_session_form_category"
+        app:layout_constraintEnd_toEndOf="@id/activity_create_session_error_name"
         app:layout_constraintStart_toStartOf="@id/activity_create_session_error_name"
         app:layout_constraintTop_toBottomOf="@id/activity_create_session_error_name" />
 
     <Spinner
         android:id="@+id/activity_create_session_form_category"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textAlignment="gravity"
+        android:gravity="end|center_vertical"
         app:layout_constraintBottom_toTopOf="@id/activity_create_session_error_category"
-        app:layout_constraintEnd_toEndOf="@id/activity_create_session_error_name"
-        app:layout_constraintLeft_toRightOf="@id/activity_create_session_form_category_label"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_create_session_error_name" />
+        app:layout_constraintEnd_toEndOf="@id/activity_create_session_form_category_label"
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_form_category_label"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_form_category_label" />
 
     <TextView
         android:id="@+id/activity_create_session_error_category"
@@ -59,8 +58,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/activity_create_session_form_duration_label"
         app:layout_constraintEnd_toEndOf="@id/activity_create_session_form_category"
-        app:layout_constraintStart_toStartOf="@id/activity_create_session_form_category_label"
-        app:layout_constraintTop_toBottomOf="@id/activity_create_session_form_category_label" />
+        app:layout_constraintStart_toStartOf="@id/activity_create_session_form_category"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_session_form_category" />
 
     <TextView
         android:id="@+id/activity_create_session_form_duration_label"
