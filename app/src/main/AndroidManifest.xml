@@ -14,11 +14,11 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.quizarena.user.login.LoginActivity"
+            android:name=".user.login.LoginActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.quizarena.user.register.RegisterActivity"
+            android:name=".user.register.RegisterActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -61,6 +61,10 @@
 
         <activity
             android:name=".quiz.QuizActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".imprint.ImprintActivity"
             android:screenOrientation="portrait" />
 
         <service android:name=".notifications.InstanceIdService">
