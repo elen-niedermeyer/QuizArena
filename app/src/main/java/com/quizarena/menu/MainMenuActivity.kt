@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import com.quizarena.R
+import com.quizarena.imprint.ImprintActivity
 import com.quizarena.notifications.InstanceIdService
 import com.quizarena.options.OptionsActivity
 import com.quizarena.sessions.creation.CreateSessionActivity
@@ -13,6 +14,7 @@ import com.quizarena.user.CurrentUser
 import com.quizarena.user.CurrentUserPersistence
 import com.quizarena.user.UserApi
 import com.quizarena.user.login.LoginActivity
+import kotlinx.android.synthetic.main.activity_main_menu.*
 
 class MainMenuActivity : AppCompatActivity() {
 
@@ -20,14 +22,13 @@ class MainMenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
 
-        val sessionOverviewButton = findViewById<Button>(R.id.activity_main_menu_button_show_sessions)
-        sessionOverviewButton.setOnClickListener { startActivity(Intent(this@MainMenuActivity, SessionOverviewActivity::class.java)) }
+        activity_main_menu_button_show_sessions.setOnClickListener { startActivity(Intent(this@MainMenuActivity, SessionOverviewActivity::class.java)) }
 
-        val createSessionButton = findViewById<Button>(R.id.activity_main_menu_button_create)
-        createSessionButton.setOnClickListener { startActivity(Intent(this@MainMenuActivity, CreateSessionActivity::class.java)) }
+        activity_main_menu_button_create.setOnClickListener { startActivity(Intent(this@MainMenuActivity, CreateSessionActivity::class.java)) }
 
-        val optionsButton = findViewById<Button>(R.id.activity_main_menu_button_options)
-        optionsButton.setOnClickListener { startActivity(Intent(this@MainMenuActivity, OptionsActivity::class.java)) }
+        activity_main_menu_button_options.setOnClickListener { startActivity(Intent(this@MainMenuActivity, OptionsActivity::class.java)) }
+
+        activity_main_menu_button_imprint.setOnClickListener { startActivity(Intent(this@MainMenuActivity, ImprintActivity::class.java)) }
     }
 
     override fun onStart() {
