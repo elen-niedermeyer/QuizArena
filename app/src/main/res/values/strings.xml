@@ -6,6 +6,7 @@
     <string name="change">\u00C4ndern</string>
     <string name="error">Fehler</string>
     <string name="imprint">Impressum</string>
+    <string name="is_private">Privat?</string>
     <string name="language">Sprache</string>
     <string name="logout">Abmelden</string>
     <string name="ok">OK</string>
@@ -19,11 +20,13 @@
     <!-- category requests -->
     <string name="endpoint_category">/category</string>
     <!-- session requests -->
+    <string name="endpoint_sessions_all">/session</string>
     <string name="endpoint_session_specific">/session/%1$s</string>
     <string name="endpoint_session_user">/session/by_user/%1$s</string>
     <string name="endpoint_session_add_user">/session/%1$s?update=add-user</string>
     <string name="endpoint_session_update_score">/session/%1$s?update=set-score</string>
     <string name="endpoint_session_terminate">/session/%1$s?update=close</string>
+    <string name="endpoint_sessions_creation">/session/%1$s</string>
     <!-- user requests -->
     <string name="endpoint_users_all">/user</string>
     <string name="endpoint_user_specific">/user/%1$s</string>
@@ -40,18 +43,13 @@
     <string name="api_user_accountName">id</string>
     <string name="api_user_displayName">display_name</string>
     <string name="api_user_totalScore">total_score</string>
-    <!-- default error -->
-    <string name="api_request_error">Es ist ein Fehler aufgetreten\n</string>
-    <!-- user requests error register -->
-    <string name="endpoint_user_error_username_duplicated">Nutzername existiert schon</string>
-    <string name="endpoint_user_error_password_empty">Passwort darf nicht leer sein</string>
-    <string name="endpoint_user_error_displayname_empty">Kein Anzeigename vorhanden</string>
-    <string name="endpoint_user_error_no_user">Der eingegebene Nutzer existiert nicht</string>
-    <string name="endpoint_user_error_wrong_pw">Passwort ist nicht korrekt</string>
-    <!-- session requests -->
-    <string name="endpoint_sessions_all">/session</string>
-    <string name="endpoint_sessions_creation">/session/%1$s</string>
-
+    <!-- api errors -->
+    <string name="error_general">Es ist ein Fehler aufgetreten\n</string>
+    <string name="api_error_username_duplicated">Nutzername existiert schon</string>
+    <string name="api_error_password_empty">Passwort darf nicht leer sein</string>
+    <string name="api_error_displayname_empty">Kein Anzeigename vorhanden</string>
+    <string name="api_error_user_not_existing">Der angefragte Nutzer existiert nicht</string>
+    <string name="api_error_wrong_password">Passwort ist nicht korrekt</string>
 
     <!-- handling sessions -->
     <string name="show_sessions">Sessions anzeigen</string>
@@ -85,15 +83,11 @@
     <string name="register">Registrieren</string>
     <string name="login">Login</string>
 
-    <!-- register errors -->
-    <string name="register_error_no_name">Lege einen Accountnamen fest</string>
-    <string name="register_error_no_password">Lege ein Passwort fest</string>
-    <string name="register_error_passwords_different">Passwörter sind nicht identisch</string>
-
-    <!-- login errors -->
-    <string name="login_error_no_name">Gib einen Accountnamen ein</string>
+    <!-- ui errors -->
+    <string name="error_passwords_different">Passwörter sind nicht identisch</string>
+    <string name="error_no_name">Gib einen Accountnamen ein</string>
     <string name="error_name_space">Name darf keine Leerzeichen enthalten</string>
-    <string name="login_error_no_password">Gib ein Passwort ein</string>
+    <string name="error_no_password">Gib ein Passwort ein</string>
 
     <!-- imprint -->
     <string name="imprint_text">Diese App ist ein Projekt von\nMiklas Boskamp,\nDavid Golla,\nMilan Höllner und\nElen Niedermeyer.\n\nSie ist entstanden im Rahmen der Vorlesung \"Mobile Anwendungen\" im 6. Semester an der Hochschule für Wirtschaft und Recht Berlin.\n\nFrontend: https://github.com/elen-niedermeyer/QuizArena\nBackend: https://github.com/Aersoftler/QuizArena-Backend</string>
@@ -107,5 +101,4 @@
     <string name="pref_credentials_file">com.quizarena.credentials</string>
     <string name="pref_credentials_name_key">accountName</string>
     <string name="pref_credentials_login_key">isLoggedIn</string>
-    <string name="is_private">Privat?</string>
 </resources>

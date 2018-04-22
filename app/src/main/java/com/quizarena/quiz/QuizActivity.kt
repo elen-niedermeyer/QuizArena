@@ -12,7 +12,7 @@ import com.quizarena.sessions.SessionApi
 import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
 import com.quizarena.user.CurrentUser
 import kotlinx.android.synthetic.main.activity_quiz.*
-import kotlinx.android.synthetic.main.activity_session_detail.*
+import org.jetbrains.anko.alert
 
 class QuizActivity : AppCompatActivity() {
 
@@ -98,9 +98,16 @@ class QuizActivity : AppCompatActivity() {
         sessionID = intent.getStringExtra(getString(R.string.intent_extra_session_id))
         password = intent.getStringExtra(getString(R.string.intent_extra_session_password))
         // get questions for this session
-        questions = QuizApi(this@QuizActivity).getQuestions(sessionID)
+        val quizApi = QuizApi(this@QuizActivity)
+        questions = quizApi.getQuestions(sessionID)
         if (questions == null) {
-            // TODO: error handling
+            // request failed
+            // show an error message and finish the activity
+            alert {
+                title = getString(R.string.error)
+                message(quizApi.state)
+                positiveButton(getString(R.string.ok)) { }
+            }.show()
             this.finish()
         }
 
@@ -119,20 +126,33 @@ class QuizActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        if (!SessionApi(this@QuizActivity).addParticipant(sessionID, CurrentUser.accountName, password)) {
-            // TODO: error handling in request
+        val sessionApi = SessionApi(this@QuizActivity)
+        if (!sessionApi.addParticipant(sessionID, CurrentUser.accountName, password)) {
+            // request failed
+            // show an error message and terminate the activity
+            alert {
+                title = getString(R.string.error)
+                message(sessionApi.state)
+                positiveButton(getString(R.string.ok)) { }
+            }.show()
+            this.finish()
         }
     }
 
     override fun onPause() {
         super.onPause()
 
-        if (SessionApi(this@QuizActivity).setScore(sessionID, CurrentUser.accountName, correctAnswers)) {
-            // start next activity
-            startDetailView()
-        } else {
-            // TODO: error handling in request
+        if (!SessionApi(this@QuizActivity).setScore(sessionID, CurrentUser.accountName, correctAnswers)) {
+            // request failed
+            // show an error message
+            alert {
+                title = getString(R.string.error)
+                message(getString(R.string.error_general))
+                positiveButton(getString(R.string.ok)) { }
+            }.show()
         }
+        // start next activity
+        startDetailView()
     }
 
     /**

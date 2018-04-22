@@ -37,7 +37,7 @@ class UserApi(val context: Context) {
         } else {
             // user request was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return null
         }
     }
@@ -67,7 +67,7 @@ class UserApi(val context: Context) {
         } else {
             // authentication was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
@@ -103,7 +103,7 @@ class UserApi(val context: Context) {
         } else {
             // register was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
@@ -136,7 +136,7 @@ class UserApi(val context: Context) {
         } else {
             // login was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
@@ -165,7 +165,7 @@ class UserApi(val context: Context) {
         } else {
             // logout was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
@@ -196,7 +196,7 @@ class UserApi(val context: Context) {
         } else {
             // changing was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
@@ -229,7 +229,7 @@ class UserApi(val context: Context) {
         } else {
             // changing was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }

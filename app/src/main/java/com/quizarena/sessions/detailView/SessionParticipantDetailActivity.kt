@@ -7,6 +7,7 @@ import com.quizarena.R
 import com.quizarena.sessions.*
 import com.quizarena.user.CurrentUser
 import kotlinx.android.synthetic.main.activity_session_participant_detail.*
+import org.jetbrains.anko.alert
 
 // TODO: share feature
 class SessionParticipantDetailActivity : AppCompatActivity() {
@@ -69,13 +70,19 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
             // set the on click listener
             activity_session_participant_detail_button_terminate.setOnClickListener {
                 // terminate the session
-                if (SessionApi(this@SessionParticipantDetailActivity).terminateSession(currentSession.id, CurrentUser.accountName)) {
+                val api = SessionApi(this@SessionParticipantDetailActivity)
+                if (api.terminateSession(currentSession.id, CurrentUser.accountName)) {
                     // reload activity
                     startActivity(this.intent)
                     this.finish()
                 } else {
                     // handling errors from api
-                    // TODO: error handling
+                    // show an error message
+                    alert {
+                        title = getString(R.string.error)
+                        message(api.state)
+                        positiveButton(getString(R.string.ok)) { }
+                    }.show()
                 }
             }
 

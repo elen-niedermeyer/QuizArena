@@ -3,6 +3,8 @@ package com.quizarena.sessions
 import android.content.Context
 import com.quizarena.user.CurrentUser
 
+// TODO: return null if allSession = null
+// TODO: look which we really need
 class SessionProvider(val context: Context) {
 
     /**

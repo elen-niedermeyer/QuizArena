@@ -137,7 +137,7 @@ class OptionsActivity : AppCompatActivity() {
         // show an error message
         alert {
             title = getString(R.string.error)
-            message(getString(R.string.api_request_error))
+            message(getString(R.string.error_general))
             positiveButton(getString(R.string.ok)) { }
         }.show()
     }
@@ -177,11 +177,11 @@ class OptionsActivity : AppCompatActivity() {
     private fun validatePassword(passwordOld: String, password1: String, password2: String): String? {
         when {
             passwordOld.isEmpty() ->
-                return getString(R.string.login_error_no_password)
+                return getString(R.string.error_no_password)
             password1.isEmpty() ->
-                return getString(R.string.register_error_no_password)
+                return getString(R.string.error_no_password)
             password1 != password2 ->
-                return getString(R.string.register_error_passwords_different)
+                return getString(R.string.error_passwords_different)
             else -> return null
         }
     }

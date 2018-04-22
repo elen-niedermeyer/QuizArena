@@ -84,7 +84,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun validateAccountName(): Boolean {
         val name = activity_register_account_name.text
         if (name.isEmpty()) {
-            activity_register_error_name.text = getString(R.string.register_error_no_name)
+            activity_register_error_name.text = getString(R.string.error_no_name)
 
             return false
         } else if (name.contains(" ")) {
@@ -113,14 +113,14 @@ class RegisterActivity : AppCompatActivity() {
         when {
             password1.isEmpty() -> {
                 activity_register_error_password2.text = null
-                activity_register_error_password1.text = getString(R.string.register_error_no_password)
+                activity_register_error_password1.text = getString(R.string.error_no_password)
 
                 return false
             }
 
             password1 != password2 -> {
                 activity_register_error_password1.text = null
-                activity_register_error_password2.text = getString(R.string.register_error_passwords_different)
+                activity_register_error_password2.text = getString(R.string.error_passwords_different)
 
                 return false
             }

@@ -65,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
     private fun validateAccountName(): Boolean {
         val name = activity_login_account_name.text
         if (name.isEmpty()) {
-            activity_login_error_name.text = getString(R.string.login_error_no_name)
+            activity_login_error_name.text = getString(R.string.error_no_name)
 
             return false
         } else if (name.contains(" ")) {
@@ -89,7 +89,7 @@ class LoginActivity : AppCompatActivity() {
      */
     private fun validatePassword(): Boolean {
         if (activity_login_password.text.isEmpty()) {
-            activity_login_error_password.text = getString(R.string.login_error_no_password)
+            activity_login_error_password.text = getString(R.string.error_no_password)
 
             return false
         }

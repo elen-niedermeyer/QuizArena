@@ -2,8 +2,8 @@ package com.quizarena.user.logout
 
 import android.content.Context
 import com.quizarena.user.CurrentUser
-import com.quizarena.user.UserApi
 import com.quizarena.user.CurrentUserPersistence
+import com.quizarena.user.UserApi
 
 class Logout(val context: Context) {
 
