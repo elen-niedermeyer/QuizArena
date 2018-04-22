@@ -20,6 +20,7 @@
     <string name="endpoint_category">/category</string>
     <!-- session requests -->
     <string name="endpoint_session_specific">/session/%1$s</string>
+    <string name="endpoint_session_user">/session/by_user/%1$s</string>
     <string name="endpoint_session_add_user">/session/%1$s?update=add-user</string>
     <string name="endpoint_session_update_score">/session/%1$s?update=set-score</string>
     <string name="endpoint_session_terminate">/session/%1$s?update=close</string>

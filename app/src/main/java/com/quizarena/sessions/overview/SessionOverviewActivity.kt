@@ -102,6 +102,7 @@ class SessionOverviewActivity : AppCompatActivity() {
         // get the sessions list
         val provider = SessionProvider(this@SessionOverviewActivity)
         sessions = provider.getAllSessionSorted()
+        //TODO: error handling
         // initialize content
         updateSessionsList("")
 

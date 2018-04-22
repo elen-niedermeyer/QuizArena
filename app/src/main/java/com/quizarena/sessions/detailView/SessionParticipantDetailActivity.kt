@@ -69,7 +69,7 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
             // set the on click listener
             activity_session_participant_detail_button_terminate.setOnClickListener {
                 // terminate the session
-                if (SessionApi(this@SessionParticipantDetailActivity).terminateSession(currentSession.id)) {
+                if (SessionApi(this@SessionParticipantDetailActivity).terminateSession(currentSession.id, CurrentUser.accountName)) {
                     // reload activity
                     startActivity(this.intent)
                     this.finish()

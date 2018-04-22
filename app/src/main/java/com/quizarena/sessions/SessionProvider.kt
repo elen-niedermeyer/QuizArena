@@ -12,7 +12,7 @@ class SessionProvider(val context: Context) {
     var allSessions: List<QuizSession>? = null
         get() {
             if (field == null) {
-                allSessions = SessionApi(context).requestAllSessions(CurrentUser.accountName)
+                allSessions = SessionApi(context).getSessions(CurrentUser.accountName)
             }
 
             return field
@@ -24,7 +24,7 @@ class SessionProvider(val context: Context) {
      */
     fun getOwnedSessions(): List<QuizSession> {
         if (allSessions == null) {
-            allSessions = SessionApi(context).requestAllSessions(CurrentUser.accountName)
+            allSessions = SessionApi(context).getSessions(CurrentUser.accountName)
         }
 
         val copyAllSessions = allSessions
@@ -45,7 +45,7 @@ class SessionProvider(val context: Context) {
      */
     fun getParticipatedSessions(): List<QuizSession> {
         if (allSessions == null) {
-            allSessions = SessionApi(context).requestAllSessions(CurrentUser.accountName)
+            allSessions = SessionApi(context).getSessions(CurrentUser.accountName)
         }
 
         val copyAllSessions = allSessions
@@ -67,7 +67,7 @@ class SessionProvider(val context: Context) {
      */
     fun getOpenSessions(): List<QuizSession> {
         if (allSessions == null) {
-            allSessions = SessionApi(context).requestAllSessions(CurrentUser.accountName)
+            allSessions = SessionApi(context).getSessions(CurrentUser.accountName)
         }
 
         val copyAllSessions = allSessions
@@ -89,7 +89,7 @@ class SessionProvider(val context: Context) {
      */
     fun getPrivateSessions(): List<QuizSession> {
         if (allSessions == null) {
-            allSessions = SessionApi(context).requestAllSessions(CurrentUser.accountName)
+            allSessions = SessionApi(context).getSessions(CurrentUser.accountName)
         }
 
         val copyAllSessions = allSessions

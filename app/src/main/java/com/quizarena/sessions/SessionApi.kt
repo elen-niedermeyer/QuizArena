@@ -11,19 +11,62 @@ class SessionApi(val context: Context) {
     var state: String = ""
         private set
 
-    // mock up
-    fun requestAllSessions(username: String): List<QuizSession> {
-        val sessions = LinkedList<QuizSession>()
+    /**
+     * Requests the sessions for the given user.
+     *
+     * @param accountName the user's name
+     * @return a list of {@link QuizSession} that are relevant for the user
+     */
+    fun getSessions(accountName: String): List<QuizSession>? {
+        val response = doAsyncResult {
+            return@doAsyncResult khttp.get(
+                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_session_user, accountName)
+            )
+        }.get()
 
-        val now = Date()
-        sessions.add(QuizSession("5aa94ad88c99510e90812f71", "Test1", "default", Date(now.time + (4 * 60 * 60 * 1000)), true, true, false))
-        sessions.add(QuizSession("5aa94ad88c99510e90812f71", "Test2", "default", Date(now.time + (2 * 60 * 1000)), false, false, false))
-        sessions.add(QuizSession("3", "Test3", "default", Date(now.time - (2 * 60 * 60 * 1000)), false, true, true))
-        sessions.add(QuizSession("4", "Test4", "default", Date(now.time + (2 * 60 * 60 * 1000)), true, true, true))
-        sessions.add(QuizSession("5", "Test5", "default", Date(now.time + (3 * 60 * 60 * 1000)), false, false, true))
-        sessions.add(QuizSession("6", "Test6", "default", Date(now.time - (2 * 60 * 60 * 1000)), false, false, false))
+        val statusCode = response.statusCode
+        val responseState = response.text
 
-        return sessions
+        if (statusCode == 200) {
+            // session request was successful
+            // make list of session objects
+            val sessions = LinkedList<QuizSession>()
+            val json = response.jsonObject
+            val participatedSessions = json.getJSONArray("sessions_i_participate")
+            for (i in 0..participatedSessions.length() - 1) {
+                val sessionJson = participatedSessions.getJSONObject(i)
+                sessions.add(QuizSession(
+                        sessionJson.getString("_id"),
+                        sessionJson.getString("name"),
+                        sessionJson.getString("category"),
+                        Date(sessionJson.getString("deadline").toLong()),
+                        sessionJson.getString("admin") == accountName,
+                        true,
+                        sessionJson.getBoolean("private")
+                ))
+            }
+
+            val openSessions = json.getJSONArray("sessions_to_participate")
+            for (i in 0..openSessions.length() - 1) {
+                val sessionJson = openSessions.getJSONObject(i)
+                sessions.add(QuizSession(
+                        sessionJson.getString("_id"),
+                        sessionJson.getString("name"),
+                        sessionJson.getString("category"),
+                        Date(sessionJson.getString("deadline").toLong()),
+                        false,
+                        false,
+                        sessionJson.getBoolean("private")
+                ))
+            }
+
+            return sessions
+
+        } else {
+            // session request failed
+            this.state = responseState
+            return null
+        }
     }
 
     // mock up
