@@ -20,6 +20,9 @@
     <string name="endpoint_category">/category</string>
     <!-- session requests -->
     <string name="endpoint_session_specific">/session/%1$s</string>
+    <string name="endpoint_session_add_user">/session/%1$s?update=add-user</string>
+    <string name="endpoint_session_update_score">/session/%1$s?update=set-score</string>
+    <string name="endpoint_session_terminate">/session/%1$s?update=close</string>
     <!-- user requests -->
     <string name="endpoint_users_all">/user</string>
     <string name="endpoint_user_specific">/user/%1$s</string>
@@ -97,6 +100,7 @@
     <!-- intent extras -->
     <string name="intent_extra_session_clicked">clicked_session</string>
     <string name="intent_extra_session_id">session_id</string>
+    <string name="intent_extra_session_password">session_password</string>
 
     <!-- preferences -->
     <string name="pref_credentials_file">com.quizarena.credentials</string>

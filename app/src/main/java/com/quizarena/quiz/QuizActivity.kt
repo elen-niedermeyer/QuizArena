@@ -12,6 +12,7 @@ import com.quizarena.sessions.SessionApi
 import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
 import com.quizarena.user.CurrentUser
 import kotlinx.android.synthetic.main.activity_quiz.*
+import kotlinx.android.synthetic.main.activity_session_detail.*
 
 class QuizActivity : AppCompatActivity() {
 
@@ -19,6 +20,7 @@ class QuizActivity : AppCompatActivity() {
      * id of the session, initialized in onCreate
      */
     private var sessionID = ""
+    private var password: String? = null
 
     /**
      * questions for the quiz
@@ -94,6 +96,7 @@ class QuizActivity : AppCompatActivity() {
 
         // get session id from intent
         sessionID = intent.getStringExtra(getString(R.string.intent_extra_session_id))
+        password = intent.getStringExtra(getString(R.string.intent_extra_session_password))
         // get questions for this session
         questions = QuizApi(this@QuizActivity).getQuestions(sessionID)
         if (questions == null) {
@@ -116,7 +119,7 @@ class QuizActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        if (!SessionApi(this@QuizActivity).addParticipant(sessionID, CurrentUser.accountName)) {
+        if (!SessionApi(this@QuizActivity).addParticipant(sessionID, CurrentUser.accountName, password)) {
             // TODO: error handling in request
         }
     }
@@ -124,7 +127,7 @@ class QuizActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
 
-        if (SessionApi(this@QuizActivity).setScore(CurrentUser.accountName, correctAnswers)) {
+        if (SessionApi(this@QuizActivity).setScore(sessionID, CurrentUser.accountName, correctAnswers)) {
             // start next activity
             startDetailView()
         } else {

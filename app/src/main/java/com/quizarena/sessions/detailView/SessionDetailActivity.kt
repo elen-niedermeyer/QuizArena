@@ -7,9 +7,7 @@ import android.view.View
 import com.quizarena.R
 import com.quizarena.quiz.QuizActivity
 import com.quizarena.sessions.QuizSession
-import com.quizarena.sessions.SessionApi
 import com.quizarena.sessions.SessionUtils
-import com.quizarena.user.CurrentUser
 import kotlinx.android.synthetic.main.activity_session_detail.*
 
 class SessionDetailActivity : AppCompatActivity() {
@@ -32,39 +30,19 @@ class SessionDetailActivity : AppCompatActivity() {
 
         // set button's on click listener
         activity_session_detail_button_participate.setOnClickListener {
-<<<<<<< HEAD
+            // get password
+            var password: String? = activity_session_detail_password.text.toString()
+            if (password!!.isEmpty()) {
+                password = null
+            }
+
             // start quiz activity
             val intent = Intent(this@SessionDetailActivity, QuizActivity::class.java)
             intent.putExtra(getString(R.string.intent_extra_session_id), currentSession.id)
+            intent.putExtra(getString(R.string.intent_extra_session_password), password)
             startActivity(intent)
             // finishes this activity
             this.finish()
-=======
-            // add the current user to the session
-            // make request
-            var isAdded: Boolean
-            val api = SessionApi()
-            if (currentSession.isPrivate) {
-                val password = activity_session_detail_password.text.toString()
-                isAdded = api.addParticipant(currentSession.id, CurrentUser.accountName, password)
-            } else {
-                isAdded = api.addParticipant(currentSession.id, CurrentUser.accountName)
-            }
-
-            // handle request result
-            if (isAdded) {
-                // start quiz activity
-                val intent = Intent(this@SessionDetailActivity, QuizActivity::class.java)
-                intent.putExtra(getString(R.string.intent_extra_session_id), currentSession.id)
-                startActivity(intent)
-
-                // finishes this activity
-                this.finish()
-
-            } else {
-                //TODO: error handling of request
-            }
->>>>>>> develop
         }
 
     }

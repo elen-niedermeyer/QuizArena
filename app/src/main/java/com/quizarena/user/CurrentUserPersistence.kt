@@ -6,8 +6,6 @@ import com.quizarena.R
 
 class CurrentUserPersistence(val context: Context) {
 
-    //TODO: load and save score and all
-
     var preferenceUtils = PreferenceUtils(context);
 
     /**
