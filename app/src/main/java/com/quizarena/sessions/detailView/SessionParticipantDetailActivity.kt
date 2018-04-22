@@ -22,7 +22,7 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_session_participant_detail)
 
         // get session
-        val sessionID = intent.getIntExtra(getString(R.string.intent_extra_session_id), 0)
+        val sessionID = intent.getStringExtra(getString(R.string.intent_extra_session_id))
         val api = SessionApi()
         currentSession = api.getSession(sessionID, CurrentUser.accountName)
 

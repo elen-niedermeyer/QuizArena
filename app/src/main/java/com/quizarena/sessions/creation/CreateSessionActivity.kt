@@ -98,6 +98,10 @@ class CreateSessionActivity : AppCompatActivity() {
             activity_create_session_error_name.text = getString(R.string.create_session_error_no_name)
             isValid = false
         }
+        else if (activity_create_session_form_name.text.contains(' ')) {
+            activity_create_session_error_name.text = getString(R.string.error_name_space)
+            isValid = false
+        }
 
         // check duration
         if (activity_create_session_form_duration.text.isEmpty()) {

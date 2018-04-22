@@ -42,8 +42,9 @@
     <string name="endpoint_user_error_displayname_empty">Kein Anzeigename vorhanden</string>
     <string name="endpoint_user_error_no_user">Der eingegebene Nutzer existiert nicht</string>
     <string name="endpoint_user_error_wrong_pw">Passwort ist nicht korrekt</string>
-    <!-- sessions -->
+    <!-- session requests -->
     <string name="endpoint_sessions_all">/session</string>
+    <string name="endpoint_sessions_creation">/session/%1$s</string>
 
 
     <!-- handling sessions -->
