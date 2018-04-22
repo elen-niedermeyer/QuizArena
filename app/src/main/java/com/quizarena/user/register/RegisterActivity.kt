@@ -69,7 +69,10 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         // change to login activity if the responding button is clicked
-        activity_register_button_login.setOnClickListener { startActivity(Intent(this@RegisterActivity, LoginActivity::class.java)) }
+        activity_register_button_login.setOnClickListener {
+            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+            this.finish()
+        }
     }
 
     /**
