@@ -8,8 +8,8 @@ import android.text.TextWatcher
 import com.quizarena.R
 import com.quizarena.menu.MainMenuActivity
 import com.quizarena.notifications.InstanceIdService
-import com.quizarena.user.UserApi
 import com.quizarena.user.CurrentUserPersistence
+import com.quizarena.user.UserApi
 import com.quizarena.user.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.alert
@@ -76,14 +76,19 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     /**
-     * Checks if the account name is not empty.
-     * If it's empty, displays a message.
+     * Checks if the account name is not empty or contains whitespaces.
+     * If there is, displays a message.
      *
      * @return true if the account name is correct, false otherwise
      */
     private fun validateAccountName(): Boolean {
-        if (activity_register_account_name.text.isEmpty()) {
+        val name = activity_register_account_name.text
+        if (name.isEmpty()) {
             activity_register_error_name.text = getString(R.string.register_error_no_name)
+
+            return false
+        } else if (name.contains(" ")) {
+            activity_register_error_name.text = getString(R.string.error_name_space)
 
             return false
         }

@@ -57,14 +57,19 @@ class LoginActivity : AppCompatActivity() {
     }
 
     /**
-     * Checks if the account name is not empty.
-     * If it's empty, displays a message.
+     * Checks if the account name is not empty or contains whitespaces.
+     * If there is, displays a message.
      *
      * @return true if the account name is correct, false otherwise
      */
     private fun validateAccountName(): Boolean {
-        if (activity_login_account_name.text.isEmpty()) {
+        val name = activity_login_account_name.text
+        if (name.isEmpty()) {
             activity_login_error_name.text = getString(R.string.login_error_no_name)
+
+            return false
+        } else if (name.contains(" ")) {
+            activity_login_error_name.text = getString(R.string.error_name_space)
 
             return false
         }
