@@ -177,8 +177,8 @@ class SessionApi(val context: Context) {
 
         if (statusCode == 200) {
             // session creation request was successful
-            // TODO extract session id
-            return "1"
+            // in this case the response state is the session id
+            return responseState
 
         } else {
             // session creation request failed

@@ -151,8 +151,6 @@ class QuizActivity : AppCompatActivity() {
                 positiveButton(getString(R.string.ok)) { }
             }.show()
         }
-        // start next activity
-        startDetailView()
     }
 
     /**
