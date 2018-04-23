@@ -69,9 +69,85 @@ class SessionApi(val context: Context) {
         }
     }
 
-    // mock up
-    fun getSession(sessionID: String, username: String): QuizSession {
-        return QuizSession("5aa94ad88c99510e90812f71", "Test", "category", Date(System.currentTimeMillis()), true, true, true)
+    /**
+     * Requests one session.
+     *
+     * @return a {@link QuizSession} object
+     */
+    fun getSession(sessionID: String, accountName: String): QuizSession? {
+        val response = doAsyncResult {
+            return@doAsyncResult khttp.get(
+                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_session_specific, sessionID))
+        }.get()
+
+        val statusCode = response.statusCode
+        val responseState = response.text
+
+        if (statusCode == 200) {
+            // request was successful
+            // make session object
+            val json = response.jsonObject
+            // look if user participates
+            var isParticipant = false
+            val participantsJson = json.getJSONArray("users")
+            for (i in 0..participantsJson.length() - 1) {
+                val participantJson = participantsJson.getJSONObject(i)
+                if (participantJson.getString("user") == accountName) {
+                    isParticipant = true
+                    break
+                }
+            }
+
+            return QuizSession(
+                    json.getString("_id"),
+                    json.getString("name"),
+                    json.getString("category"),
+                    Date(json.getString("deadline").toLong()),
+                    json.getString("admin") == accountName,
+                    isParticipant,
+                    json.getBoolean("private")
+            )
+
+        } else {
+            // request failed
+            this.state = responseState
+            return null
+        }
+    }
+
+    /**
+     * Requests the given session and extracts the participants
+     *
+     * @return a list of {@link Participant}
+     */
+    fun getParticipants(sessionID: String): List<Participant>? {
+        val response = doAsyncResult {
+            return@doAsyncResult khttp.get(
+                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_session_specific, sessionID))
+        }.get()
+
+        val statusCode = response.statusCode
+        val responseState = response.text
+
+        if (statusCode == 200) {
+            // request was successful
+            // make list of participants
+            val participants = ArrayList<Participant>()
+            val json = response.jsonObject
+            val participantsJson = json.getJSONArray("users")
+            for (i in 0..participantsJson.length() - 1) {
+                val participantJson = participantsJson.getJSONObject(i)
+                // ToDo: get display name
+                participants.add(Participant(participantJson.getString("user"), "", participantJson.getInt("score")))
+            }
+            return participants
+
+        } else {
+            // request failed
+            this.state = responseState
+            return null
+        }
+
     }
 
     /**
@@ -106,16 +182,6 @@ class SessionApi(val context: Context) {
             this.state = responseState
             return null
         }
-    }
-
-
-    // mockup
-    fun getParticipants(sessionID: String): List<Participant> {
-        val participants = ArrayList<Participant>()
-        participants.add(Participant("Test", "Test", 10))
-        participants.add(Participant("User2", "User2", 5))
-
-        return participants
     }
 
     /**
