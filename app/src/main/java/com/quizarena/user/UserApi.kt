@@ -42,6 +42,29 @@ class UserApi(val context: Context) {
         }
     }
 
+    fun getDisplayName(accountName: String): String {
+        val response = doAsyncResult {
+            val response = khttp.get(
+                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_specific, accountName))
+            return@doAsyncResult response
+        }.get()
+
+        val statusCode = response.statusCode
+        val responseState = response.text
+
+        if (statusCode == 200) {
+            // user request was successful
+            val json = response.jsonObject
+            return json.getString(context.getString(R.string.api_user_displayName))
+
+        } else {
+            // user request was not successful
+            // parse error
+            this.state = ApiErrors.getError(context, responseState)
+            return accountName
+        }
+    }
+
     /**
      * Makes a request to authenticate the user with the account name and the device's token.
      * Sets the {@link #state} if there's a failure.

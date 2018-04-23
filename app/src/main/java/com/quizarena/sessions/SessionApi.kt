@@ -2,10 +2,10 @@ package com.quizarena.sessions
 
 import android.content.Context
 import com.quizarena.R
+import com.quizarena.user.UserApi
 import org.jetbrains.anko.doAsyncResult
 import java.util.*
 
-// TODO: correct implementation with backend including errors
 class SessionApi(val context: Context) {
 
     var state: String = ""
@@ -86,10 +86,11 @@ class SessionApi(val context: Context) {
         if (statusCode == 200) {
             // request was successful
             // make session object
-            val json = response.jsonObject
+            val json = response.jsonArray
+            val jsonObject = json.getJSONObject(0)
             // look if user participates
             var isParticipant = false
-            val participantsJson = json.getJSONArray("users")
+            val participantsJson = jsonObject.getJSONArray("users")
             for (i in 0..participantsJson.length() - 1) {
                 val participantJson = participantsJson.getJSONObject(i)
                 if (participantJson.getString("user") == accountName) {
@@ -99,13 +100,13 @@ class SessionApi(val context: Context) {
             }
 
             return QuizSession(
-                    json.getString("_id"),
-                    json.getString("name"),
-                    json.getString("category"),
-                    Date(json.getString("deadline").toLong()),
-                    json.getString("admin") == accountName,
+                    jsonObject.getString("_id"),
+                    jsonObject.getString("name"),
+                    jsonObject.getString("category"),
+                    Date(jsonObject.getString("deadline").toLong()),
+                    jsonObject.getString("admin") == accountName,
                     isParticipant,
-                    json.getBoolean("private")
+                    jsonObject.getBoolean("private")
             )
 
         } else {
@@ -133,12 +134,14 @@ class SessionApi(val context: Context) {
             // request was successful
             // make list of participants
             val participants = ArrayList<Participant>()
-            val json = response.jsonObject
-            val participantsJson = json.getJSONArray("users")
+            val json = response.jsonArray
+            val jsonObject = json.getJSONObject(0)
+            val participantsJson = jsonObject.getJSONArray("users")
+            val userApi = UserApi(context)
             for (i in 0..participantsJson.length() - 1) {
                 val participantJson = participantsJson.getJSONObject(i)
-                // ToDo: get display name
-                participants.add(Participant(participantJson.getString("user"), "", participantJson.getInt("score")))
+                val username = participantJson.getString("user")
+                participants.add(Participant(username, userApi.getDisplayName(username), participantJson.getInt("score")))
             }
             return participants
 
