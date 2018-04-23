@@ -2,13 +2,15 @@ package com.quizarena.quiz
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.content.res.AppCompatResources
 import android.view.View
 import android.widget.Button
 import com.quizarena.R
-import com.quizarena.authorization.Credentials
 import com.quizarena.sessions.SessionApi
 import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
+import com.quizarena.user.CurrentUser
 import kotlinx.android.synthetic.main.activity_quiz.*
 
 class QuizActivity : AppCompatActivity() {
@@ -44,7 +46,6 @@ class QuizActivity : AppCompatActivity() {
      */
     private val onAnswerClickListener = object : View.OnClickListener {
 
-        // TODO: correct backgrounds
         override fun onClick(view: View?) {
             if (view is Button) {
                 // disable the buttons until the next question
@@ -53,12 +54,14 @@ class QuizActivity : AppCompatActivity() {
                 // figure out if the answer was right or wrong
                 if (view.text == questions[counter].correctAnswer) {
                     // the answer is correct
-                    view.setBackgroundResource(R.color.correct_answer)
+                    ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.correct_answer))
+                    view.setTextColor(resources.getColor(android.R.color.black))
                     correctAnswers++
 
                 } else {
                     // the answer is wrong
-                    view.setBackgroundResource(R.color.wrong_answer)
+                    ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.wrong_answer))
+                    view.setTextColor(resources.getColor(android.R.color.black))
                 }
 
                 // short delay for showing the result to the user
@@ -66,7 +69,10 @@ class QuizActivity : AppCompatActivity() {
                         // behavior after delay
                         Runnable {
                             // reset buttons
-                            view.setBackgroundResource(R.color.primary_material_light)
+                            val buttonStyle = obtainStyledAttributes(R.style.button, intArrayOf(android.R.attr.backgroundTint, android.R.attr.textColor))
+                            ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, buttonStyle.getResourceId(0, R.color.colorPrimary)))
+                            view.setTextColor(buttonStyle.getColor(1, resources.getColor(R.color.text_button)))
+                            buttonStyle.recycle()
                             answerButtons.forEach { it.isEnabled = true }
 
                             // next question
@@ -119,8 +125,8 @@ class QuizActivity : AppCompatActivity() {
 
         } else {
             // quiz finished
-            // set score
-            if (SessionApi().setScore(Credentials.accountName, correctAnswers)) {
+            // set globalScore
+            if (SessionApi().setScore(CurrentUser.accountName, correctAnswers)) {
                 // start next activity
                 startDetailView()
             } else {

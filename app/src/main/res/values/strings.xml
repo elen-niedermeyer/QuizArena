@@ -15,10 +15,36 @@
     <string name="terminate">Beenden</string>
 
     <!-- api requests -->
-    <string name="baseurl">http://192.168.0.15:5000/</string>
-    <string name="user_endpoint">user/</string>
-    <string name="session_endpoint">session/</string>
-    <string name="api_parameter_password">password</string>
+    <string name="baseurl">http://aersoftler.pythonanywhere.com</string>
+    <!-- category requests -->
+    <string name="endpoint_category">/category</string>
+    <!-- user requests -->
+    <string name="endpoint_users_all">/user</string>
+    <string name="endpoint_user_specific">/user/%1$s</string>
+    <string name="endpoint_user_token_authentication">/user/%1$s/%2$s</string>
+    <string name="endpoint_user_login">/user/%1$s/login</string>
+    <string name="endpoint_user_logout">/user/%1$s/logout</string>
+    <string name="endpoint_user_change_displayname">/user/%1$s?update=display_name</string>
+    <string name="endpoint_user_change_password">/user/%1$s?update=password</string>
+    <string name="endpoint_user_data_password">password</string>
+    <string name="endpoint_user_data_password_old">old_password</string>
+    <string name="endpoint_user_data_password_new">new_password</string>
+    <string name="endpoint_user_data_display_name">display_name</string>
+    <string name="endpoint_user_data_token">token</string>
+    <string name="api_user_accountName">id</string>
+    <string name="api_user_displayName">display_name</string>
+    <string name="api_user_totalScore">total_score</string>
+    <!-- default error -->
+    <string name="api_request_error">Es ist ein Fehler aufgetreten\n</string>
+    <!-- user requests error register -->
+    <string name="endpoint_user_error_username_duplicated">Nutzername existiert schon</string>
+    <string name="endpoint_user_error_password_empty">Passwort darf nicht leer sein</string>
+    <string name="endpoint_user_error_displayname_empty">Kein Anzeigename vorhanden</string>
+    <string name="endpoint_user_error_no_user">Der eingegebene Nutzer existiert nicht</string>
+    <string name="endpoint_user_error_wrong_pw">Passwort ist nicht korrekt</string>
+    <!-- sessions -->
+    <string name="endpoint_sessions_all">/session</string>
+
 
     <!-- handling sessions -->
     <string name="show_sessions">Sessions anzeigen</string>
@@ -30,21 +56,40 @@
     <string name="left_time">%1$02dh %2$02dmin</string>
     <string name="terminated">Beendet</string>
     <string name="start_session">Quiz beginnen</string>
+    <string name="my_score">Mein Ergebnis:</string>
+    <!-- create session errors -->
+    <string name="create_session_error_no_name">Lege einen Sessionnamen fest</string>
+    <string name="create_session_error_no_duration">Lege eine Dauer fest</string>
+    <string name="create_session_error_wrong_duration">Gib eine g\u00FCltige Dauer ein</string>
+    <string name="create_session_error_no_password">Lege ein Passwort fest</string>
+    <string name="create_session_error_duration_between_6_24">Die Dauer muss zwischen 6 und 24 Stunden liegen</string>
 
     <!-- handling account -->
     <string name="account_name">Name</string>
     <string name="display_name">Anzeigename</string>
+    <string name="display_name_new">Neuer Anzeigename</string>
     <string name="password">Passwort</string>
     <string name="password_confirm">Passwort wiederholen</string>
+    <string name="password_change">Passwort \u00E4ndern</string>
+    <string name="password_changed">Passwort geändert</string>
+    <string name="password_old">Altes Passwort</string>
+    <string name="password_new">Neues Password</string>
+    <string name="password_new2">Neues Passwort wiederholen</string>
     <string name="register">Registrieren</string>
     <string name="login">Login</string>
+
     <!-- register errors -->
     <string name="register_error_no_name">Lege einen Accountnamen fest</string>
     <string name="register_error_no_password">Lege ein Passwort fest</string>
     <string name="register_error_passwords_different">Passwörter sind nicht identisch</string>
+
     <!-- login errors -->
     <string name="login_error_no_name">Gib einen Accountnamen ein</string>
+    <string name="error_name_space">Name darf keine Leerzeichen enthalten</string>
     <string name="login_error_no_password">Gib ein Passwort ein</string>
+
+    <!-- imprint -->
+    <string name="imprint_text">Diese App ist ein Projekt von\nMiklas Boskamp,\nDavid Golla,\nMilan Höllner und\nElen Niedermeyer.\n\nSie ist entstanden im Rahmen der Vorlesung \"Mobile Anwendungen\" im 6. Semester an der Hochschule für Wirtschaft und Recht Berlin.\n\nFrontend: https://github.com/elen-niedermeyer/QuizArena\nBackend: https://github.com/Aersoftler/QuizArena-Backend</string>
 
     <!-- intent extras -->
     <string name="intent_extra_session_clicked">clicked_session</string>
@@ -53,5 +98,6 @@
     <!-- preferences -->
     <string name="pref_credentials_file">com.quizarena.credentials</string>
     <string name="pref_credentials_name_key">accountName</string>
-    <string name="pref_credentials_password_key">password</string>
+    <string name="pref_credentials_login_key">isLoggedIn</string>
+    <string name="is_private">Privat?</string>
 </resources>

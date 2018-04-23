@@ -31,7 +31,6 @@ class SessionApi {
     }
 
     // mockup
-    // get sorted list from backend
     fun getParticipants(sessionID: Int): List<Participant> {
         val participants = ArrayList<Participant>()
         participants.add(Participant("Test", "Test", 10))
@@ -46,7 +45,26 @@ class SessionApi {
     }
 
     // mock up
+    fun addParticipant(sessionID: Int, username: String, password: String):Boolean{
+        return true
+    }
+
+    // mock up
     fun setScore(username: String, score: Int): Boolean {
         return true
+    }
+
+    /**
+     * MOCK UP for creating public session request
+     */
+    fun createSession(name: String, category: String, duration: Int) {
+
+    }
+
+    /**
+     * MOCK UP for creating private session request
+     */
+    fun createSession(name: String, category: String, duration: Int, password: String) {
+
     }
 }

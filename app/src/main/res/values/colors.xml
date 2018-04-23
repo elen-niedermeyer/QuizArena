@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#6600CC</color>
+    <color name="colorPrimaryDark">#4C0099</color>
+    <color name="colorAccent">#B266FF</color>
+
+    <color name="button_disabled">#CC99FF</color>
+
+    <color name="background">#C3FFC3</color>
+    <color name="text_button">#33FF33</color>
 
     <color name="red">#FF0000</color>
 
-    <color name="overview_session_owned">#FFFF00</color>
-    <color name="overview_session_participated">#FF00FF</color>
-    <color name="overview_session_other">#AAAAAA</color>
+    <color name="overview_session_owned">#5555FF</color>
+    <color name="overview_session_participated">#7777FF</color>
+    <color name="overview_session_open">#9999FF</color>
 
     <color name="correct_answer">#00FF00</color>
     <color name="wrong_answer">#FF0000</color>

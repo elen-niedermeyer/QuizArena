@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="8dp"
     tools:context="com.quizarena.sessions.detailView.SessionDetailActivity">
 
     <TextView
         android:id="@+id/activity_session_detail_name"
+        style="@android:style/TextAppearance.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/activity_session_detail_category"
@@ -36,12 +38,28 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_session_detail_time">
 
-        <Button
-            android:id="@+id/activity_session_detail_button_participate"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/start_session" />
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/activity_session_detail_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/activity_session_detail_button_participate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_session" />
+
+        </LinearLayout>
     </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
