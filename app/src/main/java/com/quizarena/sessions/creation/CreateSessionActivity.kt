@@ -76,12 +76,14 @@ class CreateSessionActivity : AppCompatActivity() {
                 // execute request
                 val api = SessionApi(this@CreateSessionActivity)
                 var newSessionID: String?
+                var password: String?
                 if (activity_create_session_isprivate_checkbox.isChecked) {
                     // create private session request
-                    val password = activity_create_session_isprivate_password.text.toString()
+                    password = activity_create_session_isprivate_password.text.toString()
                     newSessionID = api.createSession(name, category, duration, true, password, CurrentUser.accountName)
                 } else {
                     // create public session request
+                    password = null
                     newSessionID = api.createSession(name, category, duration, false, null, CurrentUser.accountName)
                 }
 
@@ -99,6 +101,7 @@ class CreateSessionActivity : AppCompatActivity() {
                     // start quiz
                     intent = Intent(this@CreateSessionActivity, QuizActivity::class.java)
                     intent.putExtra(getString(R.string.intent_extra_session_id), newSessionID)
+                    intent.putExtra(getString(R.string.intent_extra_session_password), password)
                     startActivity(intent)
                     this.finish()
                 }
