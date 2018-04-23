@@ -35,11 +35,17 @@ class SessionApi(val context: Context) {
             val participatedSessions = json.getJSONArray("sessions_i_participate")
             for (i in 0..participatedSessions.length() - 1) {
                 val sessionJson = participatedSessions.getJSONObject(i)
+                // get end date
+                var endDate = Date(System.currentTimeMillis() - 1)
+                if (!sessionJson.getBoolean("closed")) {
+                    endDate = Date(sessionJson.getString("deadline").toLong())
+                }
+                // add session
                 sessions.add(QuizSession(
                         sessionJson.getString("_id"),
                         sessionJson.getString("name"),
                         sessionJson.getString("category"),
-                        Date(sessionJson.getString("deadline").toLong()),
+                        endDate,
                         sessionJson.getString("admin") == accountName,
                         true,
                         sessionJson.getBoolean("private")
@@ -49,11 +55,17 @@ class SessionApi(val context: Context) {
             val openSessions = json.getJSONArray("sessions_to_participate")
             for (i in 0..openSessions.length() - 1) {
                 val sessionJson = openSessions.getJSONObject(i)
+                // get end date
+                var endDate = Date(System.currentTimeMillis() - 1)
+                if (!sessionJson.getBoolean("closed")) {
+                    endDate = Date(sessionJson.getString("deadline").toLong())
+                }
+                // add session
                 sessions.add(QuizSession(
                         sessionJson.getString("_id"),
                         sessionJson.getString("name"),
                         sessionJson.getString("category"),
-                        Date(sessionJson.getString("deadline").toLong()),
+                        endDate,
                         false,
                         false,
                         sessionJson.getBoolean("private")
@@ -98,12 +110,17 @@ class SessionApi(val context: Context) {
                     break
                 }
             }
+            // get end date
+            var endDate = Date(System.currentTimeMillis() - 1)
+            if (!jsonObject.getBoolean("closed")) {
+                endDate = Date(jsonObject.getString("deadline").toLong())
+            }
 
             return QuizSession(
                     jsonObject.getString("_id"),
                     jsonObject.getString("name"),
                     jsonObject.getString("category"),
-                    Date(jsonObject.getString("deadline").toLong()),
+                    endDate,
                     jsonObject.getString("admin") == accountName,
                     isParticipant,
                     jsonObject.getBoolean("private")
