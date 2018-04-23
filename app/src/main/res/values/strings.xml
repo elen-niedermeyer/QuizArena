@@ -16,7 +16,7 @@
     <string name="terminate">Beenden</string>
 
     <!-- api requests -->
-    <string name="baseurl">http://aersoftler.pythonanywhere.com</string>
+    <string name="baseurl">https://aersoftler.pythonanywhere.com</string>
     <!-- category requests -->
     <string name="endpoint_category">/category</string>
     <!-- session requests -->
