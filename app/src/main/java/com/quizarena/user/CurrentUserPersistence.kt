@@ -13,26 +13,18 @@ class CurrentUserPersistence(val context: Context) {
      * Makes a {@link CurrentUser} object.
      *
      * @param accountName the account name to save
-     * @return a {@link CurrentUser} object
      */
-    fun saveName(accountName: String): CurrentUser {
+    fun saveName(accountName: String) {
         preferenceUtils.writePreference(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_name_key), accountName)
-
-        // create credentials and return it
-        return CurrentUser(accountName)
     }
 
     /**
-     * Loads the name saved in the preferences.
-     *
-     * @return a {@link CurrentUser} object
+     * Loads the name saved in the preferences and set it
      */
-    fun loadName(): CurrentUser {
+    fun loadName() {
         val name = preferenceUtils.loadPreferenceString(context.getString(R.string.pref_credentials_file), context.getString(R.string.pref_credentials_name_key))
 
-        // create credentials and return it
-        return CurrentUser(name)
+        CurrentUser.accountName = name
     }
-
 
 }

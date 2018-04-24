@@ -2,6 +2,7 @@ package com.quizarena.user.credentials
 
 import android.content.Context
 import com.quizarena.notifications.InstanceIdService
+import com.quizarena.sessions.SessionApi
 import com.quizarena.user.CurrentUser
 import com.quizarena.user.CurrentUserPersistence
 import com.quizarena.user.UserApi
@@ -52,6 +53,24 @@ class CredentialsUpdater(val context: Context) {
         }
 
         CurrentUser.displayName = newDisplayName
+        return true
+    }
+
+    /**
+     * Update the score.
+     * Makes a request and updates the {@link CurrentUser}.
+     *
+     * @param sessionID
+     * @param points
+     * @return true if the score was changed, false otherwise
+     */
+    fun updateScore(sessionID: String, points: Int): Boolean {
+        val wasSuccessful = SessionApi(context).setScore(sessionID, CurrentUser.accountName, points)
+        if (!wasSuccessful) {
+            return false
+        }
+
+        CurrentUser.globalScore = CurrentUser.globalScore + points
         return true
     }
 

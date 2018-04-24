@@ -12,21 +12,68 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:padding="24dp"
-        app:layout_constraintBottom_toTopOf="@id/activity_main_menu_button_show_sessions"
+        app:layout_constraintBottom_toTopOf="@id/activity_main_menu_displayname_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/appname" />
+
+    <ImageView
+        android:id="@+id/activity_main_menu_displayname_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toTopOf="@id/activity_main_menu_button_show_sessions"
+        app:layout_constraintEnd_toStartOf="@id/activity_main_menu_displayname"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintRight_toLeftOf="@id/activity_main_menu_displayname"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_menu_appname"
+        app:srcCompat="@drawable/ic_account_circle_black_32dp" />
+
+    <TextView
+        android:id="@+id/activity_main_menu_displayname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/activity_main_menu_displayname_icon"
+        app:layout_constraintLeft_toRightOf="@id/activity_main_menu_displayname_icon"
+        app:layout_constraintRight_toLeftOf="@id/activity_main_menu_globalscore_icon"
+        app:layout_constraintTop_toTopOf="@id/activity_main_menu_displayname_icon" />
+
+    <ImageView
+        android:id="@+id/activity_main_menu_globalscore_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/activity_main_menu_displayname"
+        app:layout_constraintLeft_toRightOf="@id/activity_main_menu_displayname"
+        app:layout_constraintRight_toLeftOf="@id/activity_main_menu_globalscore"
+        app:layout_constraintTop_toTopOf="@id/activity_main_menu_displayname"
+        app:srcCompat="@drawable/ic_stars_black_32dp" />
+
+    <TextView
+        android:id="@+id/activity_main_menu_globalscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/activity_main_menu_globalscore_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/activity_main_menu_globalscore_icon"
+        app:layout_constraintStart_toEndOf="@id/activity_main_menu_globalscore_icon"
+        app:layout_constraintTop_toTopOf="@id/activity_main_menu_globalscore_icon" />
 
     <Button
         android:id="@+id/activity_main_menu_button_show_sessions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_sessions"
-        app:layout_constraintBottom_toTopOf="@+id/activity_main_menu_button_create"
+        app:layout_constraintBottom_toTopOf="@id/activity_main_menu_button_create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_main_menu_appname"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_menu_displayname_icon"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
@@ -34,20 +81,20 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/create_session"
-        app:layout_constraintBottom_toTopOf="@+id/activity_main_menu_button_options"
-        app:layout_constraintEnd_toEndOf="@+id/activity_main_menu_button_show_sessions"
-        app:layout_constraintStart_toStartOf="@+id/activity_main_menu_button_show_sessions"
-        app:layout_constraintTop_toBottomOf="@+id/activity_main_menu_button_show_sessions" />
+        app:layout_constraintBottom_toTopOf="@id/activity_main_menu_button_options"
+        app:layout_constraintEnd_toEndOf="@id/activity_main_menu_button_show_sessions"
+        app:layout_constraintStart_toStartOf="@id/activity_main_menu_button_show_sessions"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_menu_button_show_sessions" />
 
     <Button
         android:id="@+id/activity_main_menu_button_options"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/options"
-        app:layout_constraintBottom_toTopOf="@+id/activity_main_menu_button_imprint"
-        app:layout_constraintEnd_toEndOf="@+id/activity_main_menu_button_create"
-        app:layout_constraintStart_toStartOf="@+id/activity_main_menu_button_create"
-        app:layout_constraintTop_toBottomOf="@+id/activity_main_menu_button_create" />
+        app:layout_constraintBottom_toTopOf="@id/activity_main_menu_button_imprint"
+        app:layout_constraintEnd_toEndOf="@id/activity_main_menu_button_create"
+        app:layout_constraintStart_toStartOf="@id/activity_main_menu_button_create"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_menu_button_create" />
 
     <Button
         android:id="@+id/activity_main_menu_button_imprint"
@@ -55,8 +102,8 @@
         android:layout_height="wrap_content"
         android:text="@string/imprint"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/activity_main_menu_button_options"
-        app:layout_constraintStart_toStartOf="@+id/activity_main_menu_button_options"
-        app:layout_constraintTop_toBottomOf="@+id/activity_main_menu_button_options" />
+        app:layout_constraintEnd_toEndOf="@id/activity_main_menu_button_options"
+        app:layout_constraintStart_toStartOf="@id/activity_main_menu_button_options"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_menu_button_options" />
 
 </android.support.constraint.ConstraintLayout>
