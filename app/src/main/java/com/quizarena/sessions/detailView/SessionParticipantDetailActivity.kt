@@ -18,17 +18,15 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
      */
     private var currentSession: QuizSession? = null
 
-    private val onShareButtonClick = object : View.OnClickListener {
-        override fun onClick(view: View?) {
-            var text = getString(R.string.sharing_text)
-            text += getString(R.string.sharing_link, currentSession!!.id)
+    private val onShareButtonClick = View.OnClickListener {
+        var text = getString(R.string.sharing_text)
+        text += getString(R.string.sharing_link, currentSession!!.id)
 
-            val sendIntent = Intent(Intent.ACTION_SEND)
-            sendIntent.type = "text/plain"
-            sendIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.sharing_subject))
-            sendIntent.putExtra(Intent.EXTRA_TEXT, text)
-            startActivity(Intent.createChooser(sendIntent, getString(R.string.sharing_chooser_title)))
-        }
+        val sendIntent = Intent(Intent.ACTION_SEND)
+        sendIntent.type = "text/plain"
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.sharing_subject))
+        sendIntent.putExtra(Intent.EXTRA_TEXT, text)
+        startActivity(Intent.createChooser(sendIntent, getString(R.string.sharing_chooser_title)))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
