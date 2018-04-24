@@ -58,12 +58,6 @@ class SessionOverviewActivity : AppCompatActivity() {
             val clickedSession = listAdapter.getItem(position)
 
             when {
-                !clickedSession.isParticipant && clickedSession.isPrivate -> {
-                    // the user does not participate this private session
-                    // he should enter a password
-                    // TODO: dialog for password
-                }
-
                 !clickedSession.isParticipant -> {
                     // the user does not participate the session
                     val intent = Intent(this@SessionOverviewActivity, SessionDetailActivity::class.java)
@@ -106,7 +100,7 @@ class SessionOverviewActivity : AppCompatActivity() {
         super.onResume()
 
         // get the sessions list
-        val provider = SessionProvider()
+        val provider = SessionProvider(this@SessionOverviewActivity)
         sessions = provider.getAllSessionSorted()
         // initialize content
         updateSessionsList("")

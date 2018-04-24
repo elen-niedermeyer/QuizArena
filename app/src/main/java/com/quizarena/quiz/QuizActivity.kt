@@ -2,26 +2,30 @@ package com.quizarena.quiz
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.content.res.AppCompatResources
 import android.view.View
 import android.widget.Button
 import com.quizarena.R
-import com.quizarena.authorization.Credentials
 import com.quizarena.sessions.SessionApi
 import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
+import com.quizarena.user.CurrentUser
 import kotlinx.android.synthetic.main.activity_quiz.*
+import org.jetbrains.anko.alert
 
 class QuizActivity : AppCompatActivity() {
 
     /**
      * id of the session, initialized in onCreate
      */
-    private var sessionID = 0
+    private var sessionID = ""
+    private var password: String? = null
 
     /**
      * questions for the quiz
      */
-    private lateinit var questions: List<Question>
+    private var questions: List<Question>? = null
 
     /**
      * question counter
@@ -44,21 +48,22 @@ class QuizActivity : AppCompatActivity() {
      */
     private val onAnswerClickListener = object : View.OnClickListener {
 
-        // TODO: correct backgrounds
         override fun onClick(view: View?) {
             if (view is Button) {
                 // disable the buttons until the next question
                 answerButtons.forEach { it.isEnabled = false }
 
                 // figure out if the answer was right or wrong
-                if (view.text == questions[counter].correctAnswer) {
+                if (view.text == questions!![counter].correctAnswer) {
                     // the answer is correct
-                    view.setBackgroundResource(R.color.correct_answer)
+                    ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.correct_answer))
+                    view.setTextColor(resources.getColor(android.R.color.black))
                     correctAnswers++
 
                 } else {
                     // the answer is wrong
-                    view.setBackgroundResource(R.color.wrong_answer)
+                    ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.wrong_answer))
+                    view.setTextColor(resources.getColor(android.R.color.black))
                 }
 
                 // short delay for showing the result to the user
@@ -66,7 +71,10 @@ class QuizActivity : AppCompatActivity() {
                         // behavior after delay
                         Runnable {
                             // reset buttons
-                            view.setBackgroundResource(R.color.primary_material_light)
+                            val buttonStyle = obtainStyledAttributes(R.style.button, intArrayOf(android.R.attr.backgroundTint, android.R.attr.textColor))
+                            ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, buttonStyle.getResourceId(0, R.color.colorPrimary)))
+                            view.setTextColor(buttonStyle.getColor(1, resources.getColor(R.color.text_button)))
+                            buttonStyle.recycle()
                             answerButtons.forEach { it.isEnabled = true }
 
                             // next question
@@ -87,9 +95,21 @@ class QuizActivity : AppCompatActivity() {
         setContentView(R.layout.activity_quiz)
 
         // get session id from intent
-        sessionID = intent.getIntExtra(getString(R.string.intent_extra_session_id), 0)
+        sessionID = intent.getStringExtra(getString(R.string.intent_extra_session_id))
+        password = intent.getStringExtra(getString(R.string.intent_extra_session_password))
         // get questions for this session
-        questions = QuizApi().getQuestions(sessionID)
+        val quizApi = QuizApi(this@QuizActivity)
+        questions = quizApi.getQuestions(sessionID)
+        if (questions == null) {
+            // request failed
+            // show an error message and finish the activity
+            alert {
+                title = getString(R.string.error)
+                message(quizApi.state)
+                positiveButton(getString(R.string.ok)) { }
+            }.show()
+            this.finish()
+        }
 
         // initialize answer buttons
         answerButtons = arrayOf(activity_quiz_button_answer_1, activity_quiz_button_answer_2, activity_quiz_button_answer_3, activity_quiz_button_answer_4)
@@ -103,29 +123,54 @@ class QuizActivity : AppCompatActivity() {
         setNextQuestion()
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        val sessionApi = SessionApi(this@QuizActivity)
+        if (!sessionApi.addParticipant(sessionID, CurrentUser.accountName, password)) {
+            // request failed
+            // show an error message and terminate the activity
+            alert {
+                title = getString(R.string.error)
+                message(sessionApi.state)
+                positiveButton(getString(R.string.ok)) { }
+            }.show()
+            this.finish()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        if (!SessionApi(this@QuizActivity).setScore(sessionID, CurrentUser.accountName, correctAnswers)) {
+            // request failed
+            // show an error message
+            alert {
+                title = getString(R.string.error)
+                message(getString(R.string.error_general))
+                positiveButton(getString(R.string.ok)) { }
+            }.show()
+        }
+    }
+
     /**
      * Shows the next question or finishs it.
      */
     private fun setNextQuestion() {
-        if (counter < questions.size) {
+        if (counter < questions!!.size) {
             // go on with the next question
-            val currentQuestion = questions[counter]
+            val currentQuestion = questions!![counter]
             // set all text for this question
             activity_quiz_question.text = currentQuestion.question
-            activity_quiz_button_answer_1.text = currentQuestion.answer1
-            activity_quiz_button_answer_2.text = currentQuestion.answer2
-            activity_quiz_button_answer_3.text = currentQuestion.answer3
-            activity_quiz_button_answer_4.text = currentQuestion.answer4
+            activity_quiz_button_answer_1.text = currentQuestion.answers[0]
+            activity_quiz_button_answer_2.text = currentQuestion.answers[1]
+            activity_quiz_button_answer_3.text = currentQuestion.answers[2]
+            activity_quiz_button_answer_4.text = currentQuestion.answers[3]
 
         } else {
             // quiz finished
-            // set score
-            if (SessionApi().setScore(Credentials.accountName, correctAnswers)) {
-                // start next activity
-                startDetailView()
-            } else {
-                // TODO: error handling in request
-            }
+            // start next activity
+            startDetailView()
         }
 
     }

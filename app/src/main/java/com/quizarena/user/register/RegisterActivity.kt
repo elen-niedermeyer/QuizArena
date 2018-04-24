@@ -1,4 +1,4 @@
-package com.quizarena.authorization.register
+package com.quizarena.user.register
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import com.quizarena.R
-import com.quizarena.authorization.CredentialPersistence
-import com.quizarena.authorization.login.LoginActivity
 import com.quizarena.menu.MainMenuActivity
+import com.quizarena.notifications.InstanceIdService
+import com.quizarena.user.CurrentUserPersistence
+import com.quizarena.user.UserApi
+import com.quizarena.user.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.alert
 
@@ -41,17 +43,17 @@ class RegisterActivity : AppCompatActivity() {
 
                 // extract input values
                 val accountName = activity_register_account_name.text.toString()
-                val displayName = activity_register_password1.text.toString()
-                val password = activity_register_display_name.text.toString()
+                val displayName = activity_register_display_name.text.toString()
+                val password = activity_register_password1.text.toString()
 
-                val api = RegisterApi()
+                val api = UserApi(this@RegisterActivity)
                 // register account in backend
-                val wasSuccessful = api.executeRegisterRequest(this@RegisterActivity, accountName, displayName, password)
+                val wasSuccessful = api.register(accountName, displayName, password, InstanceIdService().getToken())
 
                 if (wasSuccessful) {
                     // registering user was successful
                     // save credentials and start main menu
-                    CredentialPersistence(this@RegisterActivity).saveCredentials(accountName, password)
+                    CurrentUserPersistence(this@RegisterActivity).saveName(accountName)
                     startNextActivity()
 
                 } else {
@@ -67,18 +69,26 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         // change to login activity if the responding button is clicked
-        activity_register_button_login.setOnClickListener { startActivity(Intent(this@RegisterActivity, LoginActivity::class.java)) }
+        activity_register_button_login.setOnClickListener {
+            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+            this.finish()
+        }
     }
 
     /**
-     * Checks if the account name is not empty.
-     * If it's empty, displays a message.
+     * Checks if the account name is not empty or contains whitespaces.
+     * If there is, displays a message.
      *
      * @return true if the account name is correct, false otherwise
      */
     private fun validateAccountName(): Boolean {
-        if (activity_register_account_name.text.isEmpty()) {
-            activity_register_error_name.text = getString(R.string.register_error_no_name)
+        val name = activity_register_account_name.text
+        if (name.isEmpty()) {
+            activity_register_error_name.text = getString(R.string.error_no_name)
+
+            return false
+        } else if (name.contains(" ")) {
+            activity_register_error_name.text = getString(R.string.error_name_space)
 
             return false
         }
@@ -103,14 +113,14 @@ class RegisterActivity : AppCompatActivity() {
         when {
             password1.isEmpty() -> {
                 activity_register_error_password2.text = null
-                activity_register_error_password1.text = getString(R.string.register_error_no_password)
+                activity_register_error_password1.text = getString(R.string.error_no_password)
 
                 return false
             }
 
             password1 != password2 -> {
                 activity_register_error_password1.text = null
-                activity_register_error_password2.text = getString(R.string.register_error_passwords_different)
+                activity_register_error_password2.text = getString(R.string.error_passwords_different)
 
                 return false
             }
