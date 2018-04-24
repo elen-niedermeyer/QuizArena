@@ -1,6 +1,7 @@
 package com.quizarena.quiz
 
 import android.content.Context
+import com.quizarena.ApiErrors
 import com.quizarena.R
 import org.jetbrains.anko.doAsyncResult
 
@@ -45,7 +46,7 @@ class QuizApi(val context: Context) {
 
         } else {
             // session request failed
-            this.state = responseState
+            this.state = ApiErrors.getError(context, responseState)
             return null
         }
     }

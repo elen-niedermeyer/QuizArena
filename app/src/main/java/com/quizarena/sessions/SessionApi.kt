@@ -1,6 +1,7 @@
 package com.quizarena.sessions
 
 import android.content.Context
+import com.quizarena.ApiErrors
 import com.quizarena.R
 import com.quizarena.user.UserApi
 import org.jetbrains.anko.doAsyncResult
@@ -76,7 +77,7 @@ class SessionApi(val context: Context) {
 
         } else {
             // session request failed
-            this.state = responseState
+            this.state = ApiErrors.getError(context, responseState)
             return null
         }
     }
@@ -128,7 +129,7 @@ class SessionApi(val context: Context) {
 
         } else {
             // request failed
-            this.state = responseState
+            this.state = ApiErrors.getError(context, responseState)
             return null
         }
     }
@@ -164,7 +165,7 @@ class SessionApi(val context: Context) {
 
         } else {
             // request failed
-            this.state = responseState
+            this.state = ApiErrors.getError(context, responseState)
             return null
         }
 
@@ -199,7 +200,7 @@ class SessionApi(val context: Context) {
 
         } else {
             // session creation request failed
-            this.state = responseState
+            this.state = ApiErrors.getError(context, responseState)
             return null
         }
     }
@@ -232,7 +233,7 @@ class SessionApi(val context: Context) {
 
         } else {
             // update request failed
-            this.state = responseState
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
@@ -265,7 +266,7 @@ class SessionApi(val context: Context) {
 
         } else {
             // update request failed
-            this.state = responseState
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
@@ -296,7 +297,7 @@ class SessionApi(val context: Context) {
 
         } else {
             // update request failed
-            this.state = responseState
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
