@@ -92,6 +92,16 @@
     <!-- imprint -->
     <string name="imprint_text">Diese App ist ein Projekt von\nMiklas Boskamp,\nDavid Golla,\nMilan Höllner und\nElen Niedermeyer.\n\nSie ist entstanden im Rahmen der Vorlesung \"Mobile Anwendungen\" im 6. Semester an der Hochschule für Wirtschaft und Recht Berlin.\n\nFrontend: https://github.com/elen-niedermeyer/QuizArena\nBackend: https://github.com/Aersoftler/QuizArena-Backend</string>
 
+    <!-- sharing feature -->
+    <string name="sharing_scheme">http</string>
+    <string name="sharing_host">www.quizarena.com</string>
+    <string name="sharing_pathPrefix">/sessiondetail</string>
+    <string name="sharing_link">http://www.quizarena.com/sessiondetail/%1$s</string>
+    <string name="sharing_subject">Nimm an dieser Quizsession teil!</string>
+    <string name="sharing_text">Spiele mit mir diese Session bei QuizArena\n</string>
+    <string name="sharing_text_password">\nPasswort:%1$s</string>
+    <string name="sharing_chooser_title">Teilen über</string>
+
     <!-- intent extras -->
     <string name="intent_extra_session_clicked">clicked_session</string>
     <string name="intent_extra_session_id">session_id</string>

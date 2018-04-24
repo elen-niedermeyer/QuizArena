@@ -1,5 +1,6 @@
 package com.quizarena.sessions.detailView
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -9,13 +10,23 @@ import com.quizarena.user.CurrentUser
 import kotlinx.android.synthetic.main.activity_session_participant_detail.*
 import org.jetbrains.anko.alert
 
-// TODO: share feature
 class SessionParticipantDetailActivity : AppCompatActivity() {
 
     /**
      * Session which is displayed in this activity
      */
     private var currentSession: QuizSession? = null
+
+    private val onShareButtonClick = View.OnClickListener {
+        var text = getString(R.string.sharing_text)
+        text += getString(R.string.sharing_link, currentSession!!.id)
+
+        val sendIntent = Intent(Intent.ACTION_SEND)
+        sendIntent.type = "text/plain"
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.sharing_subject))
+        sendIntent.putExtra(Intent.EXTRA_TEXT, text)
+        startActivity(Intent.createChooser(sendIntent, getString(R.string.sharing_chooser_title)))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +56,9 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
             // set participants list
             activity_session_participant_detail_list.adapter = ParticipantsListAdapter(this, participants)
 
+            // set share button
+            activity_session_participant_detail_button_share.setOnClickListener(onShareButtonClick)
+
             if (currentSession!!.isOwner && currentSession!!.isPrivate) {
                 // the owner can terminate private sessions
                 // set the button for termination
@@ -53,7 +67,10 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
 
         } else {
             // the user is not participant of this session
-            // terminate the activity
+            // open the correct activity and terminate this one
+            intent = Intent(this@SessionParticipantDetailActivity, SessionDetailActivity::class.java)
+            intent.putExtra(getString(R.string.intent_extra_session_clicked), currentSession)
+            startActivity(intent)
             this.finish()
         }
 
