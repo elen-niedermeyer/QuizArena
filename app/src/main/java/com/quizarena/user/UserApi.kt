@@ -37,8 +37,31 @@ class UserApi(val context: Context) {
         } else {
             // user request was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return null
+        }
+    }
+
+    fun getDisplayName(accountName: String): String {
+        val response = doAsyncResult {
+            val response = khttp.get(
+                    url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_specific, accountName))
+            return@doAsyncResult response
+        }.get()
+
+        val statusCode = response.statusCode
+        val responseState = response.text
+
+        if (statusCode == 200) {
+            // user request was successful
+            val json = response.jsonObject
+            return json.getString(context.getString(R.string.api_user_displayName))
+
+        } else {
+            // user request was not successful
+            // parse error
+            this.state = ApiErrors.getError(context, responseState)
+            return accountName
         }
     }
 
@@ -67,7 +90,7 @@ class UserApi(val context: Context) {
         } else {
             // authentication was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
@@ -103,7 +126,7 @@ class UserApi(val context: Context) {
         } else {
             // register was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
@@ -136,7 +159,7 @@ class UserApi(val context: Context) {
         } else {
             // login was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
@@ -165,7 +188,7 @@ class UserApi(val context: Context) {
         } else {
             // logout was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
@@ -196,7 +219,7 @@ class UserApi(val context: Context) {
         } else {
             // changing was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
@@ -229,7 +252,7 @@ class UserApi(val context: Context) {
         } else {
             // changing was not successful
             // parse error
-            this.state = ApiErrors.getUserError(context, responseState)
+            this.state = ApiErrors.getError(context, responseState)
             return false
         }
     }
