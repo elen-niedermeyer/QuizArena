@@ -42,7 +42,6 @@ class SessionDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_session_detail)
 
         // get session
-        //TODO: testing, what if the user is not logged in?
         if (intent.action == Intent.ACTION_VIEW) {
             // activity was started by clicking a sharing link
 

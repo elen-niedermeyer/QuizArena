@@ -10,7 +10,6 @@ import com.quizarena.user.CurrentUser
 import kotlinx.android.synthetic.main.activity_session_participant_detail.*
 import org.jetbrains.anko.alert
 
-// TODO: share feature
 class SessionParticipantDetailActivity : AppCompatActivity() {
 
     /**
