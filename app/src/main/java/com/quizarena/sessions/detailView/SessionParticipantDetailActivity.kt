@@ -21,7 +21,7 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
     private val onShareButtonClick = object : View.OnClickListener {
         override fun onClick(view: View?) {
             var text = getString(R.string.sharing_text)
-            text = text + getString(R.string.sharing_link, currentSession!!.id.toString())
+            text += getString(R.string.sharing_link, currentSession!!.id)
 
             val sendIntent = Intent(Intent.ACTION_SEND)
             sendIntent.type = "text/plain"
