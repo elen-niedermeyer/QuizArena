@@ -8,6 +8,7 @@ import com.quizarena.imprint.ImprintActivity
 import com.quizarena.options.OptionsActivity
 import com.quizarena.sessions.creation.CreateSessionActivity
 import com.quizarena.sessions.overview.SessionOverviewActivity
+import com.quizarena.user.CurrentUser
 import com.quizarena.user.credentials.CredentialsUpdater
 import com.quizarena.user.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_main_menu.*
@@ -37,6 +38,9 @@ class MainMenuActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             this.finish()
         }
+
+        activity_main_menu_displayname.text = CurrentUser.displayName
+        activity_main_menu_globalscore.text = CurrentUser.globalScore.toString()
     }
 
 }

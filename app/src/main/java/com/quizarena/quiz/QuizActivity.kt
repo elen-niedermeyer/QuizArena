@@ -11,6 +11,7 @@ import com.quizarena.R
 import com.quizarena.sessions.SessionApi
 import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
 import com.quizarena.user.CurrentUser
+import com.quizarena.user.credentials.CredentialsUpdater
 import kotlinx.android.synthetic.main.activity_quiz.*
 import org.jetbrains.anko.alert
 
@@ -142,7 +143,7 @@ class QuizActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
 
-        if (!SessionApi(this@QuizActivity).setScore(sessionID, CurrentUser.accountName, correctAnswers)) {
+        if (!CredentialsUpdater(this@QuizActivity).updateScore(sessionID, correctAnswers)) {
             // request failed
             // show an error message
             alert {
