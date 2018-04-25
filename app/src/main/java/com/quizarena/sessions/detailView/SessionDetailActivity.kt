@@ -7,9 +7,8 @@ import android.view.View
 import com.quizarena.R
 import com.quizarena.quiz.QuizActivity
 import com.quizarena.sessions.QuizSession
-import com.quizarena.sessions.SessionApi
 import com.quizarena.sessions.SessionUtils
-import com.quizarena.user.CurrentUser
+import com.quizarena.sharing.SessionSharing
 import com.quizarena.user.credentials.CredentialsUpdater
 import com.quizarena.user.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_session_detail.*
@@ -53,10 +52,7 @@ class SessionDetailActivity : AppCompatActivity() {
                 this.finish()
             }
 
-            // get session by id
-            val uri = intent.data
-            val sessionID = uri.lastPathSegment
-            currentSession = SessionApi(this@SessionDetailActivity).getSession(sessionID, CurrentUser.accountName)
+            currentSession = SessionSharing().getSessionFromLink(this@SessionDetailActivity, intent.data)
 
         } else {
             // activity was started in the app
