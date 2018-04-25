@@ -4,7 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.util.*
 
-// TODO: look if the time is correct in my time zone
 data class QuizSession(val id: String, val name: String, val category: String, val enddate: Date, val isOwner: Boolean, val isParticipant: Boolean, val isPrivate: Boolean) : Parcelable {
 
     constructor(source: Parcel) : this(

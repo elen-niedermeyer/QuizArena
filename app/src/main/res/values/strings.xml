@@ -44,6 +44,7 @@
     <string name="api_user_displayName">display_name</string>
     <string name="api_user_totalScore">total_score</string>
     <!-- api errors -->
+    <string name="error_network">Keine Internetverbindung.\nBitte versuche es später erneut.</string>
     <string name="error_general">Es ist ein Fehler aufgetreten\n</string>
     <string name="api_error_username_duplicated">Nutzername existiert schon</string>
     <string name="api_error_password_empty">Passwort darf nicht leer sein</string>

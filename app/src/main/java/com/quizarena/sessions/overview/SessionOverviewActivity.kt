@@ -14,6 +14,7 @@ import com.quizarena.sessions.SessionProvider
 import com.quizarena.sessions.detailView.SessionDetailActivity
 import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
 import kotlinx.android.synthetic.main.activity_session_overview.*
+import org.jetbrains.anko.alert
 import java.util.*
 
 class SessionOverviewActivity : AppCompatActivity() {
@@ -101,7 +102,20 @@ class SessionOverviewActivity : AppCompatActivity() {
 
         // get the sessions list
         val provider = SessionProvider(this@SessionOverviewActivity)
-        sessions = provider.getAllSessionSorted()
+        val sessionsResult = provider.getAllSessionSorted()
+        if (sessionsResult != null) {
+            sessions = sessionsResult
+        } else {
+            // show an error message
+            alert {
+                title = getString(R.string.error)
+                message(getString(R.string.error_general))
+                positiveButton(getString(R.string.ok)) { }
+            }.show()
+
+            sessions = listOf()
+        }
+
         // initialize content
         updateSessionsList("")
 
