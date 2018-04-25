@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.quizarena.R
 import com.quizarena.sessions.*
+import com.quizarena.sharing.SessionSharing
 import com.quizarena.user.CurrentUser
 import kotlinx.android.synthetic.main.activity_session_participant_detail.*
 import org.jetbrains.anko.alert
@@ -18,14 +19,7 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
     private var currentSession: QuizSession? = null
 
     private val onShareButtonClick = View.OnClickListener {
-        var text = getString(R.string.sharing_text)
-        text += getString(R.string.sharing_link, currentSession!!.id)
-
-        val sendIntent = Intent(Intent.ACTION_SEND)
-        sendIntent.type = "text/plain"
-        sendIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.sharing_subject))
-        sendIntent.putExtra(Intent.EXTRA_TEXT, text)
-        startActivity(Intent.createChooser(sendIntent, getString(R.string.sharing_chooser_title)))
+        SessionSharing().shareLink(this@SessionParticipantDetailActivity, currentSession!!.id)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
