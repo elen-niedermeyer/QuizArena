@@ -8,9 +8,6 @@ import com.quizarena.R
 import com.quizarena.quiz.QuizActivity
 import com.quizarena.sessions.QuizSession
 import com.quizarena.sessions.SessionUtils
-import com.quizarena.sharing.SessionSharing
-import com.quizarena.user.credentials.CredentialsUpdater
-import com.quizarena.user.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_session_detail.*
 
 class SessionDetailActivity : AppCompatActivity() {
@@ -40,24 +37,7 @@ class SessionDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_session_detail)
 
-        // get session
-        if (intent.action == Intent.ACTION_VIEW) {
-            // activity was started by clicking a sharing link
-
-            // authenticate user
-            val isAuthenticated = CredentialsUpdater(this).authenticate()
-            if (!isAuthenticated) {
-                // user couldn't be authenticated
-                startActivity(Intent(this, LoginActivity::class.java))
-                this.finish()
-            }
-
-            currentSession = SessionSharing().getSessionFromLink(this@SessionDetailActivity, intent.data)
-
-        } else {
-            // activity was started in the app
-            currentSession = intent.getParcelableExtra<QuizSession>(getString(R.string.intent_extra_session_clicked))
-        }
+        currentSession = intent.getParcelableExtra<QuizSession>(getString(R.string.intent_extra_session_clicked))
 
         if (!(currentSession!!.isParticipant)) {
             // the user isn't participant of the session
