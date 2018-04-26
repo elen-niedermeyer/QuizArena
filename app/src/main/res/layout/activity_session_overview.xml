@@ -27,6 +27,7 @@
         android:id="@+id/activity_session_overview_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingBottom="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
