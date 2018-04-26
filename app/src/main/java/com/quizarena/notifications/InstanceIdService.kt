@@ -10,7 +10,6 @@ class InstanceIdService : FirebaseInstanceIdService(){
 
     override fun onTokenRefresh() {
         Log.d(TAG, "Refreshed token: " + getToken())
-        //TODO: send new token to database
     }
 
     fun getToken():String?{
