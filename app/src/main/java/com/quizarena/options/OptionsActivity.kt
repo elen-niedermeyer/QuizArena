@@ -46,7 +46,7 @@ class OptionsActivity : AppCompatActivity() {
         val input = viewInflated.findViewById(R.id.input) as EditText
         builder.setView(viewInflated)
 
-        builder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, which ->
+        builder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, _ ->
             dialog.dismiss()
 
             // get input
@@ -63,7 +63,7 @@ class OptionsActivity : AppCompatActivity() {
             }
         })
 
-        builder.setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        builder.setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialog, _ -> dialog.cancel() })
 
         // show dialog
         builder.show()
@@ -84,7 +84,7 @@ class OptionsActivity : AppCompatActivity() {
         val passwordNew2 = viewInflated.findViewById(R.id.input_password_new2) as EditText
         builder.setView(viewInflated)
 
-        builder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, which ->
+        builder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, _ ->
             dialog.dismiss()
 
             // get input
@@ -113,7 +113,7 @@ class OptionsActivity : AppCompatActivity() {
 
         })
 
-        builder.setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        builder.setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialog, _ -> dialog.cancel() })
 
         // show dialog
         builder.show()
