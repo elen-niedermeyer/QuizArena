@@ -59,7 +59,7 @@
     <string name="duration">Dauer</string>
     <string name="hours">Stunden</string>
     <string name="search_hint">Suche nach Name oder Kategorie</string>
-    <string name="left_time">%1$02dh %2$02dmin</string>
+    <string name="time_left">%1$02dh %2$02dmin</string>
     <string name="terminated">Beendet</string>
     <string name="start_session">Quiz beginnen</string>
     <string name="my_score">Mein Ergebnis:</string>
