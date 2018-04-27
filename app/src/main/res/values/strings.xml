@@ -27,6 +27,7 @@
     <string name="endpoint_session_update_score">/session/%1$s?update=set-score</string>
     <string name="endpoint_session_terminate">/session/%1$s?update=close</string>
     <string name="endpoint_sessions_creation">/session/%1$s</string>
+    <string name="endpoint_sessions_result_participants">/session/result/%1$s</string>
     <!-- user requests -->
     <string name="endpoint_users_all">/user</string>
     <string name="endpoint_user_specific">/user/%1$s</string>
