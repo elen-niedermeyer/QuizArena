@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import com.quizarena.R
 import com.quizarena.imprint.ImprintActivity
 import com.quizarena.options.OptionsActivity
+import com.quizarena.sessions.QuizSession
 import com.quizarena.sessions.creation.CreateSessionActivity
 import com.quizarena.sessions.detailView.SessionDetailActivity
 import com.quizarena.sessions.overview.SessionOverviewActivity
@@ -46,19 +47,31 @@ class MainMenuActivity : AppCompatActivity() {
             // the activity was opened by a sharing link
             // go to the needed activity
             val session = SessionSharing().getSessionFromLink(this, intent.data)
-            val detailViewIntent = Intent(this@MainMenuActivity, SessionDetailActivity::class.java)
-            detailViewIntent.putExtra(getString(R.string.intent_extra_session_clicked), session)
-            startActivity(detailViewIntent)
-
-            // override the intent action for going back in the other activity
-            this.intent.action = Intent.ACTION_MAIN
+            startSessionDetailActivity(session)
 
         } else {
-            // activity was started manually, not by a link
+            val sessionID = intent.getStringExtra("session")
+            if(sessionID != null){
+                // the activity was opened by a push notification
+                // go to the needed activity
+                val session = SessionSharing().getSessionFromID(this, sessionID)
+                startSessionDetailActivity(session)
+            }
+
+            // activity was started manually, not by a link or notification
             // initialize content views
             activity_main_menu_displayname.text = CurrentUser.displayName
             activity_main_menu_globalscore.text = CurrentUser.globalScore.toString()
         }
+    }
+
+    fun startSessionDetailActivity(session: QuizSession?){
+        val detailViewIntent = Intent(this@MainMenuActivity, SessionDetailActivity::class.java)
+        detailViewIntent.putExtra(getString(R.string.intent_extra_session_clicked), session)
+        startActivity(detailViewIntent)
+
+        // override the intent action for going back in the other activity
+        this.intent.action = Intent.ACTION_MAIN
     }
 
 
