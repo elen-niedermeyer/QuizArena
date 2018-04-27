@@ -4,13 +4,13 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.util.*
 
-data class QuizSession(val id: String, val name: String, val category: String, val enddate: Date, val isOwner: Boolean, val isParticipant: Boolean, val isPrivate: Boolean) : Parcelable {
+data class QuizSession(val id: String, val name: String, val category: String, val enddate: Long, val isOwner: Boolean, val isParticipant: Boolean, val isPrivate: Boolean) : Parcelable {
 
     constructor(source: Parcel) : this(
             source.readString(),
             source.readString(),
             source.readString(),
-            source.readSerializable() as Date,
+            source.readLong(),
             1 == source.readInt(),
             1 == source.readInt(),
             1 == source.readInt()
@@ -22,7 +22,7 @@ data class QuizSession(val id: String, val name: String, val category: String, v
         writeString(id)
         writeString(name)
         writeString(category)
-        writeSerializable(enddate)
+        writeLong(enddate)
         writeInt((if (isOwner) 1 else 0))
         writeInt((if (isParticipant) 1 else 0))
         writeInt((if (isPrivate) 1 else 0))

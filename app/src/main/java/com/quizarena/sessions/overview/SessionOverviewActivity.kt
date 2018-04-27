@@ -131,10 +131,13 @@ class SessionOverviewActivity : AppCompatActivity() {
      * @param query the query for filtering the sessions
      */
     private fun updateSessionsList(query: String) {
-        val regex = Regex(".*" + query + ".*")
+        val adjustedQuery = query.toLowerCase().trim()
+        val regex = Regex(".*" + adjustedQuery + ".*")
         displayedSessions = ArrayList<QuizSession>(sessions)
         listAdapter.clear()
-        listAdapter.addAll(displayedSessions.filter { it.name.matches(regex) || it.category.matches(regex) })
+        listAdapter.addAll(displayedSessions.filter {
+            it.name.toLowerCase().trim().matches(regex) || it.category.toLowerCase().trim().matches(regex)
+        })
     }
 
 }

@@ -53,7 +53,7 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
             // set share button
             activity_session_participant_detail_button_share.setOnClickListener(onShareButtonClick)
 
-            if (currentSession!!.isOwner && currentSession!!.isPrivate) {
+            if (currentSession!!.isOwner) {
                 // the owner can terminate private sessions
                 // set the button for termination
                 initializeTerminateButton()

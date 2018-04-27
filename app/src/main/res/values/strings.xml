@@ -27,6 +27,7 @@
     <string name="endpoint_session_update_score">/session/%1$s?update=set-score</string>
     <string name="endpoint_session_terminate">/session/%1$s?update=close</string>
     <string name="endpoint_sessions_creation">/session/%1$s</string>
+    <string name="endpoint_sessions_result_participants">/session/result/%1$s</string>
     <!-- user requests -->
     <string name="endpoint_users_all">/user</string>
     <string name="endpoint_user_specific">/user/%1$s</string>
@@ -44,7 +45,7 @@
     <string name="api_user_displayName">display_name</string>
     <string name="api_user_totalScore">total_score</string>
     <!-- api errors -->
-    <string name="error_network">Keine Internetverbindung.\nBitte versuche es später erneut.</string>
+    <string name="error_network">Keine Verbindung zum Server.\nBitte versuche es später erneut.</string>
     <string name="error_general">Es ist ein Fehler aufgetreten\n</string>
     <string name="api_error_username_duplicated">Nutzername existiert schon</string>
     <string name="api_error_password_empty">Passwort darf nicht leer sein</string>
@@ -59,7 +60,7 @@
     <string name="duration">Dauer</string>
     <string name="hours">Stunden</string>
     <string name="search_hint">Suche nach Name oder Kategorie</string>
-    <string name="left_time">%1$02dh %2$02dmin</string>
+    <string name="time_left">%1$02dh %2$02dmin</string>
     <string name="terminated">Beendet</string>
     <string name="start_session">Quiz beginnen</string>
     <string name="my_score">Mein Ergebnis:</string>

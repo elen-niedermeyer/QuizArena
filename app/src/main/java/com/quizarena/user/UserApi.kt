@@ -133,7 +133,6 @@ class UserApi(val context: Context) {
         }
     }
 
-    // TODO: rules for passwords?
     /**
      * Makes a request to register the user with the given attributes.
      * Sets the {@link #state} if there's a failure.

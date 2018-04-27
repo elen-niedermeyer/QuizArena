@@ -162,6 +162,7 @@ class QuizActivity : AppCompatActivity() {
             // go on with the next question
             val currentQuestion = questions!![counter]
             // set all text for this question
+            activity_quiz_number.text = (counter + 1).toString() + "/" + questions!!.size
             activity_quiz_question.text = currentQuestion.question
             activity_quiz_button_answer_1.text = currentQuestion.answers[0]
             activity_quiz_button_answer_2.text = currentQuestion.answers[1]

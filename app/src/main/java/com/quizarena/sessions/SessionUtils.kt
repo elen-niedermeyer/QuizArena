@@ -14,7 +14,7 @@ class SessionUtils {
          * @return true, if the session is active, false otherwise
          */
         fun isSessionActive(session: QuizSession): Boolean {
-            return session.enddate.time > System.currentTimeMillis()
+            return session.enddate > System.currentTimeMillis()
         }
 
         /**
@@ -26,8 +26,8 @@ class SessionUtils {
          */
         fun getDurationString(context: Context, session: QuizSession): String {
             if (isSessionActive(session)) {
-                val durationInSeconds = (session.enddate.time - System.currentTimeMillis()) / 1000
-                return context.getString(R.string.left_time, durationInSeconds / 3600, (durationInSeconds % 3600) / 60)
+                val durationInSeconds = (session.enddate - System.currentTimeMillis()) / 1000
+                return context.getString(R.string.time_left, durationInSeconds / 3600, (durationInSeconds % 3600) / 60)
             } else {
                 return context.getString(R.string.terminated)
             }

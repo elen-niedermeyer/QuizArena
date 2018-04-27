@@ -103,7 +103,7 @@ class SessionProvider(val context: Context) {
     fun getOpenSessionsSorted(): List<QuizSession>? {
         val sessions = getOpenSessions()
         if (sessions != null) {
-            return sessions.filter { it.enddate.time > System.currentTimeMillis() }.sortedWith(compareBy { it.enddate })
+            return sessions.filter { it.enddate > System.currentTimeMillis() }.sortedWith(compareBy { it.enddate })
         } else {
             return null
         }
@@ -134,7 +134,7 @@ class SessionProvider(val context: Context) {
     fun getPrivateSessionsSorted(): List<QuizSession>? {
         val sessions = getPrivateSessions()
         if (sessions != null) {
-            return sessions.filter { it.enddate.time > System.currentTimeMillis() }.sortedWith(compareBy { it.enddate })
+            return sessions.filter { it.enddate > System.currentTimeMillis() }.sortedWith(compareBy { it.enddate })
         } else {
             return null
         }
