@@ -3,7 +3,6 @@ package com.quizarena.sessions
 import android.content.Context
 import com.quizarena.ApiErrors
 import com.quizarena.R
-import com.quizarena.user.UserApi
 import org.jetbrains.anko.doAsyncResult
 import java.net.UnknownHostException
 import java.util.*
@@ -156,7 +155,7 @@ class SessionApi(val context: Context) {
     }
 
     /**
-     * Requests the given session and extracts the participants
+     * Requests the result of the given session and extracts the participants.
      *
      * @return a list of {@link Participant}
      */
@@ -164,7 +163,7 @@ class SessionApi(val context: Context) {
         try {
             val response = doAsyncResult {
                 return@doAsyncResult khttp.get(
-                        url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_session_specific, sessionID))
+                        url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_sessions_result_participants, sessionID))
             }.get()
 
             val statusCode = response.statusCode
@@ -175,13 +174,11 @@ class SessionApi(val context: Context) {
                 // make list of participants
                 val participants = ArrayList<Participant>()
                 val json = response.jsonArray
-                val jsonObject = json.getJSONObject(0)
-                val participantsJson = jsonObject.getJSONArray("users")
-                val userApi = UserApi(context)
-                for (i in 0..participantsJson.length() - 1) {
-                    val participantJson = participantsJson.getJSONObject(i)
-                    val username = participantJson.getString("user")
-                    participants.add(Participant(username, userApi.getDisplayName(username), participantJson.getInt("score")))
+                for (i in 0..json.length() - 1) {
+                    val participantJson = json.getJSONObject(i)
+                    participants.add(Participant(participantJson.getString("user"),
+                            participantJson.getString("display_name"),
+                            participantJson.getInt("score")))
                 }
                 return participants
 
