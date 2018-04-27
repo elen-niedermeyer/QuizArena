@@ -39,9 +39,9 @@ class SessionApi(val context: Context) {
                 for (i in 0..participatedSessions.length() - 1) {
                     val sessionJson = participatedSessions.getJSONObject(i)
                     // get end date
-                    var endDate = Date(System.currentTimeMillis() - 1)
+                    var endDate = System.currentTimeMillis() - 1
                     if (!sessionJson.getBoolean("closed")) {
-                        endDate = Date(sessionJson.getString("deadline").toLong())
+                        endDate = sessionJson.getString("deadline").toLong()
                     }
                     // add session
                     sessions.add(QuizSession(
@@ -59,9 +59,9 @@ class SessionApi(val context: Context) {
                 for (i in 0..openSessions.length() - 1) {
                     val sessionJson = openSessions.getJSONObject(i)
                     // get end date
-                    var endDate = Date(System.currentTimeMillis() - 1)
+                    var endDate = System.currentTimeMillis() - 1
                     if (!sessionJson.getBoolean("closed")) {
-                        endDate = Date(sessionJson.getString("deadline").toLong())
+                        endDate = sessionJson.getString("deadline").toLong()
                     }
                     // add session
                     sessions.add(QuizSession(
@@ -124,9 +124,9 @@ class SessionApi(val context: Context) {
                     }
                 }
                 // get end date
-                var endDate = Date(System.currentTimeMillis() - 1)
+                var endDate = System.currentTimeMillis() - 1
                 if (!jsonObject.getBoolean("closed")) {
-                    endDate = Date(jsonObject.getString("deadline").toLong())
+                    endDate = jsonObject.getString("deadline").toLong()
                 }
 
                 return QuizSession(
