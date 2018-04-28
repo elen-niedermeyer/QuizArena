@@ -32,9 +32,9 @@ class UserApi(val context: Context) {
             if (statusCode == 200) {
                 // user request was successful
                 val json = response.jsonObject
-                return User(json.getString(context.getString(R.string.api_user_accountName)),
-                        json.getString(context.getString(R.string.api_user_displayName)),
-                        json.getInt(context.getString(R.string.api_user_totalScore)))
+                return User(json.getString(context.getString(R.string.api_param_accountID)),
+                        json.getString(context.getString(R.string.api_param_displayName)),
+                        json.getInt(context.getString(R.string.api_param_totalScore)))
 
             } else {
                 // user request was not successful
@@ -74,7 +74,7 @@ class UserApi(val context: Context) {
             if (statusCode == 200) {
                 // user request was successful
                 val json = response.jsonObject
-                return json.getString(context.getString(R.string.api_user_displayName))
+                return json.getString(context.getString(R.string.api_param_displayName))
 
             } else {
                 // user request was not successful
@@ -148,9 +148,9 @@ class UserApi(val context: Context) {
             val response = doAsyncResult {
                 val response = khttp.post(
                         url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_specific, accountName),
-                        data = mapOf(context.getString(R.string.endpoint_user_data_display_name) to displayName,
-                                context.getString(R.string.endpoint_user_data_password) to password,
-                                context.getString(R.string.endpoint_user_data_token) to token))
+                        data = mapOf(context.getString(R.string.api_param_displayName) to displayName,
+                                context.getString(R.string.api_param_password) to password,
+                                context.getString(R.string.api_param_token) to token))
                 return@doAsyncResult response
             }.get()
 
@@ -192,8 +192,8 @@ class UserApi(val context: Context) {
             val response = doAsyncResult {
                 val response = khttp.patch(
                         url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_login, accountName),
-                        data = mapOf(context.getString(R.string.endpoint_user_data_password) to password,
-                                context.getString(R.string.endpoint_user_data_token) to token))
+                        data = mapOf(context.getString(R.string.api_param_password) to password,
+                                context.getString(R.string.api_param_token) to token))
                 return@doAsyncResult response
             }.get()
 
@@ -273,7 +273,7 @@ class UserApi(val context: Context) {
             val response = doAsyncResult {
                 val response = khttp.patch(
                         url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_change_displayname, accountName),
-                        data = mapOf(context.getString(R.string.endpoint_user_data_display_name) to newDisplayName))
+                        data = mapOf(context.getString(R.string.api_param_displayName) to newDisplayName))
                 return@doAsyncResult response
             }.get()
 
@@ -315,8 +315,8 @@ class UserApi(val context: Context) {
             val response = doAsyncResult {
                 val response = khttp.patch(
                         url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_user_change_password, accountName),
-                        data = mapOf(context.getString(R.string.endpoint_user_data_password_old) to oldPassword,
-                                context.getString(R.string.endpoint_user_data_password_new) to newPassword))
+                        data = mapOf(context.getString(R.string.api_param_password_old) to oldPassword,
+                                context.getString(R.string.api_param_password_new) to newPassword))
                 return@doAsyncResult response
             }.get()
 

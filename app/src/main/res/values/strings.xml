@@ -36,14 +36,32 @@
     <string name="endpoint_user_logout">/user/%1$s/logout</string>
     <string name="endpoint_user_change_displayname">/user/%1$s?update=display_name</string>
     <string name="endpoint_user_change_password">/user/%1$s?update=password</string>
-    <string name="endpoint_user_data_password">password</string>
-    <string name="endpoint_user_data_password_old">old_password</string>
-    <string name="endpoint_user_data_password_new">new_password</string>
-    <string name="endpoint_user_data_display_name">display_name</string>
-    <string name="endpoint_user_data_token">token</string>
-    <string name="api_user_accountName">id</string>
-    <string name="api_user_displayName">display_name</string>
-    <string name="api_user_totalScore">total_score</string>
+    <!-- api params -->
+    <string name="api_param_accountID">id</string>
+    <string name="api_param_accountName">user</string>
+    <string name="api_param_displayName">display_name</string>
+    <string name="api_param_totalScore">total_score</string>
+    <string name="api_param_password">password</string>
+    <string name="api_param_password_old">old_password</string>
+    <string name="api_param_password_new">new_password</string>
+    <string name="api_param_token">token</string>
+    <string name="api_param_questions">questions</string>
+    <string name="api_param_question_single">question</string>
+    <string name="api_param_answers">answers</string>
+    <string name="api_param_answer_correct">right_answer</string>
+    <string name="api_param_answers_wrong">wrong_answers</string>
+    <string name="api_param_session_id">_id</string>
+    <string name="api_param_session_name">name</string>
+    <string name="api_param_session_category">category</string>
+    <string name="api_param_session_private">private</string>
+    <string name="api_param_session_admin">admin</string>
+    <string name="api_param_session_participants">users</string>
+    <string name="api_param_session_score">score</string>
+    <string name="api_param_session_duration">run-time</string>
+    <string name="api_param_session_end">deadline</string>
+    <string name="api_param_session_closed">closed</string>
+    <string name="api_param_sessions_participated">sessions_i_participate</string>
+    <string name="api_param_sessions_open">sessions_to_participate</string>
     <!-- api errors -->
     <string name="error_network">Keine Verbindung zum Server.\nBitte versuche es später erneut.</string>
     <string name="error_general">Es ist ein Fehler aufgetreten\n</string>

@@ -34,43 +34,43 @@ class SessionApi(val context: Context) {
                 // make list of session objects
                 val sessions = LinkedList<QuizSession>()
                 val json = response.jsonObject
-                val participatedSessions = json.getJSONArray("sessions_i_participate")
+                val participatedSessions = json.getJSONArray(context.getString(R.string.api_param_sessions_participated))
                 for (i in 0..participatedSessions.length() - 1) {
                     val sessionJson = participatedSessions.getJSONObject(i)
                     // get end date
                     var endDate = System.currentTimeMillis() - 1
-                    if (!sessionJson.getBoolean("closed")) {
-                        endDate = sessionJson.getString("deadline").toLong()
+                    if (!sessionJson.getBoolean(context.getString(R.string.api_param_session_closed))) {
+                        endDate = sessionJson.getString(context.getString(R.string.api_param_session_end)).toLong()
                     }
                     // add session
                     sessions.add(QuizSession(
-                            sessionJson.getString("_id"),
-                            sessionJson.getString("name"),
-                            sessionJson.getString("category"),
+                            sessionJson.getString(context.getString(R.string.api_param_session_id)),
+                            sessionJson.getString(context.getString(R.string.api_param_session_name)),
+                            sessionJson.getString(context.getString(R.string.api_param_session_category)),
                             endDate,
-                            sessionJson.getString("admin") == accountName,
+                            sessionJson.getString(context.getString(R.string.api_param_session_admin)) == accountName,
                             true,
-                            sessionJson.getBoolean("private")
+                            sessionJson.getBoolean(context.getString(R.string.api_param_session_private))
                     ))
                 }
 
-                val openSessions = json.getJSONArray("sessions_to_participate")
+                val openSessions = json.getJSONArray(context.getString(R.string.api_param_sessions_open))
                 for (i in 0..openSessions.length() - 1) {
                     val sessionJson = openSessions.getJSONObject(i)
                     // get end date
                     var endDate = System.currentTimeMillis() - 1
-                    if (!sessionJson.getBoolean("closed")) {
-                        endDate = sessionJson.getString("deadline").toLong()
+                    if (!sessionJson.getBoolean(context.getString(R.string.api_param_session_closed))) {
+                        endDate = sessionJson.getString(context.getString(R.string.api_param_session_end)).toLong()
                     }
                     // add session
                     sessions.add(QuizSession(
-                            sessionJson.getString("_id"),
-                            sessionJson.getString("name"),
-                            sessionJson.getString("category"),
+                            sessionJson.getString(context.getString(R.string.api_param_session_id)),
+                            sessionJson.getString(context.getString(R.string.api_param_session_name)),
+                            sessionJson.getString(context.getString(R.string.api_param_session_category)),
                             endDate,
                             false,
                             false,
-                            sessionJson.getBoolean("private")
+                            sessionJson.getBoolean(context.getString(R.string.api_param_session_private))
                     ))
                 }
 
@@ -114,28 +114,28 @@ class SessionApi(val context: Context) {
                 val jsonObject = json.getJSONObject(0)
                 // look if user participates
                 var isParticipant = false
-                val participantsJson = jsonObject.getJSONArray("users")
+                val participantsJson = jsonObject.getJSONArray(context.getString(R.string.api_param_session_participants))
                 for (i in 0..participantsJson.length() - 1) {
                     val participantJson = participantsJson.getJSONObject(i)
-                    if (participantJson.getString("user") == accountName) {
+                    if (participantJson.getString(context.getString(R.string.api_param_accountName)) == accountName) {
                         isParticipant = true
                         break
                     }
                 }
                 // get end date
                 var endDate = System.currentTimeMillis() - 1
-                if (!jsonObject.getBoolean("closed")) {
-                    endDate = jsonObject.getString("deadline").toLong()
+                if (!jsonObject.getBoolean(context.getString(R.string.api_param_session_closed))) {
+                    endDate = jsonObject.getString(context.getString(R.string.api_param_session_end)).toLong()
                 }
 
                 return QuizSession(
-                        jsonObject.getString("_id"),
-                        jsonObject.getString("name"),
-                        jsonObject.getString("category"),
+                        jsonObject.getString(context.getString(R.string.api_param_session_id)),
+                        jsonObject.getString(context.getString(R.string.api_param_session_name)),
+                        jsonObject.getString(context.getString(R.string.api_param_session_category)),
                         endDate,
-                        jsonObject.getString("admin") == accountName,
+                        jsonObject.getString(context.getString(R.string.api_param_session_admin)) == accountName,
                         isParticipant,
-                        jsonObject.getBoolean("private")
+                        jsonObject.getBoolean(context.getString(R.string.api_param_session_private))
                 )
 
             } else {
@@ -177,7 +177,7 @@ class SessionApi(val context: Context) {
                 for (i in 0..json.length() - 1) {
                     val participantJson = json.getJSONObject(i)
                     participants.add(Participant(participantJson.getString("user"),
-                            participantJson.getString("display_name"),
+                            participantJson.getString(context.getString(R.string.api_param_displayName)),
                             participantJson.getInt("score")))
                 }
                 return participants
@@ -209,11 +209,11 @@ class SessionApi(val context: Context) {
                 return@doAsyncResult khttp.post(
                         url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_sessions_creation, sessionName),
                         data = mapOf(
-                                "category" to category,
-                                "run-time" to duration,
-                                "private" to isPrivate,
-                                "password" to password,
-                                "user" to accountName
+                                context.getString(R.string.api_param_session_category) to category,
+                                context.getString(R.string.api_param_session_duration) to duration,
+                                context.getString(R.string.api_param_session_private) to isPrivate,
+                                context.getString(R.string.api_param_password) to password,
+                                context.getString(R.string.api_param_accountName) to accountName
                         )
                 )
             }.get()
@@ -256,8 +256,8 @@ class SessionApi(val context: Context) {
                 return@doAsyncResult khttp.patch(
                         url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_session_add_user, sessionID),
                         data = mapOf(
-                                "user" to accountName,
-                                "password" to password
+                                context.getString(R.string.api_param_accountName) to accountName,
+                                context.getString(R.string.api_param_password) to password
                         )
                 )
             }.get()
@@ -299,8 +299,8 @@ class SessionApi(val context: Context) {
                 return@doAsyncResult khttp.patch(
                         url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_session_update_score, sessionID),
                         data = mapOf(
-                                "user" to accountName,
-                                "score" to score
+                                context.getString(R.string.api_param_accountName) to accountName,
+                                context.getString(R.string.api_param_session_score) to score
                         )
                 )
             }.get()
@@ -341,7 +341,7 @@ class SessionApi(val context: Context) {
                 return@doAsyncResult khttp.patch(
                         url = context.getString(R.string.baseurl) + context.getString(R.string.endpoint_session_terminate, sessionID),
                         data = mapOf(
-                                "user" to accountName
+                                context.getString(R.string.api_param_accountName) to accountName
                         )
                 )
             }.get()
