@@ -2,7 +2,6 @@ package com.quizarena.sessions
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.util.*
 
 data class QuizSession(val id: String, val name: String, val category: String, val enddate: Long, val isOwner: Boolean, val isParticipant: Boolean, val isPrivate: Boolean) : Parcelable {
 

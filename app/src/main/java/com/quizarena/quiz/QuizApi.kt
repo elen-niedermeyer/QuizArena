@@ -32,13 +32,13 @@ class QuizApi(val context: Context) {
                 val questionsObjects = ArrayList<Question>(10)
                 val json = response.jsonArray
                 val sessionJson = json.getJSONObject(0)
-                val questionsJson = sessionJson.getJSONArray("questions")
+                val questionsJson = sessionJson.getJSONArray(context.getString(R.string.api_param_questions))
                 for (i in 0..questionsJson.length() - 1) {
                     val questionJson = questionsJson.getJSONObject(i)
-                    val question = questionJson.getString("question")
-                    val answersJson = questionJson.getJSONObject("answers")
-                    val correctAnswer = answersJson.getString("right_answer")
-                    val wrongAnswers = answersJson.getJSONArray("wrong_answers")
+                    val question = questionJson.getString(context.getString(R.string.api_param_question_single))
+                    val answersJson = questionJson.getJSONObject(context.getString(R.string.api_param_answers))
+                    val correctAnswer = answersJson.getString(context.getString(R.string.api_param_answer_correct))
+                    val wrongAnswers = answersJson.getJSONArray(context.getString(R.string.api_param_answers_wrong))
                     val answers = listOf<String>(correctAnswer, wrongAnswers.getString(0), wrongAnswers.getString(1), wrongAnswers.getString(2))
 
                     questionsObjects.add(Question(question, answers.shuffled().toTypedArray(), correctAnswer))
