@@ -48,7 +48,8 @@ class MainMenuActivity : AppCompatActivity() {
             // go to the needed activity
             val session = SessionSharing().getSessionFromLink(this, intent.data)
             startSessionDetailActivity(session)
-
+            // override the intent action for going back in the other activity
+            this.intent.action = Intent.ACTION_MAIN
         } else {
             val sessionID = intent.getStringExtra("session")
             if(sessionID != null){
@@ -56,6 +57,7 @@ class MainMenuActivity : AppCompatActivity() {
                 // go to the needed activity
                 val session = SessionSharing().getSessionFromID(this, sessionID)
                 startSessionDetailActivity(session)
+                intent.removeExtra("session")
             }
 
             // activity was started manually, not by a link or notification
@@ -69,9 +71,6 @@ class MainMenuActivity : AppCompatActivity() {
         val detailViewIntent = Intent(this@MainMenuActivity, SessionDetailActivity::class.java)
         detailViewIntent.putExtra(getString(R.string.intent_extra_session_clicked), session)
         startActivity(detailViewIntent)
-
-        // override the intent action for going back in the other activity
-        this.intent.action = Intent.ACTION_MAIN
     }
 
 
