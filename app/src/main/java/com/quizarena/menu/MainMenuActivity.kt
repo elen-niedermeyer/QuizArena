@@ -9,6 +9,7 @@ import com.quizarena.options.OptionsActivity
 import com.quizarena.sessions.QuizSession
 import com.quizarena.sessions.creation.CreateSessionActivity
 import com.quizarena.sessions.detailView.SessionDetailActivity
+import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
 import com.quizarena.sessions.overview.SessionOverviewActivity
 import com.quizarena.sharing.SessionSharing
 import com.quizarena.user.CurrentUser
@@ -67,11 +68,11 @@ class MainMenuActivity : AppCompatActivity() {
         }
     }
 
-    fun startSessionDetailActivity(session: QuizSession?){
-        val detailViewIntent = Intent(this@MainMenuActivity, SessionDetailActivity::class.java)
-        detailViewIntent.putExtra(getString(R.string.intent_extra_session_clicked), session)
-        startActivity(detailViewIntent)
+    private fun startSessionDetailActivity(session: QuizSession?){
+        if(session != null){
+            val detailViewIntent = Intent(this@MainMenuActivity, if(session.isParticipant) SessionParticipantDetailActivity::class.java else SessionDetailActivity::class.java)
+            detailViewIntent.putExtra(getString(R.string.intent_extra_session_clicked), session)
+            startActivity(detailViewIntent)
+        }
     }
-
-
 }
