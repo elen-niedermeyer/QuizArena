@@ -50,43 +50,47 @@ class QuizActivity : AppCompatActivity() {
     private val onAnswerClickListener = object : View.OnClickListener {
 
         override fun onClick(view: View?) {
-            if (view is Button) {
-                // disable the buttons until the next question
-                answerButtons.forEach { it.isEnabled = false }
+            if (counter < questions!!.size) {
+                // only do something on click, if we are inside the index
+                
+                if (view is Button) {
+                    // disable the buttons until the next question
+                    answerButtons.forEach { it.isEnabled = false }
 
-                // figure out if the answer was right or wrong
-                if (view.text == questions!![counter].correctAnswer) {
-                    // the answer is correct
-                    ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.correct_answer))
-                    view.setTextColor(resources.getColor(android.R.color.black))
-                    correctAnswers++
+                    // figure out if the answer was right or wrong
+                    if (view.text == questions!![counter].correctAnswer) {
+                        // the answer is correct
+                        ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.correct_answer))
+                        view.setTextColor(resources.getColor(android.R.color.black))
+                        correctAnswers++
 
-                } else {
-                    // the answer is wrong
-                    ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.wrong_answer))
-                    view.setTextColor(resources.getColor(android.R.color.black))
+                    } else {
+                        // the answer is wrong
+                        ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.wrong_answer))
+                        view.setTextColor(resources.getColor(android.R.color.black))
+                    }
+
+                    // short delay for showing the result to the user
+                    view.postDelayed(
+                            // behavior after delay
+                            Runnable {
+                                // reset buttons
+                                val buttonStyle = obtainStyledAttributes(R.style.button, intArrayOf(android.R.attr.backgroundTint, android.R.attr.textColor))
+                                ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, buttonStyle.getResourceId(0, R.color.colorPrimary)))
+                                view.setTextColor(buttonStyle.getColor(1, resources.getColor(R.color.text_button)))
+                                buttonStyle.recycle()
+                                answerButtons.forEach { it.isEnabled = true }
+
+                                // next question
+                                counter++
+                                setNextQuestion()
+                            },
+                            // delay time
+                            500
+                    );
                 }
 
-                // short delay for showing the result to the user
-                view.postDelayed(
-                        // behavior after delay
-                        Runnable {
-                            // reset buttons
-                            val buttonStyle = obtainStyledAttributes(R.style.button, intArrayOf(android.R.attr.backgroundTint, android.R.attr.textColor))
-                            ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, buttonStyle.getResourceId(0, R.color.colorPrimary)))
-                            view.setTextColor(buttonStyle.getColor(1, resources.getColor(R.color.text_button)))
-                            buttonStyle.recycle()
-                            answerButtons.forEach { it.isEnabled = true }
-
-                            // next question
-                            counter++
-                            setNextQuestion()
-                        },
-                        // delay time
-                        500
-                );
             }
-
         }
 
     }
