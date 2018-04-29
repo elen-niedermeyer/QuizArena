@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.quizarena.options.OptionsActivity">
+
+    <!-- account name and logout button -->
+    <TextView
+        android:id="@+id/activity_options_account_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_options_button_logout"
+        app:layout_constraintEnd_toStartOf="@id/activity_options_button_logout"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toRightOf="@id/activity_options_button_logout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/activity_options_button_logout"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/activity_options_button_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        app:layout_constraintBottom_toTopOf="@id/activity_options_button_change_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/activity_options_account_name"
+        app:layout_constraintStart_toEndOf="@id/activity_options_account_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <!-- display name and changing -->
+    <TextView
+        android:id="@+id/activity_options_label_display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:labelFor="@id/activity_options_display_name"
+        android:text="@string/display_name"
+        app:layout_constraintBottom_toBottomOf="@id/activity_options_display_name"
+        app:layout_constraintEnd_toStartOf="@id/activity_options_display_name"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/activity_options_account_name"
+        app:layout_constraintTop_toTopOf="@id/activity_options_display_name" />
+
+    <TextView
+        android:id="@+id/activity_options_display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/activity_options_button_change_name"
+        app:layout_constraintEnd_toStartOf="@id/activity_options_button_change_name"
+        app:layout_constraintRight_toLeftOf="@id/activity_options_button_change_name"
+        app:layout_constraintStart_toEndOf="@id/activity_options_label_display_name"
+        app:layout_constraintTop_toTopOf="@id/activity_options_button_change_name" />
+
+    <Button
+        android:id="@+id/activity_options_button_change_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/change"
+        app:layout_constraintBottom_toTopOf="@id/activity_options_button_change_password"
+        app:layout_constraintEnd_toEndOf="@+id/activity_options_button_logout"
+        app:layout_constraintRight_toLeftOf="@id/activity_options_display_name"
+        app:layout_constraintStart_toStartOf="@+id/activity_options_button_logout"
+        app:layout_constraintTop_toBottomOf="@id/activity_options_button_logout" />
+
+    <!-- password changing -->
+    <TextView
+        android:id="@+id/activity_options_label_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/activity_options_button_change_password"
+        android:text="@string/password"
+        app:layout_constraintBottom_toBottomOf="@id/activity_options_button_change_password"
+        app:layout_constraintEnd_toStartOf="@id/activity_options_button_change_password"
+        app:layout_constraintRight_toLeftOf="@id/activity_options_button_change_password"
+        app:layout_constraintStart_toStartOf="@+id/activity_options_label_display_name"
+        app:layout_constraintTop_toTopOf="@id/activity_options_button_change_password" />
+
+    <Button
+        android:id="@+id/activity_options_button_change_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/change"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activity_options_button_change_name"
+        app:layout_constraintLeft_toRightOf="@id/activity_options_label_password"
+        app:layout_constraintStart_toStartOf="@+id/activity_options_button_change_name"
+        app:layout_constraintTop_toBottomOf="@id/activity_options_button_change_name" />
+
+</android.support.constraint.ConstraintLayout>

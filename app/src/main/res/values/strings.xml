@@ -1,0 +1,135 @@
+<resources>
+    <string name="app_name">QuizArena</string>
+
+    <!-- shared strings -->
+    <string name="category">Kategorie</string>
+    <string name="change">\u00C4ndern</string>
+    <string name="error">Fehler</string>
+    <string name="imprint">Impressum</string>
+    <string name="is_private">Privat?</string>
+    <string name="language">Sprache</string>
+    <string name="logout">Abmelden</string>
+    <string name="ok">OK</string>
+    <string name="options">Optionen</string>
+    <string name="push">Push-Nachrichten</string>
+    <string name="search">Suche</string>
+    <string name="terminate">Beenden</string>
+
+    <!-- api requests -->
+    <string name="baseurl">https://aersoftler.pythonanywhere.com</string>
+    <!-- category requests -->
+    <string name="endpoint_category">/category</string>
+    <!-- session requests -->
+    <string name="endpoint_sessions_all">/session</string>
+    <string name="endpoint_session_specific">/session/%1$s</string>
+    <string name="endpoint_session_user">/session/by_user/%1$s</string>
+    <string name="endpoint_session_add_user">/session/%1$s?update=add-user</string>
+    <string name="endpoint_session_update_score">/session/%1$s?update=set-score</string>
+    <string name="endpoint_session_terminate">/session/%1$s?update=close</string>
+    <string name="endpoint_sessions_creation">/session/%1$s</string>
+    <string name="endpoint_sessions_result_participants">/session/result/%1$s</string>
+    <!-- user requests -->
+    <string name="endpoint_users_all">/user</string>
+    <string name="endpoint_user_specific">/user/%1$s</string>
+    <string name="endpoint_user_token_authentication">/user/%1$s/%2$s</string>
+    <string name="endpoint_user_login">/user/%1$s/login</string>
+    <string name="endpoint_user_logout">/user/%1$s/logout</string>
+    <string name="endpoint_user_change_displayname">/user/%1$s?update=display_name</string>
+    <string name="endpoint_user_change_password">/user/%1$s?update=password</string>
+    <!-- api params -->
+    <string name="api_param_accountID">id</string>
+    <string name="api_param_accountName">user</string>
+    <string name="api_param_displayName">display_name</string>
+    <string name="api_param_totalScore">total_score</string>
+    <string name="api_param_password">password</string>
+    <string name="api_param_password_old">old_password</string>
+    <string name="api_param_password_new">new_password</string>
+    <string name="api_param_token">token</string>
+    <string name="api_param_questions">questions</string>
+    <string name="api_param_question_single">question</string>
+    <string name="api_param_answers">answers</string>
+    <string name="api_param_answer_correct">right_answer</string>
+    <string name="api_param_answers_wrong">wrong_answers</string>
+    <string name="api_param_session_id">_id</string>
+    <string name="api_param_session_name">name</string>
+    <string name="api_param_session_category">category</string>
+    <string name="api_param_session_private">private</string>
+    <string name="api_param_session_admin">admin</string>
+    <string name="api_param_session_participants">users</string>
+    <string name="api_param_session_score">score</string>
+    <string name="api_param_session_duration">run-time</string>
+    <string name="api_param_session_end">deadline</string>
+    <string name="api_param_session_closed">closed</string>
+    <string name="api_param_sessions_participated">sessions_i_participate</string>
+    <string name="api_param_sessions_open">sessions_to_participate</string>
+    <!-- api errors -->
+    <string name="error_network">Keine Verbindung zum Server.\nBitte versuche es später erneut.</string>
+    <string name="error_general">Es ist ein Fehler aufgetreten\n</string>
+    <string name="api_error_username_duplicated">Nutzername existiert schon</string>
+    <string name="api_error_password_empty">Passwort darf nicht leer sein</string>
+    <string name="api_error_displayname_empty">Kein Anzeigename vorhanden</string>
+    <string name="api_error_user_not_existing">Der angefragte Nutzer existiert nicht</string>
+    <string name="api_error_wrong_password">Passwort ist nicht korrekt</string>
+
+    <!-- handling sessions -->
+    <string name="show_sessions">Sessions anzeigen</string>
+    <string name="create_session">Session erstellen</string>
+    <string name="session_name">Name</string>
+    <string name="duration">Dauer</string>
+    <string name="hours">Stunden</string>
+    <string name="search_hint">Suche nach Name oder Kategorie</string>
+    <string name="time_left">%1$02dh %2$02dmin</string>
+    <string name="terminated">Beendet</string>
+    <string name="start_session">Quiz beginnen</string>
+    <string name="my_score">Mein Ergebnis:</string>
+    <string name="questions_counter">%1$d/%2$d</string>
+    <!-- create session errors -->
+    <string name="create_session_error_no_name">Lege einen Sessionnamen fest</string>
+    <string name="create_session_error_no_duration">Lege eine Dauer fest</string>
+    <string name="create_session_error_wrong_duration">Gib eine g\u00FCltige Dauer ein</string>
+    <string name="create_session_error_no_password">Lege ein Passwort fest</string>
+    <string name="create_session_error_duration_between_6_24">Die Dauer muss zwischen 6 und 24 Stunden liegen</string>
+
+    <!-- handling account -->
+    <string name="account_name">Name</string>
+    <string name="display_name">Anzeigename</string>
+    <string name="display_name_new">Neuer Anzeigename</string>
+    <string name="password">Passwort</string>
+    <string name="password_confirm">Passwort wiederholen</string>
+    <string name="password_change">Passwort \u00E4ndern</string>
+    <string name="password_changed">Passwort geändert</string>
+    <string name="password_old">Altes Passwort</string>
+    <string name="password_new">Neues Password</string>
+    <string name="password_new2">Neues Passwort wiederholen</string>
+    <string name="register">Registrieren</string>
+    <string name="login">Login</string>
+
+    <!-- ui errors -->
+    <string name="error_passwords_different">Passwörter sind nicht identisch</string>
+    <string name="error_no_name">Gib einen Accountnamen ein</string>
+    <string name="error_name_space">Name darf keine Leerzeichen enthalten</string>
+    <string name="error_no_password">Gib ein Passwort ein</string>
+
+    <!-- imprint -->
+    <string name="imprint_text">Diese App ist ein Projekt von\nMiklas Boskamp,\nDavid Golla,\nMilan Höllner und\nElen Niedermeyer.\n\nSie ist entstanden im Rahmen der Vorlesung \"Mobile Anwendungen\" im 6. Semester an der Hochschule für Wirtschaft und Recht Berlin.\n\nFrontend: https://github.com/elen-niedermeyer/QuizArena\nBackend: https://github.com/Aersoftler/QuizArena-Backend</string>
+
+    <!-- sharing feature -->
+    <string name="sharing_scheme">https</string>
+    <string name="sharing_host">aersoftler.pythonanywhere.com</string>
+    <string name="sharing_pathPrefix">/sharing</string>
+    <string name="sharing_link">/sharing/%1$s</string>
+    <string name="sharing_subject">Nimm an dieser Quizsession teil!</string>
+    <string name="sharing_text">Spiele mit mir diese Session bei QuizArena\n</string>
+    <string name="sharing_text_password">\nPasswort:%1$s</string>
+    <string name="sharing_chooser_title">Teilen über</string>
+
+    <!-- intent extras -->
+    <string name="intent_extra_session_clicked">clicked_session</string>
+    <string name="intent_extra_session_id">session_id</string>
+    <string name="intent_extra_session_password">session_password</string>
+
+    <!-- preferences -->
+    <string name="pref_credentials_file">com.quizarena.credentials</string>
+    <string name="pref_credentials_name_key">accountName</string>
+    <string name="pref_credentials_login_key">isLoggedIn</string>
+</resources>

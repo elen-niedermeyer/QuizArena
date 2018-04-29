@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user.login.LoginActivity">
+
+    <EditText
+        android:id="@+id/activity_login_account_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/account_name"
+        android:inputType="text"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/activity_login_error_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/activity_login_error_name"
+        style="@style/text_error"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/activity_login_password"
+        app:layout_constraintEnd_toEndOf="@+id/activity_login_account_name"
+        app:layout_constraintStart_toStartOf="@+id/activity_login_account_name"
+        app:layout_constraintTop_toBottomOf="@+id/activity_login_account_name"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <EditText
+        android:id="@+id/activity_login_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/activity_login_error_password"
+        app:layout_constraintEnd_toEndOf="@+id/activity_login_error_name"
+        app:layout_constraintStart_toStartOf="@+id/activity_login_error_name"
+        app:layout_constraintTop_toBottomOf="@+id/activity_login_error_name" />
+
+    <TextView
+        android:id="@+id/activity_login_error_password"
+        style="@style/text_error"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/activity_login_button_confirm"
+        app:layout_constraintEnd_toEndOf="@+id/activity_login_password"
+        app:layout_constraintStart_toStartOf="@+id/activity_login_password"
+        app:layout_constraintTop_toBottomOf="@+id/activity_login_password" />
+
+    <Button
+        android:id="@+id/activity_login_button_confirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activity_login_error_password"
+        app:layout_constraintStart_toStartOf="@+id/activity_login_error_password"
+        app:layout_constraintTop_toBottomOf="@+id/activity_login_error_password" />
+
+    <Button
+        android:id="@+id/activity_login_button_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
