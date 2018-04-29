@@ -34,7 +34,7 @@ class SessionSharing {
      * @param uri
      * @return the requested session
      */
-    fun getSessionFromLink(context: Context, uri: Uri): QuizSession?{
+    fun getSessionFromLink(context: Context, uri: Uri): QuizSession? {
         val sessionID = uri.lastPathSegment
         return getSessionFromID(context, sessionID)
     }
@@ -46,7 +46,7 @@ class SessionSharing {
      * @param sessionID
      * @return the requested session
      */
-    fun getSessionFromID(context: Context, sessionID: String): QuizSession?{
+    fun getSessionFromID(context: Context, sessionID: String): QuizSession? {
         return SessionApi(context).getSession(sessionID, CurrentUser.accountName)
     }
 }

@@ -29,11 +29,12 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
         // get session
         val sessionID = intent.getStringExtra(getString(R.string.intent_extra_session_id))
         val api = SessionApi(this@SessionParticipantDetailActivity)
-        if(sessionID != null){
+        if (sessionID != null) {
             currentSession = api.getSession(sessionID, CurrentUser.accountName)
-        }else {
+        } else {
             currentSession = intent.getParcelableExtra(getString(R.string.intent_extra_session_clicked))
         }
+
         if (currentSession!!.isParticipant) {
             // the user is participant of the session and allowed to see this view
 
@@ -43,10 +44,9 @@ class SessionParticipantDetailActivity : AppCompatActivity() {
             activity_session_participant_detail_time.text = SessionUtils.getDurationString(this, currentSession!!)
 
             // get participants
-            val session = currentSession
-            var participants = api.getParticipants(session!!.id)
+            var participants = api.getParticipants(currentSession!!.id)
             participants = ArrayList<Participant>(ParticipantsUtils.addRanking(participants!!))
-            val thisUser = participants.filter { it.accountName == CurrentUser.accountName }.get(0)
+            val thisUser = participants.filter { it.accountName == CurrentUser.accountName }[0]
             val thisUsersRank = thisUser.ranking
             // set text views about the current user
             activity_session_participant_detail_place.text = thisUsersRank.toString()

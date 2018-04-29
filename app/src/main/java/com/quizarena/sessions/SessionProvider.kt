@@ -9,7 +9,7 @@ class SessionProvider(val context: Context) {
      * list of current sessions
      * Getter makes a request if the field isn't already set.
      */
-    var allSessions: List<QuizSession>? = null
+    private var allSessions: List<QuizSession>? = null
         get() {
             if (field == null) {
                 allSessions = SessionApi(context).getSessions(CurrentUser.accountName)
@@ -22,7 +22,7 @@ class SessionProvider(val context: Context) {
      * Provides a list of all sessions of which the logged in user is owner.
      * @return the list or null
      */
-    fun getOwnedSessions(): List<QuizSession>? {
+    private fun getOwnedSessions(): List<QuizSession>? {
         if (allSessions == null) {
             allSessions = SessionApi(context).getSessions(CurrentUser.accountName)
         }
@@ -39,7 +39,7 @@ class SessionProvider(val context: Context) {
      * Sorts the list of {@link #getOwnedSessions} by end dates of the sessions.
      * @return the sorted list or null
      */
-    fun getOwnedSessionsSorted(): List<QuizSession>? {
+    private fun getOwnedSessionsSorted(): List<QuizSession>? {
         val sessions = getOwnedSessions()
         if (sessions != null) {
             return sessions.sortedWith(compareBy { it.enddate })
@@ -52,7 +52,7 @@ class SessionProvider(val context: Context) {
      * Provides a list of all sessions of which the logged in user is participant and not owner.
      * @return the list or null
      */
-    fun getParticipatedSessions(): List<QuizSession>? {
+    private fun getParticipatedSessions(): List<QuizSession>? {
         if (allSessions == null) {
             allSessions = SessionApi(context).getSessions(CurrentUser.accountName)
         }
@@ -69,7 +69,7 @@ class SessionProvider(val context: Context) {
      * Sorts the list of {@link #getParticipatedeSessions} by end dates of the sessions.
      * @return the sorted list or null
      */
-    fun getParticipatedSessionsSorted(): List<QuizSession>? {
+    private fun getParticipatedSessionsSorted(): List<QuizSession>? {
         val sessions = getParticipatedSessions()
         if (sessions != null) {
             return sessions.sortedWith(compareBy { it.enddate })
@@ -83,7 +83,7 @@ class SessionProvider(val context: Context) {
      * Exfiltrates terminated sessions. They aren't interesting for the user.
      * @return the list or null
      */
-    fun getOpenSessions(): List<QuizSession>? {
+    private fun getOpenSessions(): List<QuizSession>? {
         if (allSessions == null) {
             allSessions = SessionApi(context).getSessions(CurrentUser.accountName)
         }
@@ -100,7 +100,7 @@ class SessionProvider(val context: Context) {
      * Sorts the list of {@link #getOpenSessions} by end dates of the sessions.
      * @return the sorted list or null
      */
-    fun getOpenSessionsSorted(): List<QuizSession>? {
+    private fun getOpenSessionsSorted(): List<QuizSession>? {
         val sessions = getOpenSessions()
         if (sessions != null) {
             return sessions.filter { it.enddate > System.currentTimeMillis() }.sortedWith(compareBy { it.enddate })
@@ -114,7 +114,7 @@ class SessionProvider(val context: Context) {
      * Exfiltrates terminated sessions. They aren't interesting for the user.
      * @return the list or null
      */
-    fun getPrivateSessions(): List<QuizSession>? {
+    private fun getPrivateSessions(): List<QuizSession>? {
         if (allSessions == null) {
             allSessions = SessionApi(context).getSessions(CurrentUser.accountName)
         }
@@ -131,7 +131,7 @@ class SessionProvider(val context: Context) {
      * Sorts the list of {@link #getPrivateSessions} by end dates of the sessions.
      * @return the sorted list or null
      */
-    fun getPrivateSessionsSorted(): List<QuizSession>? {
+    private fun getPrivateSessionsSorted(): List<QuizSession>? {
         val sessions = getPrivateSessions()
         if (sessions != null) {
             return sessions.filter { it.enddate > System.currentTimeMillis() }.sortedWith(compareBy { it.enddate })

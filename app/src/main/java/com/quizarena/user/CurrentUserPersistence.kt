@@ -6,7 +6,7 @@ import com.quizarena.R
 
 class CurrentUserPersistence(val context: Context) {
 
-    var preferenceUtils = PreferenceUtils(context);
+    private var preferenceUtils = PreferenceUtils(context)
 
     /**
      * Saves the given name in preferences.

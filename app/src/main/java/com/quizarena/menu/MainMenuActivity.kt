@@ -53,7 +53,7 @@ class MainMenuActivity : AppCompatActivity() {
             this.intent.action = Intent.ACTION_MAIN
         } else {
             val sessionID = intent.getStringExtra("session")
-            if(sessionID != null){
+            if (sessionID != null) {
                 // the activity was opened by a push notification
                 // go to the needed activity
                 val session = SessionSharing().getSessionFromID(this, sessionID)
@@ -68,9 +68,9 @@ class MainMenuActivity : AppCompatActivity() {
         }
     }
 
-    private fun startSessionDetailActivity(session: QuizSession?){
-        if(session != null){
-            val detailViewIntent = Intent(this@MainMenuActivity, if(session.isParticipant) SessionParticipantDetailActivity::class.java else SessionDetailActivity::class.java)
+    private fun startSessionDetailActivity(session: QuizSession?) {
+        if (session != null) {
+            val detailViewIntent = Intent(this@MainMenuActivity, if (session.isParticipant) SessionParticipantDetailActivity::class.java else SessionDetailActivity::class.java)
             detailViewIntent.putExtra(getString(R.string.intent_extra_session_clicked), session)
             startActivity(detailViewIntent)
         }

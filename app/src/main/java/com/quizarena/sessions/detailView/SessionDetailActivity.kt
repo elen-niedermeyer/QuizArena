@@ -17,7 +17,7 @@ class SessionDetailActivity : AppCompatActivity() {
      */
     private var currentSession: QuizSession? = null
 
-    val onParticipateButtonClick = View.OnClickListener {
+    private val onParticipateButtonClick = View.OnClickListener {
         // get password
         var password: String? = activity_session_detail_password.text.toString()
         if (password!!.isEmpty()) {
@@ -37,7 +37,7 @@ class SessionDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_session_detail)
 
-        currentSession = intent.getParcelableExtra<QuizSession>(getString(R.string.intent_extra_session_clicked))
+        currentSession = intent.getParcelableExtra(getString(R.string.intent_extra_session_clicked))
 
         if (!(currentSession!!.isParticipant)) {
             // the user isn't participant of the session

@@ -35,7 +35,7 @@ class SessionApi(val context: Context) {
                 val sessions = LinkedList<QuizSession>()
                 val json = response.jsonObject
                 val participatedSessions = json.getJSONArray(context.getString(R.string.api_param_sessions_participated))
-                for (i in 0..participatedSessions.length() - 1) {
+                for (i in 0 until participatedSessions.length()) {
                     val sessionJson = participatedSessions.getJSONObject(i)
                     // get end date
                     var endDate = System.currentTimeMillis() - 1
@@ -55,7 +55,7 @@ class SessionApi(val context: Context) {
                 }
 
                 val openSessions = json.getJSONArray(context.getString(R.string.api_param_sessions_open))
-                for (i in 0..openSessions.length() - 1) {
+                for (i in 0 until openSessions.length()) {
                     val sessionJson = openSessions.getJSONObject(i)
                     // get end date
                     var endDate = System.currentTimeMillis() - 1
@@ -115,7 +115,7 @@ class SessionApi(val context: Context) {
                 // look if user participates
                 var isParticipant = false
                 val participantsJson = jsonObject.getJSONArray(context.getString(R.string.api_param_session_participants))
-                for (i in 0..participantsJson.length() - 1) {
+                for (i in 0 until participantsJson.length()) {
                     val participantJson = participantsJson.getJSONObject(i)
                     if (participantJson.getString(context.getString(R.string.api_param_accountName)) == accountName) {
                         isParticipant = true
@@ -174,7 +174,7 @@ class SessionApi(val context: Context) {
                 // make list of participants
                 val participants = ArrayList<Participant>()
                 val json = response.jsonArray
-                for (i in 0..json.length() - 1) {
+                for (i in 0 until json.length()) {
                     val participantJson = json.getJSONObject(i)
                     participants.add(Participant(participantJson.getString("user"),
                             participantJson.getString(context.getString(R.string.api_param_displayName)),
