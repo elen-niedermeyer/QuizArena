@@ -1,6 +1,5 @@
 package com.quizarena.options
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -46,7 +45,7 @@ class OptionsActivity : AppCompatActivity() {
         val input = viewInflated.findViewById(R.id.input) as EditText
         builder.setView(viewInflated)
 
-        builder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, _ ->
+        builder.setPositiveButton(android.R.string.ok, { dialog, _ ->
             dialog.dismiss()
 
             // get input
@@ -63,7 +62,7 @@ class OptionsActivity : AppCompatActivity() {
             }
         })
 
-        builder.setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialog, _ -> dialog.cancel() })
+        builder.setNegativeButton(android.R.string.cancel, { dialog, _ -> dialog.cancel() })
 
         // show dialog
         builder.show()
@@ -84,7 +83,7 @@ class OptionsActivity : AppCompatActivity() {
         val passwordNew2 = viewInflated.findViewById(R.id.input_password_new2) as EditText
         builder.setView(viewInflated)
 
-        builder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, _ ->
+        builder.setPositiveButton(android.R.string.ok, { dialog, _ ->
             dialog.dismiss()
 
             // get input
@@ -113,7 +112,7 @@ class OptionsActivity : AppCompatActivity() {
 
         })
 
-        builder.setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialog, _ -> dialog.cancel() })
+        builder.setNegativeButton(android.R.string.cancel, { dialog, _ -> dialog.cancel() })
 
         // show dialog
         builder.show()
@@ -145,7 +144,7 @@ class OptionsActivity : AppCompatActivity() {
     /**
      * Makes an error dialog.
      *
-     * @param the error message
+     * @param message the error message
      */
     private fun showError(message: String) {
         // show an error message

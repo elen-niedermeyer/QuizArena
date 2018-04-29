@@ -34,4 +34,5 @@ data class QuizSession(val id: String, val name: String, val category: String, v
             override fun newArray(size: Int): Array<QuizSession?> = arrayOfNulls(size)
         }
     }
+
 }

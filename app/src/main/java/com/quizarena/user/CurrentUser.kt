@@ -4,9 +4,9 @@ class CurrentUser(accountName: String) {
 
     var accountName = accountName
         private set
-    var isLoggedIn = false
-    var displayName = ""
-    var globalScore = -1
+    private var isLoggedIn = false
+    private var displayName = ""
+    private var globalScore = -1
 
     /**
      * set the static values

@@ -14,8 +14,8 @@ class ParticipantsUtils {
         fun addRanking(participants: List<Participant>): List<Participant> {
             val participantsSorted = sortListByScore(participants)
 
-            var rank = 1;
-            var score = participantsSorted.get(0).sessionScore
+            var rank = 1
+            var score = participantsSorted[0].sessionScore
 
             participantsSorted.forEachIndexed { index, participant ->
                 if (participant.sessionScore < score) {

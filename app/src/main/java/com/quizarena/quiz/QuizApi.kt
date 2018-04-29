@@ -33,7 +33,7 @@ class QuizApi(val context: Context) {
                 val json = response.jsonArray
                 val sessionJson = json.getJSONObject(0)
                 val questionsJson = sessionJson.getJSONArray(context.getString(R.string.api_param_questions))
-                for (i in 0..questionsJson.length() - 1) {
+                for (i in 0 until questionsJson.length()) {
                     val questionJson = questionsJson.getJSONObject(i)
                     val question = questionJson.getString(context.getString(R.string.api_param_question_single))
                     val answersJson = questionJson.getJSONObject(context.getString(R.string.api_param_answers))

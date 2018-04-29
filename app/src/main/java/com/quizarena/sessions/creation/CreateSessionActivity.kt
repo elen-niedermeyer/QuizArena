@@ -75,8 +75,8 @@ class CreateSessionActivity : AppCompatActivity() {
 
                 // execute request
                 val api = SessionApi(this@CreateSessionActivity)
-                var newSessionID: String?
-                var password: String?
+                val newSessionID: String?
+                val password: String?
                 if (activity_create_session_isprivate_checkbox.isChecked) {
                     // create private session request
                     password = activity_create_session_isprivate_password.text.toString()

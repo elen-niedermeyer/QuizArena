@@ -15,7 +15,7 @@ class CredentialsUpdater(val context: Context) {
      * @return true if the user was authenticated, false otherwise
      */
     fun authenticate(): Boolean {
-        CurrentUserPersistence(context).loadName();
+        CurrentUserPersistence(context).loadName()
         if (!CurrentUser.isLoggedIn) {
             val userApi = UserApi(context)
             val isAuthenticated = userApi.authenticate(CurrentUser.accountName, InstanceIdService().getToken())
