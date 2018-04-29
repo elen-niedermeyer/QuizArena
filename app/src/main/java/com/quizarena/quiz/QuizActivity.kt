@@ -2,6 +2,7 @@ package com.quizarena.quiz
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.content.res.AppCompatResources
@@ -47,52 +48,48 @@ class QuizActivity : AppCompatActivity() {
     /**
      * on click listener for the answer buttons
      */
-    private val onAnswerClickListener = object : View.OnClickListener {
+    private val onAnswerClickListener = View.OnClickListener { view ->
+        if (counter < questions!!.size) {
+            // only do something on click, if we are inside the index
 
-        override fun onClick(view: View?) {
-            if (counter < questions!!.size) {
-                // only do something on click, if we are inside the index
-                
-                if (view is Button) {
-                    // disable the buttons until the next question
-                    answerButtons.forEach { it.isEnabled = false }
+            if (view is Button) {
+                // disable the buttons until the next question
+                answerButtons.forEach { it.isEnabled = false }
 
-                    // figure out if the answer was right or wrong
-                    if (view.text == questions!![counter].correctAnswer) {
-                        // the answer is correct
-                        ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.correct_answer))
-                        view.setTextColor(resources.getColor(android.R.color.black))
-                        correctAnswers++
+                // figure out if the answer was right or wrong
+                if (view.text == questions!![counter].correctAnswer) {
+                    // the answer is correct
+                    ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.correct_answer))
+                    view.setTextColor(ContextCompat.getColor(this@QuizActivity, android.R.color.black))
+                    correctAnswers++
 
-                    } else {
-                        // the answer is wrong
-                        ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.wrong_answer))
-                        view.setTextColor(resources.getColor(android.R.color.black))
-                    }
-
-                    // short delay for showing the result to the user
-                    view.postDelayed(
-                            // behavior after delay
-                            Runnable {
-                                // reset buttons
-                                val buttonStyle = obtainStyledAttributes(R.style.button, intArrayOf(android.R.attr.backgroundTint, android.R.attr.textColor))
-                                ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, buttonStyle.getResourceId(0, R.color.colorPrimary)))
-                                view.setTextColor(buttonStyle.getColor(1, resources.getColor(R.color.text_button)))
-                                buttonStyle.recycle()
-                                answerButtons.forEach { it.isEnabled = true }
-
-                                // next question
-                                counter++
-                                setNextQuestion()
-                            },
-                            // delay time
-                            500
-                    );
+                } else {
+                    // the answer is wrong
+                    ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, R.color.wrong_answer))
+                    view.setTextColor(ContextCompat.getColor(this@QuizActivity, android.R.color.black))
                 }
 
-            }
-        }
+                // short delay for showing the result to the user
+                view.postDelayed(
+                        // behavior after delay
+                        {
+                            // reset buttons
+                            val buttonStyle = obtainStyledAttributes(R.style.button, intArrayOf(android.R.attr.backgroundTint, android.R.attr.textColor))
+                            ViewCompat.setBackgroundTintList(view, AppCompatResources.getColorStateList(this@QuizActivity, buttonStyle.getResourceId(0, R.color.colorPrimary)))
+                            view.setTextColor(buttonStyle.getColor(1, ContextCompat.getColor(this@QuizActivity, R.color.text_button)))
+                            buttonStyle.recycle()
+                            answerButtons.forEach { it.isEnabled = true }
 
+                            // next question
+                            counter++
+                            setNextQuestion()
+                        },
+                        // delay time
+                        500
+                )
+            }
+
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,6 +113,9 @@ class QuizActivity : AppCompatActivity() {
             this.finish()
         }
 
+        // add user as participant
+        addParticipant()
+
         // initialize answer buttons
         answerButtons = arrayOf(activity_quiz_button_answer_1, activity_quiz_button_answer_2, activity_quiz_button_answer_3, activity_quiz_button_answer_4)
         answerButtons.forEach { it.setOnClickListener(onAnswerClickListener) }
@@ -126,22 +126,6 @@ class QuizActivity : AppCompatActivity() {
 
         // initialize content
         setNextQuestion()
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        val sessionApi = SessionApi(this@QuizActivity)
-        if (!sessionApi.addParticipant(sessionID, CurrentUser.accountName, password)) {
-            // request failed
-            // show an error message and terminate the activity
-            alert {
-                title = getString(R.string.error)
-                message(sessionApi.state)
-                positiveButton(getString(R.string.ok)) { }
-            }.show()
-            this.finish()
-        }
     }
 
     override fun onPause() {
@@ -158,6 +142,25 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
+
+    /**
+     * Adds the user as participant to the session.
+     * Displays a message if there's a failure in the request.
+     */
+    private fun addParticipant() {
+        val sessionApi = SessionApi(this@QuizActivity)
+        if (!sessionApi.addParticipant(sessionID, CurrentUser.accountName, password)) {
+            // request failed
+            // show an error message and terminate the activity
+            alert {
+                title = getString(R.string.error)
+                message(sessionApi.state)
+                positiveButton(getString(R.string.ok)) { }
+            }.show()
+            this.finish()
+        }
+    }
+
     /**
      * Shows the next question or finishs it.
      */
@@ -166,7 +169,7 @@ class QuizActivity : AppCompatActivity() {
             // go on with the next question
             val currentQuestion = questions!![counter]
             // set all text for this question
-            activity_quiz_number.text = (counter + 1).toString() + "/" + questions!!.size
+            activity_quiz_number.text = getString(R.string.questions_counter, (counter + 1), questions!!.size)
             activity_quiz_question.text = currentQuestion.question
             activity_quiz_button_answer_1.text = currentQuestion.answers[0]
             activity_quiz_button_answer_2.text = currentQuestion.answers[1]
