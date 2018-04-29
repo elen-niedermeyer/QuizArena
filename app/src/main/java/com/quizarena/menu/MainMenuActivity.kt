@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import com.quizarena.R
 import com.quizarena.imprint.ImprintActivity
 import com.quizarena.options.OptionsActivity
+import com.quizarena.sessions.QuizSession
 import com.quizarena.sessions.creation.CreateSessionActivity
 import com.quizarena.sessions.detailView.SessionDetailActivity
+import com.quizarena.sessions.detailView.SessionParticipantDetailActivity
 import com.quizarena.sessions.overview.SessionOverviewActivity
 import com.quizarena.sharing.SessionSharing
 import com.quizarena.user.CurrentUser
@@ -46,20 +48,31 @@ class MainMenuActivity : AppCompatActivity() {
             // the activity was opened by a sharing link
             // go to the needed activity
             val session = SessionSharing().getSessionFromLink(this, intent.data)
-            val detailViewIntent = Intent(this@MainMenuActivity, SessionDetailActivity::class.java)
-            detailViewIntent.putExtra(getString(R.string.intent_extra_session_clicked), session)
-            startActivity(detailViewIntent)
-
+            startSessionDetailActivity(session)
             // override the intent action for going back in the other activity
             this.intent.action = Intent.ACTION_MAIN
-
         } else {
-            // activity was started manually, not by a link
+            val sessionID = intent.getStringExtra("session")
+            if(sessionID != null){
+                // the activity was opened by a push notification
+                // go to the needed activity
+                val session = SessionSharing().getSessionFromID(this, sessionID)
+                startSessionDetailActivity(session)
+                intent.removeExtra("session")
+            }
+
+            // activity was started manually, not by a link or notification
             // initialize content views
             activity_main_menu_displayname.text = CurrentUser.displayName
             activity_main_menu_globalscore.text = CurrentUser.globalScore.toString()
         }
     }
 
-
+    private fun startSessionDetailActivity(session: QuizSession?){
+        if(session != null){
+            val detailViewIntent = Intent(this@MainMenuActivity, if(session.isParticipant) SessionParticipantDetailActivity::class.java else SessionDetailActivity::class.java)
+            detailViewIntent.putExtra(getString(R.string.intent_extra_session_clicked), session)
+            startActivity(detailViewIntent)
+        }
+    }
 }
